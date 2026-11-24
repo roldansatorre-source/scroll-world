@@ -5,3 +5,4 @@ out/
 urban-motor/reels/*.mp4
 urban-motor/build/reels2/
 __pycache__/
+urban-motor/build/micro/
