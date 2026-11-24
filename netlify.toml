@@ -1,0 +1,16 @@
+# Netlify: publish the Urban Motor landing page (static, no build step).
+[build]
+  base = "urban-motor"
+  publish = "."
+  command = ""
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+
+[[headers]]
+  for = "/assets/vid/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
+    Content-Type = "video/mp4"
