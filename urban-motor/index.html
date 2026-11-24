@@ -174,7 +174,6 @@
   </style>
 </head>
 <body>
-  <div class="um-intro" aria-hidden="true"><i></i><img src="assets/marca/logo-um.png" alt="" /></div>
   <div class="um-sweep" aria-hidden="true"><i></i><i></i></div>
   <div id="top"></div>
   <div id="world"></div>
@@ -260,12 +259,15 @@
       diveScroll: 1.4,
       crossfade: 0.08,          // continuous forward take: legs hand off frame-to-frame
       sections: [
+        { id: 'inicio', label: 'Inicio', ...scene(0), accent: '#2F6BFF', scroll: 1.8,
+          eyebrow: 'Urban Motor', title: 'Lo dejamos como nuevo.',
+          body: 'Limpieza, pulido y restauración de coches y motos a domicilio en Alcoi y comarca.', tags: [] },
         { id: 'domicilio', label: 'A domicilio', ...scene(1), accent: '#2F6BFF',
           eyebrow: 'A domicilio', title: 'Voy yo. Tu coche no se mueve.',
           body: 'Garaje, plaza o puerta de casa. Alcoi, Cocentaina, Muro y comarca.', tags: [] },
         { id: 'interiores', label: 'Interiores', ...scene(2), accent: '#2F6BFF', linger: 0.4,
           eyebrow: 'Limpieza de interiores', title: 'Como el primer día.',
-          body: 'Inyección-extracción y vapor para tapicería, alfombras y plásticos.', tags: ['Niños', 'Mascotas'] },
+          body: 'Aspirado, cepillado, inyección-extracción y vapor para tapicería, alfombras y plásticos.', tags: ['Niños', 'Mascotas'] },
         { id: 'exterior', label: 'Exterior', ...scene(3), accent: '#2F6BFF', linger: 0.4,
           eyebrow: 'Lavado exterior', title: 'A mano y sin manguera.',
           body: 'Sin charcos, en cualquier garaje o plaza.', tags: [] },
@@ -299,7 +301,6 @@
 
     // ---- Effects ----
     const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    setTimeout(() => document.querySelector('.um-intro')?.remove(), 2700);
 
     // Word-by-word headline reveal
     const copies = [...document.querySelectorAll('.sw-copy')];
