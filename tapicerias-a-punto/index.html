@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Tapicerías a Punto — Limpieza de sofás y colchones a domicilio en Alcoi</title>
+  <meta name="description" content="Limpieza de sofás, sillones, colchones, sillas y tapicerías a domicilio en Alcoi, Cocentaina, Muro y comarca. Inyección-extracción, sin desmontar nada. Precio cerrado por WhatsApp con una foto." />
+  <meta name="theme-color" content="#2F4A3C" />
+  <meta property="og:title" content="Tapicerías a Punto — Tu sofá, como el primer día" />
+  <meta property="og:description" content="Limpieza de sofás, colchones y tapicerías a domicilio en Alcoi y comarca. Mándame una foto y te digo el precio." />
+  <meta property="og:image" content="assets/marca/compartir.jpg" />
+  <meta property="og:type" content="website" />
+  <link rel="icon" href="assets/marca/perfil-tp.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:wght@600&display=swap" rel="stylesheet" />
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"LocalBusiness","name":"Tapicerías a Punto",
+   "description":"Limpieza de sofás, sillones, colchones, sillas y tapicerías a domicilio.",
+   "telephone":"+34614180575","areaServed":["Alcoi","Cocentaina","Muro"],
+   "address":{"@type":"PostalAddress","addressLocality":"Alcoi","addressRegion":"Alicante","addressCountry":"ES"},
+   "openingHours":"Mo-Fr"}
+  </script>
+  <style>
+    :root, .sw-root {
+      --tp-green: #2F4A3C;
+      --tp-green-deep: #22382D;
+      --tp-cream: #F5F0E6;
+      --tp-sage: #8FA68E;
+      --tp-sand: #E9E2D3;
+      --tp-ink: #1F2A24;
+
+      --sw-bg: var(--tp-green);
+      --sw-ink: var(--tp-cream);
+      --sw-ink-soft: var(--tp-sand);
+      --sw-accent: var(--tp-sage);
+      --sw-font-display: "Lora", Georgia, serif;
+      --sw-font-body: "Inter", system-ui, sans-serif;
+    }
+    html, body { overflow-x: clip !important; overflow-y: visible !important; }
+    html, body { margin: 0; background: var(--tp-green); color: var(--tp-cream); font-family: "Inter", system-ui, sans-serif; }
+
+    /* Brand: the cream wordmark replaces the engine's default mark + name. */
+    .sw-brand__mark { width: 180px; height: 25px; border-radius: 0; box-shadow: none;
+      background: url("assets/marca/logo-crema.png") left center / contain no-repeat; }
+    .sw-brand__name { display: none; }
+    .sw-topcta { background: var(--tp-cream); color: var(--tp-green); font-weight: 600; }
+    .sw-topcta:hover { background: #fff; }
+    .sw-btn--primary { background: var(--tp-cream); color: var(--tp-green); }
+    .sw-btn--primary:hover { background: #fff; }
+    .sw-nav { background: rgba(34, 56, 45, .62); border-color: rgba(245, 240, 230, .12); }
+    .sw-route__label { background: rgba(34, 56, 45, .85); color: var(--tp-cream); }
+
+    /* Soft green scrim so cream copy reads over bright home footage. */
+    .sw-copylayer::before { content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(90deg, rgba(34,56,45,.84) 0%, rgba(34,56,45,.55) 33%, rgba(34,56,45,0) 60%); }
+    .sw-copy__body, .sw-copy p { color: #EFE9DC; }
+    @media (max-width: 860px) {
+      .sw-copylayer::before { background: linear-gradient(0deg, rgba(34,56,45,.92) 0%, rgba(34,56,45,.62) 40%, rgba(34,56,45,0) 64%); }
+    }
+
+    /* Headlines: Lora SemiBold, rising in word by word. */
+    .sw-copy { width: min(50vw, 640px); }
+    .sw-copy__title { font-family: "Lora", Georgia, serif !important; font-weight: 600 !important;
+      font-size: clamp(2.4rem, 5.4vw, 4.6rem) !important; line-height: 1.04 !important; letter-spacing: -.01em !important; }
+    .sw-copy__title::after { content: "."; color: var(--tp-sage); }
+    .sw-copy__title .w:last-child > span { }
+    .sw-copy__eyebrow { display: flex !important; align-items: center; gap: 12px; color: var(--tp-sage) !important; }
+    .sw-copy__eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--tp-sage); }
+    .sw-copy__num { color: var(--tp-sage) !important; }
+    .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .1em; margin-bottom: -.1em; }
+    .w > span { display: inline-block; transform: translateY(108%); transition: transform .8s cubic-bezier(.2,.8,.2,1); transition-delay: calc(var(--i) * 60ms); }
+    .sw-copy.is-in .w > span { transform: none; }
+    .sw-tag, .sw-copy__tags span { background: rgba(245,240,230,.16) !important; color: var(--tp-cream) !important; border-color: transparent !important; }
+
+    /* Landing: only the wordmark over the stain close-up; everything else waits for the first scroll. */
+    .tp-hero-logo { position: fixed; inset: 0; z-index: 30; display: grid; place-items: center; pointer-events: none;
+      transition: opacity .6s, transform .6s; }
+    .tp-hero-logo img { width: min(78vw, 620px); height: auto; filter: drop-shadow(0 4px 30px rgba(20,30,25,.55)); }
+    body:not(.tp-landing) .tp-hero-logo { opacity: 0; transform: translateY(-16px); }
+    .sw-topbar, .sw-route { transition: opacity .5s, transform .5s; }
+    body.tp-landing .sw-topbar { opacity: 0; transform: translateY(-12px); pointer-events: none; }
+    body.tp-landing .sw-route { opacity: 0; pointer-events: none; }
+
+    /* Nav for 9 scenes */
+    .sw-nav__item { padding: 7px 11px !important; font-size: .8rem !important; white-space: nowrap; }
+    @media (max-width: 1240px) { .sw-nav { display: none !important; } }
+
+    /* After the walkthrough: page sections slide over the fixed layers. */
+    .tp-after { position: relative; z-index: 45; background: var(--tp-cream); color: var(--tp-ink); }
+    .sw-stage, .sw-copylayer, .sw-route, .sw-sky { transition: opacity .35s; }
+    body.tp-past .sw-stage, body.tp-past .sw-copylayer, body.tp-past .sw-route, body.tp-past .sw-sky { opacity: 0; pointer-events: none; }
+    body.tp-past .sw-topbar { background: rgba(47, 74, 60, .94); backdrop-filter: blur(10px); }
+    #precio, #antes-despues, #negocios { scroll-margin-top: 90px; }
+
+    .tp-wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+    .tp-section { position: relative; padding: 112px 0; }
+    .tp-eyebrow { display: flex; align-items: center; gap: 10px; color: var(--tp-green); font-weight: 600; font-size: .8rem; letter-spacing: .16em; text-transform: uppercase; margin: 0 0 14px; }
+    .tp-eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--tp-sage); }
+    .tp-h2 { font-family: "Lora", Georgia, serif; font-weight: 600; font-size: clamp(2rem, 4.6vw, 3.2rem); line-height: 1.08; margin: 0 0 16px; color: var(--tp-green); }
+    .tp-h2 i { font-style: normal; color: var(--tp-sage); }
+    .tp-lead { font-size: 1.1rem; line-height: 1.6; max-width: 58ch; margin: 0 0 44px; color: #4A5A50; }
+
+    /* Precio por foto */
+    .tp-quote-sec { background: var(--tp-green); color: var(--tp-cream); }
+    .tp-quote-sec .tp-h2 { color: var(--tp-cream); }
+    .tp-quote-sec .tp-lead { color: #DCD5C6; }
+    .tp-quote-sec .tp-eyebrow { color: var(--tp-sand); }
+    .tp-quote fieldset { border: 0; margin: 0 0 24px; padding: 0; }
+    .tp-quote legend { font-weight: 600; margin-bottom: 12px; }
+    .tp-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .tp-chips label { cursor: pointer; }
+    .tp-chips input { position: absolute; opacity: 0; pointer-events: none; }
+    .tp-chips span { display: inline-block; padding: 10px 16px; border-radius: 999px; border: 1.5px solid rgba(245,240,230,.5); font-weight: 500; font-size: .95rem; transition: background .2s, color .2s, border-color .2s; }
+    .tp-chips input:checked + span { background: var(--tp-cream); color: var(--tp-green); border-color: var(--tp-cream); }
+    .tp-chips input:focus-visible + span { outline: 2px solid var(--tp-sage); outline-offset: 2px; }
+    .tp-fields { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; margin-bottom: 28px; }
+    .tp-fields label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: .9rem; }
+    .tp-fields input, .tp-fields select { font: inherit; font-weight: 400; padding: 13px 14px; border-radius: 10px; border: 0; background: rgba(245,240,230,.14); color: var(--tp-cream); }
+    .tp-fields input::placeholder { color: rgba(245,240,230,.6); }
+    .tp-fields select option { color: var(--tp-ink); }
+    .tp-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .tp-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 26px; border-radius: 999px; font-weight: 600; text-decoration: none; font-size: 1rem; }
+    .tp-btn--wa { background: var(--tp-cream); color: var(--tp-green); }
+    .tp-btn--wa:hover { background: #fff; }
+    .tp-btn svg { width: 22px; height: 22px; fill: currentColor; }
+    .tp-hint { color: #CFC8B8; font-size: .9rem; margin: 0; }
+    .tp-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 64px 0 0; padding-top: 32px; border-top: 1px solid rgba(245,240,230,.22); }
+    .tp-facts dt { font-family: "Lora", Georgia, serif; font-weight: 600; font-size: 1.15rem; margin-bottom: 6px; }
+    .tp-facts dd { margin: 0; color: #DCD5C6; line-height: 1.55; }
+
+    /* Antes y después, wiping as you scroll */
+    .tp-ba-pin { position: relative; height: 330vh; }
+    .tp-ba-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+    .tp-ba-slide { position: absolute; inset: 0; display: grid; grid-template-rows: auto 1fr auto; gap: 18px; padding: 96px 16px 28px; max-width: 1080px; margin: 0 auto; opacity: 0; transition: opacity .4s; }
+    .tp-ba-slide.on { opacity: 1; }
+    .tp-ba-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 6px 24px; }
+    .tp-ba-head h3 { margin: 0; font-family: "Lora", Georgia, serif; font-weight: 600; font-size: clamp(1.7rem, 3.6vw, 2.6rem); color: var(--tp-green); }
+    .tp-ba-head p { margin: 0; color: #4A5A50; }
+    .tp-ba-frame { position: relative; border-radius: 14px; overflow: hidden; min-height: 0; background: var(--tp-sand); }
+    .tp-ba-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .tp-ba-frame .after { clip-path: inset(0 0 0 var(--x, 100%)); }
+    .tp-ba-frame .line { position: absolute; top: 0; bottom: 0; left: var(--x, 100%); width: 3px; margin-left: -1.5px; background: var(--tp-cream); box-shadow: 0 0 0 1px rgba(47,74,60,.25); }
+    .tp-ba-frame .tag { position: absolute; top: 14px; padding: 6px 12px; border-radius: 999px; font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; background: rgba(47,74,60,.82); color: var(--tp-cream); }
+    .tp-ba-frame .tag.l { left: 14px; } .tp-ba-frame .tag.r { right: 14px; background: var(--tp-cream); color: var(--tp-green); }
+    .tp-ba-note { margin: 0; font-size: .8rem; color: #6B776F; }
+    .tp-ba-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 2; }
+    .tp-ba-dots b { width: 28px; height: 3px; background: rgba(47,74,60,.2); border-radius: 2px; }
+    .tp-ba-dots b.on { background: var(--tp-green); }
+
+    /* Negocios */
+    .tp-biz { background: var(--tp-sand); }
+    .tp-biz-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+    .tp-biz-card { background: var(--tp-cream); border-radius: 14px; padding: 24px 20px; }
+    .tp-biz-card h3 { margin: 0 0 8px; font-family: "Lora", Georgia, serif; font-weight: 600; font-size: 1.2rem; color: var(--tp-green); }
+    .tp-biz-card p { margin: 0; line-height: 1.55; color: #4A5A50; }
+    .tp-biz-cta { margin-top: 28px; }
+    .tp-biz-cta .tp-btn { background: var(--tp-green); color: var(--tp-cream); }
+
+    .tp-foot { padding: 40px 0 calc(40px + env(safe-area-inset-bottom)); background: var(--tp-green); color: #DCD5C6; font-size: .85rem; }
+    .tp-foot .tp-wrap { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
+    .tp-foot img { height: 24px; width: auto; }
+
+    /* Floating WhatsApp */
+    .tp-fab { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 60; width: 58px; height: 58px; border-radius: 50%; background: #25D366; display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.3); opacity: 0; transform: translateY(16px) scale(.9); transition: opacity .4s, transform .4s; pointer-events: none; }
+    .tp-fab svg { width: 30px; height: 30px; fill: #fff; }
+    body:not(.tp-landing) .tp-fab { opacity: 1; transform: none; pointer-events: auto; }
+
+    @media (prefers-reduced-motion: reduce) { .w > span { transform: none; transition: none; } }
+    @media (max-width: 960px) { .tp-biz-grid { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 860px) {
+      .sw-copy { width: auto; }
+      .sw-copy__title { font-size: clamp(2.1rem, 9.5vw, 3rem) !important; }
+      .sw-brand__mark { width: 150px; }
+      .tp-fields { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .tp-section { padding: 80px 0; }
+      .tp-biz-grid, .tp-facts { grid-template-columns: 1fr; }
+      .tp-btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="tp-hero-logo" aria-hidden="true"><img src="assets/marca/logo-crema.png" alt="" width="1321" height="180" /></div>
+  <a class="tp-fab" id="fab" href="https://wa.me/34614180575" aria-label="Escribir por WhatsApp a Tapicerías a Punto">
+    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.5.7 4.8 2 6.8L3.2 29l6.8-2c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.7 12.7-12.6S23 3 16 3zm0 23.2c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4 1.2 1.2-3.9-.3-.4a10.4 10.4 0 0 1-1.6-5.6c0-5.8 4.7-10.5 10.5-10.5s10.5 4.7 10.5 10.5S21.8 26.2 16 26.2zm5.8-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.6-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.7 5 .8.4 1.4.6 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.2-.6-.4z"/></svg>
+  </a>
+  <div id="top"></div>
+  <div id="world"></div>
+
+  <div class="tp-after">
+  <section class="tp-section tp-quote-sec" id="precio">
+    <div class="tp-wrap">
+      <p class="tp-eyebrow">Precio por foto</p>
+      <h2 class="tp-h2">Mándame una foto y te digo el precio<i>.</i></h2>
+      <p class="tp-lead">Marca qué quieres limpiar y se abre WhatsApp con el mensaje escrito. Adjunta una foto del sofá o del colchón y te doy un precio cerrado antes de ir.</p>
+      <form class="tp-quote" id="quote" onsubmit="return false">
+        <fieldset><legend>¿Qué quieres limpiar?</legend>
+          <div class="tp-chips" data-name="muebles">
+            <label><input type="checkbox" value="un sillón" /><span>Sillón</span></label>
+            <label><input type="checkbox" value="un sofá de 2 plazas" /><span>Sofá 2 plazas</span></label>
+            <label><input type="checkbox" value="un sofá de 3 plazas" /><span>Sofá 3 plazas</span></label>
+            <label><input type="checkbox" value="un sofá con chaise longue" /><span>Sofá con chaise longue</span></label>
+            <label><input type="checkbox" value="un colchón" /><span>Colchón</span></label>
+            <label><input type="checkbox" value="sillas de comedor" /><span>Sillas de comedor</span></label>
+            <label><input type="checkbox" value="un cabecero" /><span>Cabecero</span></label>
+            <label><input type="checkbox" value="una alfombra" /><span>Alfombra</span></label>
+            <label><input type="checkbox" value="una sillita infantil" /><span>Sillita infantil</span></label>
+          </div>
+        </fieldset>
+        <fieldset><legend>¿Qué le pasa?</legend>
+          <div class="tp-chips" data-name="problemas">
+            <label><input type="checkbox" value="manchas" /><span>Manchas</span></label>
+            <label><input type="checkbox" value="olores" /><span>Olores</span></label>
+            <label><input type="checkbox" value="pelo de mascota" /><span>Pelo de mascota</span></label>
+            <label><input type="checkbox" value="suciedad general de uso" /><span>Suciedad de uso</span></label>
+            <label><input type="checkbox" value="cambio de inquilino" /><span>Cambio de inquilino</span></label>
+          </div>
+        </fieldset>
+        <div class="tp-fields">
+          <label>Detalles (opcional) <input type="text" name="detalle" placeholder="Ej.: 6 sillas, mancha de vino en el cojín…" /></label>
+          <label>Localidad
+            <select name="pueblo">
+              <option>Alcoi</option><option>Cocentaina</option><option>Muro</option><option>Otra (hasta 30 min de Alcoi)</option>
+            </select>
+          </label>
+        </div>
+        <div class="tp-actions">
+          <a class="tp-btn tp-btn--wa" id="quote-send" href="https://wa.me/34614180575">
+            <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.5.7 4.8 2 6.8L3.2 29l6.8-2c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.7 12.7-12.6S23 3 16 3zm0 23.2c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4 1.2 1.2-3.9-.3-.4a10.4 10.4 0 0 1-1.6-5.6c0-5.8 4.7-10.5 10.5-10.5s10.5 4.7 10.5 10.5S21.8 26.2 16 26.2z"/></svg>
+            Enviar por WhatsApp
+          </a>
+          <p class="tp-hint">614 18 05 75 · Después adjunta la foto en el chat.</p>
+        </div>
+      </form>
+      <dl class="tp-facts">
+        <div><dt>Zona</dt><dd>Alcoi, Cocentaina y Muro sin recargo. Hasta 30 minutos de Alcoi.</dd></div>
+        <div><dt>Horario</dt><dd>De lunes a viernes.</dd></div>
+        <div><dt>Cómo trabajo</dt><dd>Voy a tu casa con la máquina de inyección-extracción. Sin desmontar nada. Lo hago yo, Dani.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="tp-section" id="antes-despues-sec" style="padding-bottom:0">
+    <div class="tp-wrap">
+      <p class="tp-eyebrow">Antes y después</p>
+      <h2 class="tp-h2">Así cambia un tejido<i>.</i></h2>
+      <p class="tp-lead" style="margin-bottom:0">Desliza hacia abajo y mira la diferencia.</p>
+    </div>
+    <div class="tp-ba-pin" id="antes-despues">
+      <div class="tp-ba-stage">
+        <div class="tp-ba-slide" data-k="0">
+          <div class="tp-ba-head"><h3>Sofá de tela</h3><p>Suciedad de uso y marcas, fuera.</p></div>
+          <div class="tp-ba-frame"><img src="assets/fotos/sofa-antes.webp" alt="Sofá beige gris y con marcas de uso antes de la limpieza." /><img class="after" src="assets/fotos/sofa-despues.webp" alt="El mismo sofá limpio y de color claro." /><span class="line"></span><span class="tag l">Antes</span><span class="tag r">Después</span></div>
+          <p class="tp-ba-note">Imagen ilustrativa.</p>
+        </div>
+        <div class="tp-ba-slide" data-k="1">
+          <div class="tp-ba-head"><h3>Colchón</h3><p>Manchas, sudor y olores, fuera.</p></div>
+          <div class="tp-ba-frame"><img src="assets/fotos/colchon-antes.webp" alt="Colchón con manchas amarillentas antes de la limpieza." /><img class="after" src="assets/fotos/colchon-despues.webp" alt="El mismo colchón limpio." /><span class="line"></span><span class="tag l">Antes</span><span class="tag r">Después</span></div>
+          <p class="tp-ba-note">Imagen ilustrativa.</p>
+        </div>
+        <div class="tp-ba-slide" data-k="2">
+          <div class="tp-ba-head"><h3>Sillas de comedor</h3><p>Manchas de comida, fuera.</p></div>
+          <div class="tp-ba-frame"><img src="assets/fotos/sillas-antes.webp" alt="Asientos de sillas con manchas de comida antes de la limpieza." /><img class="after" src="assets/fotos/sillas-despues.webp" alt="Los mismos asientos limpios." /><span class="line"></span><span class="tag l">Antes</span><span class="tag r">Después</span></div>
+          <p class="tp-ba-note">Imagen ilustrativa.</p>
+        </div>
+        <div class="tp-ba-dots"><b></b><b></b><b></b></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tp-section tp-biz" id="negocios">
+    <div class="tp-wrap">
+      <p class="tp-eyebrow">Para negocios</p>
+      <h2 class="tp-h2">Sofás y sillas de tu negocio, a punto<i>.</i></h2>
+      <p class="tp-lead">Voy a tu local o a tu piso con todo el equipo, de lunes a viernes. Precio cerrado antes de ir.</p>
+      <div class="tp-biz-grid">
+        <article class="tp-biz-card"><h3>Pisos turísticos y alquiler</h3><p>Sofás y colchones listos entre huéspedes o en el cambio de inquilino.</p></article>
+        <article class="tp-biz-card"><h3>Bares y restaurantes</h3><p>Sillas, bancos y sofás tapizados sin manchas de comida ni olores.</p></article>
+        <article class="tp-biz-card"><h3>Clínicas y peluquerías</h3><p>Salas de espera y sillones limpios para tus clientes.</p></article>
+        <article class="tp-biz-card"><h3>Vecinos de la misma finca</h3><p>Si varios vecinos os juntáis, voy el mismo día.</p></article>
+      </div>
+      <div class="tp-biz-cta"><a class="tp-btn" id="biz-send" href="https://wa.me/34614180575">Pedir precio para mi negocio</a></div>
+    </div>
+  </section>
+
+  <footer class="tp-foot">
+    <div class="tp-wrap">
+      <img src="assets/marca/logo-crema.png" alt="Tapicerías a Punto" width="1321" height="180" />
+      <span>Limpieza de sofás, colchones y tapicerías a domicilio · Alcoi · WhatsApp 614 18 05 75</span>
+    </div>
+  </footer>
+  </div>
+
+  <script src="scrub-engine.js"></script>
+  <script>
+    const WA = 'https://wa.me/34614180575';
+    const scene = (n) => ({
+      still: `assets/escenas/escena-${n}.webp`,
+      stillMobile: `assets/escenas/escena-${n}-m.webp`,
+      clip: `assets/vid/escena-${n}.mp4`,
+      clipMobile: `assets/vid/escena-${n}-m.mp4`,
+    });
+    const C = '#8FA68E';
+
+    mountScrollWorld(document.getElementById('world'), {
+      brand: { name: 'Tapicerías a Punto', href: '#top' },
+      cta: { label: 'Precio por foto', href: '#precio' },
+      hint: 'desliza para empezar',
+      heroReveal: [0.05, 0.2],
+      diveScroll: 1.4,
+      crossfade: 0.08,
+      sections: [
+        { id: 'inicio', label: 'Inicio', ...scene(0), accent: C, scroll: 1.6,
+          eyebrow: 'Tapicerías a Punto', title: 'Tu sofá, como el primer día',
+          body: 'Limpieza de sofás, colchones, sillas y tapicerías a domicilio en Alcoi y comarca.', tags: [] },
+        { id: 'domicilio', label: 'A domicilio', ...scene(1), accent: C,
+          eyebrow: 'A domicilio', title: 'Voy a tu casa. El sofá no se mueve',
+          body: 'Sin desmontar nada y sin llevármelo. Alcoi, Cocentaina, Muro y hasta 30 minutos.', tags: [] },
+        { id: 'limpieza', label: 'Limpieza', ...scene(2), accent: C, linger: 0.3,
+          eyebrow: 'Inyección-extracción', title: 'La suciedad sale. Y se ve',
+          body: 'Inyecto agua con producto en el tejido y la saco con toda la suciedad.', tags: [] },
+        { id: 'diferencia', label: 'Diferencia', ...scene(3), accent: C, linger: 0.3,
+          eyebrow: 'Antes y después', title: 'La diferencia, a simple vista',
+          body: 'El tejido recupera su color.', tags: [] },
+        { id: 'manchas', label: 'Manchas', ...scene(4), accent: C, linger: 0.3,
+          eyebrow: 'Manchas', title: 'Café, vino, rotulador',
+          body: 'Las manchas de casa de toda la vida.', tags: ['Café', 'Vino', 'Comida', 'Rotulador'] },
+        { id: 'mascotas', label: 'Mascotas', ...scene(5), accent: C, linger: 0.3,
+          eyebrow: 'Mascotas y olores', title: 'Pelo y olor, fuera',
+          body: 'Pelo de perro y gato, y olor a mascota, a tabaco o a humedad.', tags: [] },
+        { id: 'sillas', label: 'Sillas', ...scene(6), accent: C, linger: 0.3,
+          eyebrow: 'Sillas, cabeceros y sillitas', title: 'Todo lo que lleva tela',
+          body: 'Sillas de comedor, cabeceros, alfombras y sillitas infantiles. Mándame una foto.', tags: [] },
+        { id: 'colchones', label: 'Colchones', ...scene(7), accent: C, linger: 0.3,
+          eyebrow: 'Colchones', title: 'Colchones como el primer día',
+          body: 'Manchas, sudor y olores fuera, en tu propia habitación.', tags: [] },
+        { id: 'secado', label: 'Secado', ...scene(8), accent: C,
+          eyebrow: 'Secado', title: 'Seco en 6 a 12 horas',
+          body: 'Dejo ventiladores de secado. Abre la ventana y sigue con tu día.', tags: [],
+          cta: { primary: { label: 'Mándame una foto', href: '#precio' },
+                 secondary: { label: 'WhatsApp 614 18 05 75', href: WA } } },
+      ],
+      connectors: [],
+    });
+
+    const after = document.querySelector('.tp-after');
+    const syncPast = () => document.body.classList.toggle('tp-past', after.getBoundingClientRect().top < innerHeight * 0.5);
+    const syncLanding = () => document.body.classList.toggle('tp-landing', scrollY < 40);
+    addEventListener('scroll', () => { syncPast(); syncLanding(); }, { passive: true });
+    addEventListener('resize', syncPast); syncPast(); syncLanding();
+
+    document.getElementById('fab').href = WA + '?text=' + encodeURIComponent('Hola Dani, quiero precio para limpiar un sofá. Te mando una foto.');
+    document.getElementById('biz-send').href = WA + '?text=' + encodeURIComponent('Hola Dani, tengo un negocio y quiero precio para limpiar sofás / sillas. Te mando fotos.');
+
+    // Precio por foto: compose the WhatsApp message from the form.
+    const qf = document.getElementById('quote'), qs = document.getElementById('quote-send');
+    const list = (a) => a.length < 2 ? a.join('') : a.slice(0, -1).join(', ') + ' y ' + a[a.length - 1];
+    function buildQuote() {
+      const m = [...qf.querySelectorAll('[data-name="muebles"] input:checked')].map(i => i.value);
+      const p = [...qf.querySelectorAll('[data-name="problemas"] input:checked')].map(i => i.value);
+      const det = qf.detalle.value.trim();
+      let msg = 'Hola Dani, quiero precio para limpiar ' + (m.length ? list(m) : 'un sofá') + '.';
+      if (p.length) msg += '\nTiene: ' + list(p) + '.';
+      if (det) msg += '\nDetalles: ' + det + '.';
+      msg += '\nZona: ' + qf.pueblo.value + '.\nTe mando una foto.';
+      qs.href = WA + '?text=' + encodeURIComponent(msg);
+    }
+    qf.addEventListener('input', buildQuote); qf.addEventListener('change', buildQuote); buildQuote();
+
+    // Word-by-word headline reveal + before/after wipe.
+    const copies = [...document.querySelectorAll('.sw-copy')];
+    copies.forEach(c => {
+      const t = c.querySelector('.sw-copy__title'); if (!t) return;
+      t.innerHTML = t.textContent.split(' ').map((w, i) => `<span class="w"><span style="--i:${i}">${w}</span></span>`).join(' ');
+    });
+    const pin = document.getElementById('antes-despues');
+    const slides = [...document.querySelectorAll('.tp-ba-slide')], dots = [...document.querySelectorAll('.tp-ba-dots b')];
+    (function loop() {
+      copies.forEach(c => c.classList.toggle('is-in', parseFloat(c.style.opacity || 0) > 0.35));
+      const r = pin.getBoundingClientRect(), span = pin.offsetHeight - innerHeight;
+      const pr = Math.min(1, Math.max(0, -r.top / span));
+      const n = slides.length, k = Math.min(n - 1, Math.floor(pr * n)), local = pr * n - k;
+      const x = 100 - Math.min(1, Math.max(0, (local - 0.12) / 0.66)) * 100;
+      slides.forEach((s, i) => { s.classList.toggle('on', i === k); if (i === k) s.querySelector('.tp-ba-frame').style.setProperty('--x', x.toFixed(2) + '%'); });
+      dots.forEach((d, i) => d.classList.toggle('on', i === k));
+      requestAnimationFrame(loop);
+    })();
+  </script>
+</body>
+</html>
