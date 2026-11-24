@@ -101,6 +101,12 @@
     .um-foot .um-wrap { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
     .um-foot img { height: 22px; width: auto; }
 
+
+    /* Landing: only the logo. Header, menu and route rail fade in once you start scrolling. */
+    .sw-topbar, .sw-route { transition: opacity .5s, transform .5s; }
+    body.um-landing .sw-topbar { opacity: 0; transform: translateY(-12px); pointer-events: none; }
+    body.um-landing .sw-route { opacity: 0; pointer-events: none; }
+
     /* ================= Effects ================= */
 
     /* 1. Intro: logo + diagonal stripe, then the curtain lifts. */
@@ -256,6 +262,7 @@
       brand: { name: 'URBAN MOTOR', href: '#top' },
       cta: { label: 'WhatsApp', href: WA },
       hint: 'desliza para empezar',
+      heroReveal: [0.05, 0.2],   // landing shows only the 3D logo; copy fades in once you scroll
       diveScroll: 1.4,
       crossfade: 0.08,          // continuous forward take: legs hand off frame-to-frame
       sections: [
@@ -298,6 +305,11 @@
     const syncPast = () => document.body.classList.toggle('um-past-world',
       after.getBoundingClientRect().top < window.innerHeight * 0.5);
     addEventListener('scroll', syncPast, { passive: true }); addEventListener('resize', syncPast); syncPast();
+
+
+    // Landing state: only the logo until the visitor scrolls a little.
+    const syncLanding = () => document.body.classList.toggle('um-landing', window.scrollY < 40);
+    addEventListener('scroll', syncLanding, { passive: true }); syncLanding();
 
     // ---- Effects ----
     const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;

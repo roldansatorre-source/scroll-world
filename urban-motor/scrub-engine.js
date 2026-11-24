@@ -254,7 +254,15 @@ function mountScrollWorld(container, config) {
       const pr = clamp((y - seg.start) / (seg.end - seg.start), 0, 1);
       const before = y < seg.start, after = y > seg.end;
       let cop;
-      if (i === 0) cop = after ? 0 : smooth(1 - pr / 0.62);            // greets on landing
+      if (i === 0) {
+        // config.heroReveal = [from, to]: hero copy stays hidden on landing (only the
+        // scene shows) and fades in as the visitor starts scrolling; it then fades
+        // out over the back half of the hero segment. Default: greets on landing.
+        const hr = config.heroReveal;
+        cop = after ? 0 : hr
+          ? smooth((pr - hr[0]) / (hr[1] - hr[0])) * smooth(1 - Math.max(0, pr - 0.55) / 0.3)
+          : smooth(1 - pr / 0.62);
+      }
       else if (i === N - 1) cop = before ? 0 : smooth(pr / 0.4);       // holds CTA at the end
       else cop = (before || after) ? 0 : smooth(1 - Math.abs(pr - 0.5) / 0.5);
       const c = copies[i];
