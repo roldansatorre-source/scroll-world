@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Urban Motor — Limpieza, pulido y restauración a domicilio en Alcoi</title>
+  <meta name="description" content="Limpieza a fondo, pulido y restauración de coches y motos a domicilio en Alcoi, Cocentaina, Muro y comarca. Tu coche no se mueve. Precio cerrado por WhatsApp." />
+  <meta name="theme-color" content="#0B0D12" />
+  <link rel="icon" href="assets/marca/logo-um.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet" />
+  <style>
+    :root, .sw-root {
+      --um-black: #0B0D12;
+      --um-blue: #2F6BFF;
+      --um-blue-dark: #1F4FD6;
+      --um-grey: #C9CED8;
+      --um-white: #FFFFFF;
+
+      --sw-bg: var(--um-black);
+      --sw-ink: var(--um-white);
+      --sw-ink-soft: var(--um-grey);
+      --sw-accent: var(--um-blue);
+      --sw-font-display: "Inter", system-ui, sans-serif;
+      --sw-font-body: "Inter", system-ui, sans-serif;
+    }
+    html, body { margin: 0; background: var(--um-black); color: var(--um-white); font-family: "Inter", system-ui, sans-serif; }
+
+    /* Brand: the UM monogram replaces the engine's default mark. */
+    .sw-brand__mark {
+      width: 54px; height: 17px; border-radius: 0; box-shadow: none;
+      background: url("assets/marca/logo-um.png") center / contain no-repeat;
+    }
+    .sw-brand__name { font-weight: 800; letter-spacing: .28em; font-size: .85rem; }
+    .sw-brand__name b { color: var(--um-blue); font-weight: 800; }
+    .sw-topcta { background: var(--um-blue); color: #fff; font-weight: 600; }
+    .sw-topcta:hover { background: var(--um-blue-dark); }
+    .sw-copy__title, .sw-copy h2 { font-weight: 800; letter-spacing: -.02em; }
+    .sw-btn--primary { background: var(--um-blue); color: #fff; }
+    .sw-btn--primary:hover { background: var(--um-blue-dark); }
+
+    /* Dark-theme the engine's light glass pills. */
+    .sw-nav { background: rgba(11, 13, 18, .62); border-color: rgba(255, 255, 255, .08); }
+    .sw-route__label { background: rgba(11, 13, 18, .8); color: #fff; }
+
+    /* The engine's layers are position:fixed; once the flight is over, the page's own
+       sections slide above them and the fixed layers fade out. */
+    .um-after { position: relative; z-index: 45; background: var(--um-black); }
+    .sw-stage, .sw-copylayer, .sw-route, .sw-sky { transition: opacity .35s; }
+    body.um-past-world .sw-stage, body.um-past-world .sw-copylayer,
+    body.um-past-world .sw-route, body.um-past-world .sw-sky { opacity: 0; pointer-events: none; }
+
+    body.um-past-world .sw-topbar { background: rgba(11, 13, 18, .88); backdrop-filter: blur(10px); }
+
+    /* ---------- Below the flight: real work + contact ---------- */
+    .um-wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+    .um-section { position: relative; padding: 112px 0; overflow: hidden; }
+    .um-stripe {
+      position: absolute; left: -10%; right: -10%; top: 0; height: 14px;
+      background: var(--um-blue); transform: rotate(-3deg); transform-origin: left top;
+    }
+    .um-eyebrow { color: var(--um-blue); font-weight: 600; font-size: .8rem; letter-spacing: .18em; text-transform: uppercase; margin: 0 0 12px; }
+    .um-h2 { font-weight: 800; font-size: clamp(2rem, 5vw, 3.25rem); line-height: 1.05; letter-spacing: -.02em; margin: 0 0 16px; }
+    .um-lead { color: var(--um-grey); font-size: 1.1rem; line-height: 1.55; max-width: 56ch; margin: 0 0 48px; }
+
+    .um-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .um-card { margin: 0; background: #12151C; border-radius: 8px; overflow: hidden; }
+    .um-card--wide { grid-column: 1 / -1; }
+    .um-card img { display: block; width: 100%; height: auto; }
+    .um-card figcaption { padding: 14px 16px; color: var(--um-grey); font-size: .95rem; }
+    .um-card figcaption strong { color: #fff; font-weight: 600; }
+    .um-ba { display: flex; justify-content: space-between; padding: 10px 16px 0; font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--um-grey); }
+
+    .um-contact { background: var(--um-blue-dark); }
+    .um-contact .um-lead { color: #E6ECFF; }
+    .um-contact .um-eyebrow { color: #fff; opacity: .8; }
+    .um-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .um-btn { display: inline-flex; align-items: center; gap: 10px; padding: 16px 26px; border-radius: 999px; font-weight: 600; text-decoration: none; font-size: 1rem; }
+    .um-btn--wa { background: #fff; color: var(--um-black); }
+    .um-btn--ig { border: 2px solid rgba(255,255,255,.6); color: #fff; }
+    .um-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 56px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,.25); }
+    .um-facts dt { font-weight: 800; margin-bottom: 6px; }
+    .um-facts dd { margin: 0; color: #E6ECFF; line-height: 1.5; }
+
+    .um-foot { padding: 40px 0; color: var(--um-grey); font-size: .85rem; }
+    .um-foot .um-wrap { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
+    .um-foot img { height: 22px; width: auto; }
+
+    @media (max-width: 720px) {
+      .um-section { padding: 80px 0; }
+      .um-grid { grid-template-columns: 1fr; }
+      .um-facts { grid-template-columns: 1fr; }
+      .um-btn { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <div id="top"></div>
+  <div id="world"></div>
+
+  <div class="um-after">
+  <section class="um-section" id="trabajos">
+    <div class="um-stripe" aria-hidden="true"></div>
+    <div class="um-wrap">
+      <p class="um-eyebrow">Trabajos reales</p>
+      <h2 class="um-h2">Así quedan.</h2>
+      <p class="um-lead">Fotos de trabajos hechos por mí.</p>
+      <div class="um-grid">
+        <figure class="um-card um-card--wide">
+          <div class="um-ba"><span>Antes</span><span>Después</span></div>
+          <img src="assets/fotos/foto-4.jpg" alt="Interior de un coche antes y después de la limpieza: asientos y alfombrilla llenos de barro y migas, y después limpios." loading="lazy" width="1536" height="1024" />
+          <figcaption><strong>Limpieza de interiores.</strong> Inyección-extracción y vapor en tapicería y alfombras.</figcaption>
+        </figure>
+        <figure class="um-card">
+          <div class="um-ba"><span>Antes</span><span>Después</span></div>
+          <img src="assets/fotos/foto-5.jpg" alt="Faro amarillento y opaco antes, y transparente después de la restauración." loading="lazy" width="1536" height="1024" />
+          <figcaption><strong>Restauración de faros.</strong> De amarillo a transparente.</figcaption>
+        </figure>
+        <figure class="um-card">
+          <div class="um-ba"><span>Antes</span><span>Después</span></div>
+          <img src="assets/fotos/foto-3.jpg" alt="Puerta negra con marcas circulares bajo un foco antes, y sin marcas después del pulido." loading="lazy" width="1536" height="1024" />
+          <figcaption><strong>Pulido de carrocería.</strong> Fuera las marcas y rayas finas.</figcaption>
+        </figure>
+        <figure class="um-card">
+          <img src="assets/fotos/foto-2.jpg" alt="Pulido de un capó azul marino con pulidora delante de una casa." loading="lazy" width="1536" height="1024" />
+          <figcaption><strong>A domicilio.</strong> Pulido en la puerta de casa del cliente.</figcaption>
+        </figure>
+        <figure class="um-card">
+          <img src="assets/fotos/foto-1.jpg" alt="Reparación de un bordillazo en una llanta plateada con lija." loading="lazy" width="1536" height="1024" />
+          <figcaption><strong>Llantas.</strong> Reparación de bordillazos.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="um-section um-contact" id="contacto">
+    <div class="um-wrap">
+      <p class="um-eyebrow">Precio cerrado</p>
+      <h2 class="um-h2">Pídeme precio por WhatsApp.</h2>
+      <p class="um-lead">Mándame unas fotos del coche o la moto y te digo el precio antes de ir. Sin sorpresas.</p>
+      <div class="um-actions">
+        <a class="um-btn um-btn--wa" href="https://wa.me/34614180575">WhatsApp 614 18 05 75</a>
+        <a class="um-btn um-btn--ig" href="https://instagram.com/urbanmotoralcoy">@urbanmotoralcoy</a>
+      </div>
+      <dl class="um-facts">
+        <div><dt>Zona</dt><dd>Alcoi, Cocentaina y Muro sin recargo. Hasta 30 minutos de Alcoi.</dd></div>
+        <div><dt>Horario</dt><dd>De lunes a viernes.</dd></div>
+        <div><dt>Cómo trabajo</dt><dd>Voy a tu garaje, plaza o puerta con todo el equipo. Lo hago yo, Dani.</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <footer class="um-foot">
+    <div class="um-wrap">
+      <img src="assets/marca/logo-um.png" alt="Urban Motor" width="798" height="240" />
+      <span>Urban Motor · Limpieza, pulido y restauración a domicilio · Alcoi</span>
+    </div>
+  </footer>
+  </div>
+
+  <script src="scrub-engine.js"></script>
+  <script>
+    const WA = 'https://wa.me/34614180575';
+    const scene = (n) => ({
+      still: `assets/escenas/escena-${n}.webp`,
+      stillMobile: `assets/escenas/escena-${n}-m.webp`,
+      clip: `assets/vid/escena-${n}.mp4`,
+      clipMobile: `assets/vid/escena-${n}-m.mp4`,
+    });
+
+    mountScrollWorld(document.getElementById('world'), {
+      brand: { name: 'URBAN MOTOR', href: '#top' },
+      cta: { label: 'WhatsApp', href: WA },
+      hint: 'desliza para empezar',
+      diveScroll: 1.4,
+      crossfade: 0.08,          // continuous forward take: legs hand off frame-to-frame
+      sections: [
+        { id: 'domicilio', label: 'A domicilio', ...scene(1), accent: '#2F6BFF',
+          eyebrow: 'A domicilio', title: 'Voy yo. Tu coche no se mueve.',
+          body: 'Garaje, plaza o puerta de casa. Alcoi, Cocentaina, Muro y comarca.', tags: [] },
+        { id: 'interiores', label: 'Interiores', ...scene(2), accent: '#2F6BFF', linger: 0.4,
+          eyebrow: 'Limpieza de interiores', title: 'Como el primer día.',
+          body: 'Inyección-extracción y vapor para tapicería, alfombras y plásticos.', tags: ['Niños', 'Mascotas'] },
+        { id: 'exterior', label: 'Exterior', ...scene(3), accent: '#2F6BFF', linger: 0.4,
+          eyebrow: 'Lavado exterior', title: 'A mano y sin manguera.',
+          body: 'Sin charcos, en cualquier garaje o plaza.', tags: [] },
+        { id: 'pulido', label: 'Pulido', ...scene(4), accent: '#2F6BFF', linger: 0.4,
+          eyebrow: 'Pulido y faros', title: 'Fuera rayas y faros amarillos.',
+          body: 'Pulido de carrocería y restauración de faros.', tags: [] },
+        { id: 'restauracion', label: 'Restauración', ...scene(5), accent: '#2F6BFF', linger: 0.4,
+          eyebrow: 'Restauración', title: 'Lo que más se desgasta, como nuevo.',
+          body: 'Cuero, volantes, llantas, PPF de interiores y vinilos.', tags: [] },
+        { id: 'motos', label: 'Motos', ...scene(6), accent: '#2F6BFF', linger: 0.4,
+          eyebrow: 'Motos', title: 'También tu moto.',
+          body: 'Limpieza completa y pulido de cascos.', tags: [] },
+        { id: 'precio', label: 'Precio', ...scene(7), accent: '#2F6BFF',
+          eyebrow: 'Precio cerrado', title: 'Pídeme precio por WhatsApp.',
+          body: 'Te digo el precio antes de ir. De lunes a viernes.', tags: [],
+          cta: { primary: { label: 'WhatsApp 614 18 05 75', href: WA },
+                 secondary: { label: 'Ver trabajos reales', href: '#trabajos' } } },
+      ],
+      connectors: [],           // walkthrough: no connectors, the legs ARE the journey
+    });
+
+    // Two-tone wordmark next to the UM monogram: URBAN in white, MOTOR in blue.
+    const nm = document.querySelector('.sw-brand__name');
+    if (nm) nm.innerHTML = 'URBAN <b>MOTOR</b>';
+
+    // Hide the fixed flight layers once the real-work section reaches the viewport.
+    const after = document.querySelector('.um-after');
+    const syncPast = () => document.body.classList.toggle('um-past-world',
+      after.getBoundingClientRect().top < window.innerHeight * 0.5);
+    addEventListener('scroll', syncPast, { passive: true }); addEventListener('resize', syncPast); syncPast();
+  </script>
+</body>
+</html>
