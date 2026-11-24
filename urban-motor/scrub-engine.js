@@ -198,17 +198,25 @@ function mountScrollWorld(container, config) {
   function loadClip(s) {
     // Under prefers-reduced-motion we never load the clips at all — the stills stay up
     // and simply cross-dissolve as you scroll. No scrubbed video motion, no decode cost.
-    if (reduce || s.loading || !s.clip) return;
+    if (reduce || !s.clip) return Promise.resolve();
+    if (s.loading) return s.loadP;
     s.loading = true;
     // Serve the lighter mobile encode on phones when one was provided.
     const url = (isMobile() && s.clipM) ? s.clipM : s.clip;
-    fetch(url).then(r => r.ok ? r.blob() : Promise.reject(new Error('404')))
-      .then(blob => {
+    // Blob first (always seekable, no byte-range dependency). If fetch is unavailable —
+    // e.g. the page was opened straight from disk (file://) — fall back to the plain URL,
+    // which a <video> element can still load and seek locally.
+    const local = location.protocol === 'file:';
+    const src = local ? Promise.resolve(url)
+      : fetch(url).then(r => r.ok ? r.blob() : Promise.reject(new Error('404')))
+          .then(blob => URL.createObjectURL(blob));
+    return s.loadP = src
+      .then(srcUrl => {
         const v = document.createElement('video');
         v.className = 'sw-scene__video';
         v.muted = true; v.playsInline = true; v.preload = 'auto';
         v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
-        v.src = URL.createObjectURL(blob);
+        v.src = srcUrl;
         v.addEventListener('loadedmetadata', () => { s.ready = true; read(); });
         // Reveal the video (hide the still poster) only once a real frame has
         // painted — on iOS a seeked-but-never-played muted video stays blank, so
@@ -323,6 +331,15 @@ function mountScrollWorld(container, config) {
   window.addEventListener('load', layout);
   layout();
   requestAnimationFrame(raf);
+
+  // Background prefetch: fetch every clip in scroll order, one at a time, from page
+  // load. Without this a clip only starts downloading when the visitor nears it, so
+  // on a normal connection scenes 2+ show a frozen poster until their file arrives.
+  // Sequential (not parallel) so the next scene always gets the bandwidth first;
+  // scroll-triggered loads still jump the queue via loadClip's shared promise.
+  (async () => {
+    for (const s of SEGMENTS) { try { await loadClip(s); } catch (e) {} }
+  })();
 
   // ---- helpers ----
   function el(tag, cls) { const n = document.createElement(tag); if (cls) n.className = cls; return n; }
