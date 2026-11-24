@@ -107,6 +107,38 @@
     body.um-landing .sw-topbar { opacity: 0; transform: translateY(-12px); pointer-events: none; }
     body.um-landing .sw-route { opacity: 0; pointer-events: none; }
 
+
+    /* Nav fits 9 scenes */
+    .sw-brand__name, .sw-nav__item, .sw-topcta { white-space: nowrap; }
+    .sw-nav__item { padding: 7px 11px !important; font-size: .8rem !important; }
+    #negocios, #presupuesto, #trabajos { scroll-margin-top: 90px; }
+    @media (max-width: 1180px) { .sw-nav { display: none !important; } }
+
+    /* Para negocios */
+    .um-biz-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 16px; }
+    .um-biz-card { margin: 0; background: #12151C; border-radius: 10px; overflow: hidden; display: flex; flex-direction: column; }
+    .um-biz-card img { width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.2,.8,.2,1); }
+    .um-biz-card:hover img { transform: scale(1.04); }
+    .um-biz-card div { padding: 18px 18px 22px; }
+    .um-biz-card h3 { margin: 0 0 8px; font-weight: 800; font-size: 1.15rem; }
+    .um-biz-card p { margin: 0; color: var(--um-grey); line-height: 1.5; }
+
+    /* Presupuesto */
+    .um-quote fieldset { border: 0; margin: 0 0 22px; padding: 0; }
+    .um-quote legend { font-weight: 700; margin-bottom: 10px; }
+    .um-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .um-chips label { cursor: pointer; }
+    .um-chips input { position: absolute; opacity: 0; pointer-events: none; }
+    .um-chips span { display: inline-block; padding: 10px 16px; border-radius: 999px; border: 1.5px solid rgba(255,255,255,.55); color: #fff; font-weight: 600; font-size: .95rem; transition: background .2s, color .2s, border-color .2s; }
+    .um-chips input:checked + span { background: #fff; color: var(--um-blue-dark); border-color: #fff; }
+    .um-chips input:focus-visible + span { outline: 2px solid #fff; outline-offset: 2px; }
+    .um-fields { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; margin-bottom: 26px; }
+    .um-fields label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: .9rem; }
+    .um-fields input, .um-fields select { font: inherit; font-weight: 400; padding: 13px 14px; border-radius: 10px; border: 0; background: rgba(255,255,255,.14); color: #fff; }
+    .um-fields input::placeholder { color: rgba(255,255,255,.6); }
+    .um-fields select option { color: #0B0D12; }
+    @media (max-width: 860px) { .um-biz-grid { grid-template-columns: 1fr; } .um-fields { grid-template-columns: 1fr; } }
+
     /* ================= Effects ================= */
 
     /* 1. Intro: logo + diagonal stripe, then the curtain lifts. */
@@ -223,19 +255,73 @@
     </div>
   </section>
 
-  <section class="um-section um-contact" id="contacto">
+  <section class="um-section um-biz" id="negocios">
+    <div class="um-stripe" aria-hidden="true"></div>
+    <div class="um-wrap">
+      <p class="um-eyebrow">Para negocios</p>
+      <h2 class="um-h2">Que se te vea. Y que se te vea bien.</h2>
+      <p class="um-lead">Rotulación, vinilos y limpieza para comercios y empresas de Alcoi y comarca. Voy yo, con todo el material.</p>
+      <div class="um-biz-grid">
+        <article class="um-biz-card">
+          <img src="assets/negocios/escaparates.webp" alt="Manos con guantes aplicando vinilo esmerilado con franja azul en el cristal de un escaparate." loading="lazy" width="1200" height="900" />
+          <div><h3>Escaparates y cristales</h3><p>Vinilo de corte, impreso, esmerilado o de privacidad para tu local.</p></div>
+        </article>
+        <article class="um-biz-card">
+          <img src="assets/negocios/furgonetas.webp" alt="Furgoneta blanca rotulada con una franja diagonal azul." loading="lazy" width="1200" height="900" />
+          <div><h3>Furgonetas y flotas</h3><p>Rotulación de vehículos de empresa: tu marca circulando por toda la comarca.</p></div>
+        </article>
+        <article class="um-biz-card">
+          <img src="assets/negocios/flotas.webp" alt="Tres furgonetas blancas recién lavadas en el patio de una empresa." loading="lazy" width="1200" height="900" />
+          <div><h3>Limpieza de flotas</h3><p>Vehículos de empresa limpios por dentro y por fuera, en tus instalaciones.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="um-section um-contact" id="presupuesto">
     <div class="um-wrap">
       <p class="um-eyebrow">Precio cerrado</p>
-      <h2 class="um-h2">Pídeme precio por WhatsApp.</h2>
-      <p class="um-lead">Mándame unas fotos del coche o la moto y te digo el precio antes de ir. Sin sorpresas.</p>
-      <div class="um-actions">
-        <a class="um-btn um-btn--wa" href="https://wa.me/34614180575">WhatsApp 614 18 05 75</a>
-        <a class="um-btn um-btn--ig" href="https://instagram.com/urbanmotoralcoy">@urbanmotoralcoy</a>
-      </div>
+      <h2 class="um-h2">Pide tu presupuesto en 20 segundos.</h2>
+      <p class="um-lead">Marca lo que necesitas y se abre WhatsApp con el mensaje escrito. Mándame unas fotos y te digo el precio antes de ir.</p>
+      <form class="um-quote" id="quote" onsubmit="return false">
+        <fieldset><legend>¿Qué necesitas?</legend>
+          <div class="um-chips" data-name="servicios">
+            <label><input type="checkbox" value="limpieza de interior" /><span>Interior</span></label>
+            <label><input type="checkbox" value="lavado exterior a mano" /><span>Exterior</span></label>
+            <label><input type="checkbox" value="pulido de carrocería" /><span>Pulido</span></label>
+            <label><input type="checkbox" value="restauración de faros" /><span>Faros</span></label>
+            <label><input type="checkbox" value="cuero / volante" /><span>Cuero y volante</span></label>
+            <label><input type="checkbox" value="llantas (bordillazos)" /><span>Llantas</span></label>
+            <label><input type="checkbox" value="PPF / vinilos de molduras" /><span>PPF y vinilos</span></label>
+            <label><input type="checkbox" value="limpieza de moto / casco" /><span>Moto</span></label>
+            <label><input type="checkbox" value="rotulación / vinilo de escaparate" /><span>Rotulación</span></label>
+          </div>
+        </fieldset>
+        <fieldset><legend>¿Para qué?</legend>
+          <div class="um-chips um-chips--one" data-name="tipo">
+            <label><input type="radio" name="tipo" value="coche" checked /><span>Coche</span></label>
+            <label><input type="radio" name="tipo" value="moto" /><span>Moto</span></label>
+            <label><input type="radio" name="tipo" value="furgoneta" /><span>Furgoneta</span></label>
+            <label><input type="radio" name="tipo" value="local / escaparate" /><span>Local</span></label>
+          </div>
+        </fieldset>
+        <div class="um-fields">
+          <label>Modelo o descripción <input type="text" name="modelo" placeholder="Ej.: Seat León 2017, escaparate de 3 m…" /></label>
+          <label>Localidad
+            <select name="pueblo">
+              <option>Alcoi</option><option>Cocentaina</option><option>Muro</option><option>Otra (hasta 30 min de Alcoi)</option>
+            </select>
+          </label>
+        </div>
+        <div class="um-actions">
+          <a class="um-btn um-btn--wa" id="quote-send" href="https://wa.me/34614180575">Enviar por WhatsApp</a>
+          <a class="um-btn um-btn--ig" href="https://instagram.com/urbanmotoralcoy">@urbanmotoralcoy</a>
+        </div>
+      </form>
       <dl class="um-facts">
         <div><dt>Zona</dt><dd>Alcoi, Cocentaina y Muro sin recargo. Hasta 30 minutos de Alcoi.</dd></div>
         <div><dt>Horario</dt><dd>De lunes a viernes.</dd></div>
-        <div><dt>Cómo trabajo</dt><dd>Voy a tu garaje, plaza o puerta con todo el equipo. Lo hago yo, Dani.</dd></div>
+        <div><dt>Cómo trabajo</dt><dd>Voy a tu garaje, plaza, puerta o local con todo el equipo. Lo hago yo, Dani.</dd></div>
       </dl>
     </div>
   </section>
@@ -260,7 +346,7 @@
 
     mountScrollWorld(document.getElementById('world'), {
       brand: { name: 'URBAN MOTOR', href: '#top' },
-      cta: { label: 'WhatsApp', href: WA },
+      cta: { label: 'Presupuesto', href: '#presupuesto' },
       hint: 'desliza para empezar',
       heroReveal: [0.05, 0.2],   // landing shows only the 3D logo; copy fades in once you scroll
       diveScroll: 1.4,
@@ -269,10 +355,10 @@
         { id: 'inicio', label: 'Inicio', ...scene(0), accent: '#2F6BFF', scroll: 1.8,
           eyebrow: 'Urban Motor', title: 'Lo dejamos como nuevo.',
           body: 'Limpieza, pulido y restauración de coches y motos a domicilio en Alcoi y comarca.', tags: [] },
-        { id: 'domicilio', label: 'A domicilio', ...scene(1), accent: '#2F6BFF',
+        { id: 'domicilio', label: 'Domicilio', ...scene(1), accent: '#2F6BFF',
           eyebrow: 'A domicilio', title: 'Voy yo. Tu coche no se mueve.',
           body: 'Garaje, plaza o puerta de casa. Alcoi, Cocentaina, Muro y comarca.', tags: [] },
-        { id: 'interiores', label: 'Interiores', ...scene(2), accent: '#2F6BFF', linger: 0.4,
+        { id: 'interiores', label: 'Interior', ...scene(2), accent: '#2F6BFF', linger: 0.4,
           eyebrow: 'Limpieza de interiores', title: 'Como el primer día.',
           body: 'Aspirado, cepillado, inyección-extracción y vapor para tapicería, alfombras y plásticos.', tags: ['Niños', 'Mascotas'] },
         { id: 'exterior', label: 'Exterior', ...scene(3), accent: '#2F6BFF', linger: 0.4,
@@ -281,17 +367,20 @@
         { id: 'pulido', label: 'Pulido', ...scene(4), accent: '#2F6BFF', linger: 0.4,
           eyebrow: 'Pulido y faros', title: 'Fuera rayas y faros amarillos.',
           body: 'Pulido de carrocería y restauración de faros.', tags: [] },
-        { id: 'restauracion', label: 'Restauración', ...scene(5), accent: '#2F6BFF', linger: 0.4,
+        { id: 'restauracion', label: 'Detalles', ...scene(5), accent: '#2F6BFF', linger: 0.4,
           eyebrow: 'Restauración', title: 'Lo que más se desgasta, como nuevo.',
           body: 'Cuero, volantes, llantas, PPF de interiores y vinilos.', tags: [] },
         { id: 'motos', label: 'Motos', ...scene(6), accent: '#2F6BFF', linger: 0.4,
           eyebrow: 'Motos', title: 'También tu moto.',
           body: 'Limpieza completa y pulido de cascos.', tags: [] },
-        { id: 'precio', label: 'Precio', ...scene(7), accent: '#2F6BFF',
-          eyebrow: 'Precio cerrado', title: 'Pídeme precio por WhatsApp.',
-          body: 'Te digo el precio antes de ir. De lunes a viernes.', tags: [],
-          cta: { primary: { label: 'WhatsApp 614 18 05 75', href: WA },
-                 secondary: { label: 'Ver trabajos reales', href: '#trabajos' } } },
+        { id: 'resultado', label: 'Final', ...scene(7), accent: '#2F6BFF', linger: 0.3,
+          eyebrow: 'Resultado', title: 'Listo para estrenar.',
+          body: 'Coches y motos como el primer día. Precio cerrado antes de ir.', tags: [] },
+        { id: 'rotulacion', label: 'Rotulación', ...scene(8), accent: '#2F6BFF',
+          eyebrow: 'Rotulación y vinilos', title: 'Tu negocio, a la vista.',
+          body: 'Vinilos de escaparate, rotulación de furgonetas y flotas de empresa.', tags: [],
+          cta: { primary: { label: 'Pedir presupuesto', href: '#presupuesto' },
+                 secondary: { label: 'Para negocios', href: '#negocios' } } },
       ],
       connectors: [],           // walkthrough: no connectors, the legs ARE the journey
     });
@@ -310,6 +399,20 @@
     // Landing state: only the logo until the visitor scrolls a little.
     const syncLanding = () => document.body.classList.toggle('um-landing', window.scrollY < 40);
     addEventListener('scroll', syncLanding, { passive: true }); syncLanding();
+
+
+    // WhatsApp quote builder: compose the message from the form.
+    const qf = document.getElementById('quote'), qs = document.getElementById('quote-send');
+    function buildQuote() {
+      const serv = [...qf.querySelectorAll('[data-name="servicios"] input:checked')].map(i => i.value);
+      const tipo = qf.querySelector('input[name="tipo"]:checked')?.value || 'coche';
+      const modelo = qf.modelo.value.trim(), pueblo = qf.pueblo.value;
+      let msg = 'Hola Dani, quiero presupuesto' + (serv.length ? ' para ' + serv.join(', ') : '') + '.';
+      msg += '\nEs para: ' + tipo + (modelo ? ' (' + modelo + ')' : '') + '.';
+      msg += '\nZona: ' + pueblo + '.\nTe mando unas fotos.';
+      qs.href = WA + '?text=' + encodeURIComponent(msg);
+    }
+    qf.addEventListener('input', buildQuote); qf.addEventListener('change', buildQuote); buildQuote();
 
     // ---- Effects ----
     const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
