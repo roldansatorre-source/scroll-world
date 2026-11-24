@@ -25,6 +25,8 @@
       --sw-font-display: "Inter", system-ui, sans-serif;
       --sw-font-body: "Inter", system-ui, sans-serif;
     }
+    /* clip (not hidden) so the page stays free of sideways scroll without breaking position:sticky */
+    html, body { overflow-x: clip !important; overflow-y: visible !important; }
     html, body { margin: 0; background: var(--um-black); color: var(--um-white); font-family: "Inter", system-ui, sans-serif; }
 
     /* Brand: the UM monogram replaces the engine's default mark. */
@@ -67,7 +69,7 @@
 
     /* ---------- Below the flight: real work + contact ---------- */
     .um-wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
-    .um-section { position: relative; padding: 112px 0; overflow: hidden; }
+    .um-section { position: relative; padding: 112px 0; overflow: clip; }
     .um-stripe {
       position: absolute; left: -10%; right: -10%; top: 0; height: 14px;
       background: var(--um-blue); transform: rotate(-3deg); transform-origin: left top;
@@ -99,6 +101,70 @@
     .um-foot .um-wrap { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
     .um-foot img { height: 22px; width: auto; }
 
+    /* ================= Effects ================= */
+
+    /* 1. Intro: logo + diagonal stripe, then the curtain lifts. */
+    .um-intro { position: fixed; inset: 0; z-index: 300; background: var(--um-black); display: grid; place-items: center;
+      animation: um-curtain .8s cubic-bezier(.7,0,.2,1) 1.7s forwards; pointer-events: none; }
+    .um-intro img { width: min(46vw, 300px); opacity: 0; transform: scale(.82);
+      animation: um-logo .9s cubic-bezier(.2,.8,.2,1) .15s forwards; }
+    .um-intro i { position: absolute; left: -40%; right: -40%; height: 18vh; top: 41vh; background: var(--um-blue);
+      transform: rotate(-12deg) translateX(-130%); animation: um-band 1.1s cubic-bezier(.6,0,.2,1) .55s forwards; mix-blend-mode: screen; opacity: .9; }
+    @keyframes um-logo { to { opacity: 1; transform: none; } }
+    @keyframes um-band { to { transform: rotate(-12deg) translateX(130%); } }
+    @keyframes um-curtain { to { clip-path: inset(0 0 100% 0); visibility: hidden; } }
+    .um-intro { clip-path: inset(0 0 0 0); }
+
+    /* 2. Bigger, bolder headlines that rise in word by word. */
+    .sw-copy { width: min(52vw, 680px); }
+    .sw-copy__title { font-size: clamp(2.6rem, 6.2vw, 5.4rem) !important; line-height: .98 !important; font-weight: 800 !important; letter-spacing: -.035em !important; }
+    .sw-copy__eyebrow { display: flex !important; align-items: center; gap: 12px; }
+    .sw-copy__eyebrow::before { content: ""; height: 3px; width: 0; background: var(--um-blue); transition: width .6s cubic-bezier(.2,.8,.2,1) .1s; }
+    .sw-copy.is-in .sw-copy__eyebrow::before { width: 40px; }
+    .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .08em; margin-bottom: -.08em; }
+    .w > span { display: inline-block; transform: translateY(108%); transition: transform .75s cubic-bezier(.2,.8,.2,1); transition-delay: calc(var(--i) * 55ms); }
+    .sw-copy.is-in .w > span { transform: none; }
+    .sw-copy__num { font-size: .8rem !important; color: var(--um-blue) !important; font-weight: 600; }
+
+    /* 3. Brand stripe sweeps across the screen at every scene change. */
+    .um-sweep { position: fixed; inset: 0; z-index: 15; pointer-events: none; overflow: hidden; }
+    .um-sweep i { position: absolute; top: -30%; bottom: -30%; width: 22vw; left: 0; background: var(--um-blue); opacity: .0;
+      transform: translateX(-60vw) skewX(-18deg); }
+    .um-sweep i + i { width: 7vw; background: var(--um-blue-dark); }
+    .um-sweep.go i { animation: um-sweep .9s cubic-bezier(.6,0,.25,1) forwards; }
+    .um-sweep.go i + i { animation-delay: .08s; }
+    @keyframes um-sweep { 0% { opacity: .85; transform: translateX(-60vw) skewX(-18deg); } 100% { opacity: .85; transform: translateX(130vw) skewX(-18deg); } }
+
+    /* 4. Before/after that wipes as you scroll (real photos). */
+    .um-ba-pin { position: relative; height: 340vh; }
+    .um-ba-stage { position: sticky; top: 0; height: 100vh; height: 100svh; display: grid; place-items: center; overflow: hidden; }
+    .um-ba-slide { position: absolute; inset: 0; display: grid; grid-template-rows: auto 1fr; gap: 20px; padding: 96px 16px 32px;
+      max-width: 1120px; margin: 0 auto; opacity: 0; transition: opacity .4s; }
+    .um-ba-slide.on { opacity: 1; }
+    .um-ba-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 8px 24px; }
+    .um-ba-head h3 { margin: 0; font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; letter-spacing: -.03em; }
+    .um-ba-head p { margin: 0; color: var(--um-grey); }
+    .um-ba-frame { position: relative; border-radius: 10px; overflow: hidden; min-height: 0; background: #12151C; }
+    .um-ba-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .um-ba-frame .after { clip-path: inset(0 0 0 var(--x, 100%)); }
+    .um-ba-frame .line { position: absolute; top: 0; bottom: 0; left: var(--x, 100%); width: 4px; margin-left: -2px; background: var(--um-blue); box-shadow: 0 0 24px rgba(47,107,255,.8); }
+    .um-ba-frame .tag { position: absolute; top: 14px; padding: 6px 12px; border-radius: 999px; font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; background: rgba(11,13,18,.75); }
+    .um-ba-frame .tag.l { left: 14px; } .um-ba-frame .tag.r { right: 14px; background: var(--um-blue); }
+    .um-ba-dots { position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 2; }
+    .um-ba-dots b { width: 28px; height: 3px; background: rgba(255,255,255,.25); border-radius: 2px; }
+    .um-ba-dots b.on { background: var(--um-blue); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .um-intro, .um-sweep { display: none; }
+      .w > span { transform: none; transition: none; }
+    }
+
+    @media (max-width: 860px) {
+      .sw-copy { width: auto; }
+      .sw-copy__title { font-size: clamp(2.2rem, 10vw, 3.2rem) !important; }
+      .um-sweep i { width: 40vw; } .um-sweep i + i { width: 12vw; }
+    }
+
     @media (max-width: 720px) {
       .um-section { padding: 80px 0; }
       .um-grid { grid-template-columns: 1fr; }
@@ -108,6 +174,8 @@
   </style>
 </head>
 <body>
+  <div class="um-intro" aria-hidden="true"><i></i><img src="assets/marca/logo-um.png" alt="" /></div>
+  <div class="um-sweep" aria-hidden="true"><i></i><i></i></div>
   <div id="top"></div>
   <div id="world"></div>
 
@@ -118,22 +186,26 @@
       <p class="um-eyebrow">Trabajos reales</p>
       <h2 class="um-h2">Así quedan.</h2>
       <p class="um-lead">Fotos de trabajos hechos por mí.</p>
+    </div>
+    <div class="um-ba-pin" id="antes-despues">
+      <div class="um-ba-stage">
+        <div class="um-ba-slide" data-k="0">
+          <div class="um-ba-head"><h3>Limpieza de interiores</h3><p>Inyección-extracción y vapor en tapicería y alfombras.</p></div>
+          <div class="um-ba-frame"><img src="assets/fotos/interior-antes.jpg" alt="Interior antes de la limpieza: asientos y alfombrilla con barro y migas." /><img class="after" src="assets/fotos/interior-despues.jpg" alt="El mismo interior después de la limpieza." /><span class="line"></span><span class="tag l">Antes</span><span class="tag r">Después</span></div>
+        </div>
+        <div class="um-ba-slide" data-k="1">
+          <div class="um-ba-head"><h3>Restauración de faros</h3><p>De amarillo y opaco a transparente.</p></div>
+          <div class="um-ba-frame"><img src="assets/fotos/faros-antes.jpg" alt="Faro amarillento y opaco antes de restaurar." /><img class="after" src="assets/fotos/faros-despues.jpg" alt="El mismo faro transparente después de restaurar." /><span class="line"></span><span class="tag l">Antes</span><span class="tag r">Después</span></div>
+        </div>
+        <div class="um-ba-slide" data-k="2">
+          <div class="um-ba-head"><h3>Pulido de carrocería</h3><p>Fuera las marcas circulares y las rayas finas.</p></div>
+          <div class="um-ba-frame"><img src="assets/fotos/pulido-antes.jpg" alt="Puerta negra con marcas circulares bajo un foco antes del pulido." /><img class="after" src="assets/fotos/pulido-despues.jpg" alt="La misma puerta sin marcas después del pulido." /><span class="line"></span><span class="tag l">Antes</span><span class="tag r">Después</span></div>
+        </div>
+        <div class="um-ba-dots"><b></b><b></b><b></b></div>
+      </div>
+    </div>
+    <div class="um-wrap">
       <div class="um-grid">
-        <figure class="um-card um-card--wide">
-          <div class="um-ba"><span>Antes</span><span>Después</span></div>
-          <img src="assets/fotos/foto-4.jpg" alt="Interior de un coche antes y después de la limpieza: asientos y alfombrilla llenos de barro y migas, y después limpios." loading="lazy" width="1536" height="1024" />
-          <figcaption><strong>Limpieza de interiores.</strong> Inyección-extracción y vapor en tapicería y alfombras.</figcaption>
-        </figure>
-        <figure class="um-card">
-          <div class="um-ba"><span>Antes</span><span>Después</span></div>
-          <img src="assets/fotos/foto-5.jpg" alt="Faro amarillento y opaco antes, y transparente después de la restauración." loading="lazy" width="1536" height="1024" />
-          <figcaption><strong>Restauración de faros.</strong> De amarillo a transparente.</figcaption>
-        </figure>
-        <figure class="um-card">
-          <div class="um-ba"><span>Antes</span><span>Después</span></div>
-          <img src="assets/fotos/foto-3.jpg" alt="Puerta negra con marcas circulares bajo un foco antes, y sin marcas después del pulido." loading="lazy" width="1536" height="1024" />
-          <figcaption><strong>Pulido de carrocería.</strong> Fuera las marcas y rayas finas.</figcaption>
-        </figure>
         <figure class="um-card">
           <img src="assets/fotos/foto-2.jpg" alt="Pulido de un capó azul marino con pulidora delante de una casa." loading="lazy" width="1536" height="1024" />
           <figcaption><strong>A domicilio.</strong> Pulido en la puerta de casa del cliente.</figcaption>
@@ -224,6 +296,43 @@
     const syncPast = () => document.body.classList.toggle('um-past-world',
       after.getBoundingClientRect().top < window.innerHeight * 0.5);
     addEventListener('scroll', syncPast, { passive: true }); addEventListener('resize', syncPast); syncPast();
+
+    // ---- Effects ----
+    const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setTimeout(() => document.querySelector('.um-intro')?.remove(), 2700);
+
+    // Word-by-word headline reveal
+    const copies = [...document.querySelectorAll('.sw-copy')];
+    copies.forEach(c => {
+      const t = c.querySelector('.sw-copy__title'); if (!t) return;
+      t.innerHTML = t.textContent.split(' ').map((w, i) => `<span class="w"><span style="--i:${i}">${w}</span></span>`).join(' ');
+    });
+    const sweep = document.querySelector('.um-sweep');
+    let lastActive = -1, lastSweep = 0;
+    function effects() {
+      copies.forEach(c => c.classList.toggle('is-in', parseFloat(c.style.opacity || 0) > 0.35));
+      const navs = [...document.querySelectorAll('.sw-route__dot')];
+      const k = navs.findIndex(d => d.classList.contains('is-active'));
+      if (k !== lastActive) {
+        if (lastActive !== -1 && !RM && performance.now() - lastSweep > 900 && !document.body.classList.contains('um-past-world')) {
+          sweep.classList.remove('go'); void sweep.offsetWidth; sweep.classList.add('go'); lastSweep = performance.now();
+        }
+        lastActive = k;
+      }
+      // Before/after wipe driven by scroll
+      const pin = document.getElementById('antes-despues');
+      const r = pin.getBoundingClientRect(), span = pin.offsetHeight - innerHeight;
+      const p = Math.min(1, Math.max(0, -r.top / span));
+      const n = 3, k2 = Math.min(n - 1, Math.floor(p * n)), local = p * n - k2;
+      const x = 100 - Math.min(1, Math.max(0, (local - 0.12) / 0.66)) * 100;
+      document.querySelectorAll('.um-ba-slide').forEach((sl, i) => {
+        sl.classList.toggle('on', i === k2);
+        if (i === k2) sl.querySelector('.um-ba-frame').style.setProperty('--x', x.toFixed(2) + '%');
+      });
+      document.querySelectorAll('.um-ba-dots b').forEach((d, i) => d.classList.toggle('on', i === k2));
+    }
+    (function loop() { effects(); requestAnimationFrame(loop); })();
+
   </script>
 </body>
 </html>
