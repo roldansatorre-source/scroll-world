@@ -44,6 +44,18 @@
     .sw-nav { background: rgba(11, 13, 18, .62); border-color: rgba(255, 255, 255, .08); }
     .sw-route__label { background: rgba(11, 13, 18, .8); color: #fff; }
 
+    /* Scrim so white copy stays legible over bright footage (sunlit concrete, white walls). */
+    .sw-copylayer::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(90deg, rgba(11,13,18,.82) 0%, rgba(11,13,18,.55) 32%, rgba(11,13,18,0) 58%);
+    }
+    .sw-copy__body, .sw-copy p { color: #E6E9EF; }
+    @media (max-width: 860px) {
+      .sw-copylayer::before {
+        background: linear-gradient(0deg, rgba(11,13,18,.9) 0%, rgba(11,13,18,.6) 38%, rgba(11,13,18,0) 62%);
+      }
+    }
+
     /* The engine's layers are position:fixed; once the flight is over, the page's own
        sections slide above them and the fixed layers fade out. */
     .um-after { position: relative; z-index: 45; background: var(--um-black); }
