@@ -56,7 +56,7 @@
       background: linear-gradient(90deg, rgba(34,56,45,.84) 0%, rgba(34,56,45,.55) 33%, rgba(34,56,45,0) 60%); }
     .sw-copy__body, .sw-copy p { color: #EFE9DC; }
     @media (max-width: 860px) {
-      .sw-copylayer::before { background: linear-gradient(0deg, rgba(34,56,45,.92) 0%, rgba(34,56,45,.62) 40%, rgba(34,56,45,0) 64%); }
+      .sw-copylayer::before { top: auto; bottom: 0; height: 70%; width: 100%; background: linear-gradient(0deg, rgba(34,56,45,.94) 0%, rgba(34,56,45,.7) 45%, rgba(34,56,45,0) 100%); }
     }
 
     /* Headlines: Lora SemiBold, rising in word by word. */
@@ -65,7 +65,7 @@
       font-size: clamp(2.4rem, 5.4vw, 4.6rem) !important; line-height: 1.04 !important; letter-spacing: -.01em !important; }
     .sw-copy__title::after { content: "."; color: var(--tp-sage); }
     .sw-copy__title .w:last-child > span { }
-    .sw-copy__eyebrow { display: flex !important; align-items: center; gap: 12px; color: var(--tp-sage) !important; }
+    .sw-copy__eyebrow { display: flex !important; align-items: center; gap: 12px; color: var(--tp-sand) !important; font-family: "Inter", system-ui, sans-serif !important; font-weight: 600 !important; }
     .sw-copy__eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--tp-sage); }
     .sw-copy__num { color: var(--tp-sage) !important; }
     .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .1em; margin-bottom: -.1em; }
