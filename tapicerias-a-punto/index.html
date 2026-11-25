@@ -51,19 +51,30 @@
     .pill { white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 999px; background: var(--green); color: var(--cream); font-weight: 600; font-size: .92rem; text-decoration: none; }
     .pill:hover { background: var(--green-deep); }
 
-    /* The window: a calm living room breathing in a loop */
-    .window { padding: 8px clamp(12px, 3vw, 40px) 0; }
-    .window__frame { position: relative; max-width: 1360px; margin: 0 auto; border-radius: 28px; overflow: hidden; background: var(--sand);
-      aspect-ratio: 16 / 8.2; box-shadow: 0 40px 80px -50px rgba(47, 74, 60, .55); }
-    .window__frame img, .window__frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    .window__frame video { opacity: 0; transition: opacity 1.2s ease; }
-    .window__frame video.on { opacity: 1; }
-    .window__frame::after { content: ""; position: absolute; inset: 0; pointer-events: none;
-      background: linear-gradient(90deg, rgba(34, 56, 45, .62) 0%, rgba(34, 56, 45, .25) 38%, rgba(34, 56, 45, 0) 62%); }
-    .window__copy { position: absolute; z-index: 2; left: clamp(22px, 5vw, 72px); bottom: clamp(22px, 5vw, 64px); max-width: 520px; color: var(--cream); }
-    .window__copy p.hi { margin: 0 0 10px; font-family: "Lora", Georgia, serif; font-style: italic; font-size: 1.15rem; opacity: .95; }
-    .window__copy h1 { color: var(--cream); font-size: clamp(2.4rem, 5.4vw, 4.6rem); text-shadow: 0 2px 30px rgba(0,0,0,.2); }
-    .window__copy p.sub { margin: 14px 0 22px; font-size: 1.08rem; line-height: 1.55; color: #F1ECE1; max-width: 42ch; }
+    /* Hero: words on cream + the living room seen through an arched window */
+    .hero { display: grid; grid-template-columns: 1.05fr .95fr; gap: clamp(28px, 5vw, 72px); align-items: center;
+      max-width: 1240px; margin: 0 auto; padding: clamp(24px, 4vw, 48px) 20px clamp(40px, 6vw, 72px); min-height: calc(100vh - 70px); min-height: calc(100svh - 70px); }
+    .hero .hi { margin: 0 0 14px; font-family: "Lora", Georgia, serif; font-style: italic; font-size: clamp(1.2rem, 2vw, 1.5rem); color: var(--soft); }
+    .hero h1 { font-size: clamp(3rem, 6.6vw, 6rem); line-height: 1.02; letter-spacing: -.015em; }
+    .hero .sub { margin: 22px 0 28px; font-size: clamp(1.05rem, 1.4vw, 1.2rem); color: var(--soft); max-width: 40ch; }
+    .facts { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 30px 0 0; padding: 0; color: var(--soft); font-size: .95rem; }
+    .facts li { display: flex; align-items: center; gap: 9px; }
+    .facts li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--sage); }
+    .hero__win { position: relative; justify-self: center; width: min(100%, 520px); }
+    .arch { position: relative; aspect-ratio: 4 / 5.2; border-radius: 999px 999px 18px 18px; overflow: hidden; background: var(--sand);
+      box-shadow: 0 0 0 10px #FBF8F2, 0 0 0 11px var(--line), 0 50px 90px -50px rgba(47, 74, 60, .6); }
+    .arch img, .arch video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; }
+    .arch video { opacity: 0; transition: opacity 1.2s ease; }
+    .arch video.on { opacity: 1; }
+    .arch::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(120% 80% at 70% 20%, rgba(255, 236, 200, .18), transparent 60%); }
+    /* window bars: a thin cross like real glazing */
+    .mullion { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+    .mullion::before, .mullion::after { content: ""; position: absolute; background: #FBF8F2; box-shadow: 0 0 6px rgba(0,0,0,.12); }
+    .mullion::before { left: 50%; top: 0; bottom: 0; width: 6px; margin-left: -3px; }
+    .mullion::after { left: 0; right: 0; top: 46%; height: 6px; }
+    .sill { display: block; height: 14px; margin: 14px -18px 0; border-radius: 6px; background: linear-gradient(#EFE7D8, #E2D8C4); box-shadow: 0 10px 20px -12px rgba(47,74,60,.45); }
+    .caption { margin: 16px 0 0; text-align: center; font-family: "Lora", Georgia, serif; font-style: italic; color: var(--soft); font-size: .98rem; }
+
     .btns { display: flex; flex-wrap: wrap; gap: 10px; }
     .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 15px 24px; border-radius: 999px; font-weight: 600; text-decoration: none; font-size: 1rem; }
     .btn--cream { background: var(--cream); color: var(--green); }
@@ -171,7 +182,7 @@
     body.scrolled .hdr { padding-top: 8px; padding-bottom: 8px; box-shadow: 0 1px 0 var(--line); }
 
     /* hero: very slow breathing zoom, sunbeam dust, staggered words, hand-drawn underline */
-    .window__frame img, .window__frame video { animation: breathe 22s ease-in-out infinite alternate; transform-origin: 60% 55%; }
+    .arch img, .arch video { animation: breathe 22s ease-in-out infinite alternate; transform-origin: 55% 60%; }
     @keyframes breathe { from { transform: scale(1); } to { transform: scale(1.07); } }
     .motes { position: absolute; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
     .motes i { position: absolute; width: var(--s); height: var(--s); border-radius: 50%; background: rgba(255, 244, 214, .9);
@@ -179,8 +190,8 @@
     @keyframes mote { 0% { opacity: 0; transform: translate(0, 0); } 15% { opacity: .8; } 85% { opacity: .6; } 100% { opacity: 0; transform: translate(var(--dx), var(--dy)); } }
     .wd { display: inline-block; opacity: 0; transform: translateY(.45em); filter: blur(4px); animation: wd .9s cubic-bezier(.2,.8,.2,1) forwards; animation-delay: calc(.25s + var(--i) * .09s); }
     @keyframes wd { to { opacity: 1; transform: none; filter: none; } }
-    .window__copy .hi, .window__copy .sub, .window__copy .btns { opacity: 0; transform: translateY(14px); animation: wd 1s cubic-bezier(.2,.8,.2,1) forwards; }
-    .window__copy .hi { animation-delay: .1s; } .window__copy .sub { animation-delay: 1s; } .window__copy .btns { animation-delay: 1.2s; }
+    .wd0 { opacity: 0; transform: translateY(14px); animation: wd 1s cubic-bezier(.2,.8,.2,1) forwards; }
+    .hero .hi { animation-delay: .1s; } .hero .sub { animation-delay: .95s; } .hero .btns { animation-delay: 1.15s; } .hero .facts { animation-delay: 1.35s; } .hero__win { animation-delay: .3s; animation-duration: 1.4s; }
     .scribble { position: relative; white-space: nowrap; }
     .scribble svg { position: absolute; left: -2%; bottom: -.18em; width: 104%; height: .42em; overflow: visible; }
     .scribble path { fill: none; stroke: var(--sage); stroke-width: 5; stroke-linecap: round; stroke-dasharray: 420; stroke-dashoffset: 420; animation: draw 1.4s cubic-bezier(.6,0,.2,1) 1.1s forwards; }
@@ -221,8 +232,8 @@
     @keyframes ring { 0% { transform: scale(1); opacity: .5; } 60%, 100% { transform: scale(1.7); opacity: 0; } }
 
     @media (prefers-reduced-motion: reduce) {
-      .window__frame img, .window__frame video, .ribbon__track, .note, .fab::before, .motes { animation: none !important; }
-      .wd, .window__copy .hi, .window__copy .sub, .window__copy .btns { animation: none; opacity: 1; transform: none; filter: none; }
+      .arch img, .arch video, .ribbon__track, .note, .fab::before, .motes { animation: none !important; }
+      .wd, .wd0 { animation: none; opacity: 1; transform: none; filter: none; }
       .scribble path { animation: none; stroke-dashoffset: 0; }
       .split .w, .things li { opacity: 1; transform: none; transition: none; }
       .step img { transform: scale(1.12); }
@@ -233,9 +244,13 @@
       .hdr img { height: 18px; }
       .hdr { padding: 12px 14px; }
       .pill { padding: 9px 14px; font-size: .85rem; }
-      .window__frame { aspect-ratio: 3 / 4.4; border-radius: 22px; }
-      .window__frame::after { background: linear-gradient(0deg, rgba(34,56,45,.8) 0%, rgba(34,56,45,.35) 45%, rgba(34,56,45,0) 70%); }
-      .window__copy { left: 20px; right: 20px; bottom: 22px; }
+      .hero { grid-template-columns: 1fr; min-height: 0; padding-top: 18px; gap: 26px; }
+      .hero__win { order: -1; width: min(70%, 330px); }
+      .arch { aspect-ratio: 4 / 4.3; box-shadow: 0 0 0 7px #FBF8F2, 0 0 0 8px var(--line), 0 40px 70px -45px rgba(47,74,60,.6); }
+      .sill { margin: 10px -12px 0; height: 11px; }
+      .caption { display: none; }
+      .hero h1 { font-size: clamp(2.6rem, 12vw, 3.4rem); }
+      .facts { margin-top: 22px; }
       .hello, .pair { grid-template-columns: 1fr; }
       .note { transform: none; }
       .steps, .things { grid-template-columns: 1fr; }
@@ -260,23 +275,33 @@
   <div id="top"></div>
 
   <main>
-    <div class="window">
-      <div class="window__frame">
-        <picture>
-          <source media="(max-width: 860px)" srcset="assets/casa/salon-m.webp" />
-          <img src="assets/casa/salon.webp" alt="Un salón tranquilo un domingo por la mañana: sofá beige limpio, sol entrando por la ventana y un café en la mesa." />
-        </picture>
-        <video id="salon" muted playsinline loop preload="auto" aria-hidden="true"></video>
-        <div class="motes" id="motes" aria-hidden="true"></div>
-        <div class="window__copy">
-          <p class="hi">Hola, soy Dani.</p>
-          <h1 id="hero-h"><span class="wd" style="--i:0">Tu</span> <span class="wd" style="--i:1">sofá,</span> <span class="wd" style="--i:2">como</span> <em class="scribble"><span class="wd" style="--i:3">el</span> <span class="wd" style="--i:4">primer</span> <span class="wd" style="--i:5">día</span><svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C 60 4, 140 18, 200 9 S 280 6, 296 12" /></svg></em><span class="dot wd" style="--i:6">.</span></h1>
-          <p class="sub">Limpio sofás, colchones y tapicerías en tu casa, en Alcoi y alrededores. Sin desmontar nada y sin llevármelo.</p>
-          <div class="btns">
-            <a class="btn btn--cream" href="#precio">Mándame una foto</a>
-            <a class="btn btn--ghost" data-wa href="https://wa.me/34614180575">WhatsApp 614 18 05 75</a>
-          </div>
+    <div class="hero">
+      <div class="hero__text">
+        <p class="hi wd0">Hola, soy Dani<span class="dot">.</span></p>
+        <h1 id="hero-h"><span class="wd" style="--i:0">Tu</span> <span class="wd" style="--i:1">sofá,</span> <span class="wd" style="--i:2">como</span> <em class="scribble"><span class="wd" style="--i:3">el</span> <span class="wd" style="--i:4">primer</span> <span class="wd" style="--i:5">día</span><svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C 60 4, 140 18, 200 9 S 280 6, 296 12" /></svg></em><span class="dot wd" style="--i:6">.</span></h1>
+        <p class="sub wd0">Limpio sofás, colchones y tapicerías en tu casa. Sin desmontar nada, sin llevármelo y con el precio cerrado antes de ir.</p>
+        <div class="btns wd0">
+          <a class="btn btn--green" href="#precio">Mándame una foto</a>
+          <a class="btn btn--line" data-wa href="https://wa.me/34614180575">WhatsApp 614 18 05 75</a>
         </div>
+        <ul class="facts wd0">
+          <li>Alcoi, Cocentaina y Muro</li>
+          <li>De lunes a viernes</li>
+          <li>Lo hago yo, Dani</li>
+        </ul>
+      </div>
+      <div class="hero__win wd0">
+        <div class="arch">
+          <picture>
+            <source media="(max-width: 860px)" srcset="assets/casa/salon-m.webp" />
+            <img src="assets/casa/salon-m.webp" alt="Un salón tranquilo un domingo por la mañana: sofá beige limpio, sol entrando por la ventana y un café en la mesa." />
+          </picture>
+          <video id="salon" muted playsinline loop preload="auto" aria-hidden="true"></video>
+          <div class="motes" id="motes" aria-hidden="true"></div>
+          <span class="mullion" aria-hidden="true"></span>
+        </div>
+        <span class="sill" aria-hidden="true"></span>
+        <p class="caption">Un domingo cualquiera, después de pasar yo<span class="dot">.</span></p>
       </div>
     </div>
 
@@ -433,7 +458,7 @@
 
     // The window: start the slow loop once it can play; the still stays underneath until then.
     const salon = document.getElementById('salon');
-    salon.src = matchMedia('(max-width: 860px)').matches ? 'assets/casa/salon-m.mp4' : 'assets/casa/salon.mp4';
+    salon.src = 'assets/casa/salon-m.mp4';
     if (!RMq) {
       salon.addEventListener('canplay', () => { salon.play().then(() => salon.classList.add('on')).catch(() => {}); }, { once: true });
     }
@@ -478,7 +503,7 @@
     const motes = document.getElementById('motes');
     if (!RM) for (let k = 0; k < 22; k++) {
       const m = document.createElement('i'), r = Math.random;
-      m.style.cssText = `--s:${(1.5 + r() * 3).toFixed(1)}px;--x:${(45 + r() * 50).toFixed(1)}%;--y:${(10 + r() * 70).toFixed(1)}%;` +
+      m.style.cssText = `--s:${(1.5 + r() * 3).toFixed(1)}px;--x:${(15 + r() * 75).toFixed(1)}%;--y:${(8 + r() * 70).toFixed(1)}%;` +
         `--dx:${(-30 + r() * 60).toFixed(0)}px;--dy:${(-40 - r() * 60).toFixed(0)}px;--d:${(7 + r() * 8).toFixed(1)}s;--w:${(-r() * 12).toFixed(1)}s`;
       motes.appendChild(m);
     }
