@@ -4,16 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Tapicerías a Punto — Limpieza de sofás y colchones a domicilio en Alcoi</title>
-  <meta name="description" content="Limpieza de sofás, sillones, colchones, sillas y tapicerías a domicilio en Alcoi, Cocentaina, Muro y comarca. Inyección-extracción, sin desmontar nada. Precio cerrado por WhatsApp con una foto." />
-  <meta name="theme-color" content="#2F4A3C" />
-  <meta property="og:title" content="Tapicerías a Punto — Un día cualquiera en tu salón" />
-  <meta property="og:description" content="Limpieza de sofás, colchones y tapicerías a domicilio en Alcoi y comarca. Mándame una foto y te digo el precio." />
+  <meta name="description" content="Hola, soy Dani. Limpio sofás, sillones, colchones, sillas y tapicerías en tu casa, en Alcoi, Cocentaina, Muro y alrededores. Mándame una foto y te digo el precio." />
+  <meta name="theme-color" content="#F5F0E6" />
+  <meta property="og:title" content="Tapicerías a Punto — Tu sofá, como el primer día" />
+  <meta property="og:description" content="Limpieza de sofás, colchones y tapicerías a domicilio en Alcoi y alrededores. Mándame una foto y te digo el precio." />
   <meta property="og:image" content="assets/marca/compartir.jpg" />
   <meta property="og:type" content="website" />
   <link rel="icon" href="assets/marca/perfil-tp.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,600;1,500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet" />
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"LocalBusiness","name":"Tapicerías a Punto",
    "description":"Limpieza de sofás, sillones, colchones, sillas y tapicerías a domicilio.",
@@ -23,483 +23,368 @@
   </script>
   <style>
     :root {
-      --tp-green: #2F4A3C; --tp-green-deep: #22382D; --tp-cream: #F5F0E6;
-      --tp-sage: #8FA68E; --tp-sand: #E9E2D3; --tp-ink: #1F2A24; --tp-soft: #4A5A50;
-      --tint: 0, 0, 0; --tint-a: 0;
+      --green: #2F4A3C; --green-deep: #22382D; --cream: #F5F0E6; --sage: #8FA68E; --sand: #E9E2D3;
+      --ink: #26332B; --soft: #56645B; --line: rgba(47, 74, 60, .14);
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
-    html, body { margin: 0; background: var(--tp-green-deep); color: var(--tp-ink); font-family: "Inter", system-ui, sans-serif; overflow-x: clip; }
-    img, video { display: block; }
+    body { margin: 0; color: var(--ink); font-family: "Inter", system-ui, sans-serif; font-size: 17px; line-height: 1.65; overflow-x: clip;
+      /* soft linen: two faint crossing weaves over cream */
+      background-color: var(--cream);
+      background-image:
+        repeating-linear-gradient(0deg, rgba(120, 100, 70, .025) 0 1px, transparent 1px 4px),
+        repeating-linear-gradient(90deg, rgba(120, 100, 70, .02) 0 1px, transparent 1px 5px); }
+    img, video { display: block; max-width: 100%; }
     a { color: inherit; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+    h1, h2, h3 { font-family: "Lora", Georgia, serif; font-weight: 600; color: var(--green); line-height: 1.12; margin: 0; }
+    h1 em, h2 em, h3 em { font-style: italic; font-weight: 500; }
+    .dot { color: var(--sage); }
 
-    /* ---------- Header: floats over the room, turns into a cream bar after the story ---------- */
-    .tp-hdr { position: fixed; top: 0; left: 0; right: 0; z-index: 50; height: 68px; display: flex; align-items: center; justify-content: space-between;
-      gap: 12px; padding: 0 clamp(16px, 4vw, 48px); transition: background .4s, box-shadow .4s; }
-    .tp-hdr__logo img { height: 24px; width: auto; }
-    .tp-hdr__logo .v { display: none; }
-    .tp-hdr nav { display: flex; align-items: center; gap: 10px; }
-    .tp-ig { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; color: var(--tp-cream); background: rgba(34,56,45,.35); backdrop-filter: blur(8px); }
-    .tp-ig svg { width: 20px; height: 20px; fill: none; stroke: currentColor; stroke-width: 1.8; }
-    .tp-pill { background: var(--tp-cream); color: var(--tp-green); padding: 11px 18px; border-radius: 999px; font-weight: 600; text-decoration: none; font-size: .92rem; }
-    body.past .tp-hdr { background: rgba(245,240,230,.92); backdrop-filter: blur(12px); box-shadow: 0 1px 0 rgba(47,74,60,.08); }
-    body.past .tp-hdr__logo .c { display: none; } body.past .tp-hdr__logo .v { display: block; }
-    body.past .tp-ig { color: var(--tp-green); background: var(--tp-sand); }
-    body.past .tp-pill { background: var(--tp-green); color: var(--tp-cream); }
+    /* Header: just the name and a way to talk to me */
+    .hdr { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      padding: 14px clamp(20px, 4vw, 48px); background: rgba(245, 240, 230, .9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+    .hdr img { height: 24px; width: auto; }
+    .hdr nav { display: flex; align-items: center; gap: 10px; }
+    .ig { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; background: var(--sand); color: var(--green); }
+    .ig svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.8; }
+    .pill { white-space: nowrap; display: inline-flex; align-items: center; gap: 8px; padding: 11px 18px; border-radius: 999px; background: var(--green); color: var(--cream); font-weight: 600; font-size: .92rem; text-decoration: none; }
+    .pill:hover { background: var(--green-deep); }
 
-    /* ---------- The day: a fixed camera on one living room, time passes as you scroll ---------- */
-    .tp-day { position: relative; height: 960vh; }
-    .tp-stage { position: sticky; background: var(--tp-green); top: 0; height: 100vh; height: 100svh; overflow: hidden; background: #1c2a23; }
-            /* time-of-day light over the room + soft vignette so the UI reads */
-    .tp-stage::after { content: ""; position: absolute; inset: 0; pointer-events: none;
-      background: radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(20,30,25,.45) 100%),
-                  linear-gradient(0deg, rgba(20,30,25,.72) 0%, rgba(20,30,25,0) 42%),
-                  linear-gradient(200deg, rgba(20,30,25,.62) 0%, rgba(20,30,25,0) 34%),
-                  rgba(var(--tint), var(--tint-a)); }
+    /* The window: a calm living room breathing in a loop */
+    .window { padding: 8px clamp(12px, 3vw, 40px) 0; }
+    .window__frame { position: relative; max-width: 1360px; margin: 0 auto; border-radius: 28px; overflow: hidden; background: var(--sand);
+      aspect-ratio: 16 / 8.2; box-shadow: 0 40px 80px -50px rgba(47, 74, 60, .55); }
+    .window__frame img, .window__frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .window__frame video { opacity: 0; transition: opacity 1.2s ease; }
+    .window__frame video.on { opacity: 1; }
+    .window__frame::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: linear-gradient(90deg, rgba(34, 56, 45, .62) 0%, rgba(34, 56, 45, .25) 38%, rgba(34, 56, 45, 0) 62%); }
+    .window__copy { position: absolute; z-index: 2; left: clamp(22px, 5vw, 72px); bottom: clamp(22px, 5vw, 64px); max-width: 520px; color: var(--cream); }
+    .window__copy p.hi { margin: 0 0 10px; font-family: "Lora", Georgia, serif; font-style: italic; font-size: 1.15rem; opacity: .95; }
+    .window__copy h1 { color: var(--cream); font-size: clamp(2.4rem, 5.4vw, 4.6rem); text-shadow: 0 2px 30px rgba(0,0,0,.2); }
+    .window__copy p.sub { margin: 14px 0 22px; font-size: 1.08rem; line-height: 1.55; color: #F1ECE1; max-width: 42ch; }
+    .btns { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 15px 24px; border-radius: 999px; font-weight: 600; text-decoration: none; font-size: 1rem; }
+    .btn--cream { background: var(--cream); color: var(--green); }
+    .btn--ghost { border: 1.5px solid rgba(245, 240, 230, .6); color: var(--cream); }
+    .btn--green { background: var(--green); color: var(--cream); }
+    .btn--line { border: 1.5px solid var(--line); color: var(--green); background: rgba(255,255,255,.35); }
+    .btn svg { width: 20px; height: 20px; fill: currentColor; }
 
+    /* Sections */
+    section { padding: clamp(72px, 10vw, 120px) 0; }
+    .kicker { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; font-size: .8rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--soft); }
+    .kicker::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--sage); }
+    h2 { font-size: clamp(2rem, 4.2vw, 3.1rem); margin-bottom: 18px; }
+    .lead { font-size: 1.12rem; color: var(--soft); max-width: 58ch; margin: 0 0 40px; }
 
-    /* Door intro + camera layer that travels around the dollhouse */
-    .tp-door { position: absolute; inset: 0; z-index: 1; transition: opacity .5s; }
-    .tp-door img, .tp-door video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 50%; }
-    .tp-cam { position: absolute; left: 0; top: 0; background: #2F4A3C; }
-    .tp-cam video, .tp-cam .poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; }
-    .tp-cam video { opacity: 0; transition: opacity .3s; }
-    .tp-cam video.on { opacity: 1; }
+    /* Hola, soy Dani */
+    .hello { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+    .hello p { margin: 0 0 16px; font-size: 1.12rem; color: var(--soft); }
+    .hello p.first { font-family: "Lora", Georgia, serif; font-size: clamp(1.35rem, 2.4vw, 1.7rem); line-height: 1.45; color: var(--green); }
+    .sign { font-family: "Lora", Georgia, serif; font-style: italic; color: var(--green) !important; font-size: 1.2rem !important; margin-top: 8px; }
+    .note { background: #FBF8F2; border-radius: 22px; padding: 28px 26px; box-shadow: 0 1px 0 var(--line), 0 24px 50px -36px rgba(47,74,60,.5); transform: rotate(-1.2deg); }
+    .note h3 { font-size: 1.3rem; margin-bottom: 14px; }
+    .note ul { list-style: none; margin: 0; padding: 0; }
+    .note li { display: flex; gap: 12px; padding: 10px 0; border-top: 1px dashed var(--line); color: var(--soft); }
+    .note li:first-child { border-top: 0; }
+    .note li b { color: var(--green); font-weight: 600; min-width: 86px; }
 
-    .tp-spot { position: absolute; z-index: 1; pointer-events: none; border-radius: 10px; --dim: 0;
-      box-shadow: 0 0 0 200vmax rgba(18, 28, 23, var(--dim)), inset 0 0 0 2px rgba(245, 240, 230, calc(var(--dim) * 1.2)); }
-    body.indoor .tp-spot { opacity: 0; }
+    /* Cómo lo hago */
+    .steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+    .step { background: #FBF8F2; border-radius: 22px; overflow: hidden; box-shadow: 0 1px 0 var(--line); }
+    .step img { width: 100%; height: auto; aspect-ratio: 5 / 4; object-fit: cover; }
+    .step div { padding: 20px 22px 24px; }
+    .step span { font-family: "Lora", Georgia, serif; font-style: italic; color: var(--sage); font-size: 1.05rem; }
+    .step h3 { font-size: 1.3rem; margin: 4px 0 8px; }
+    .step p { margin: 0; color: var(--soft); line-height: 1.55; }
 
-    /* Clock */
-    .tp-clock { position: absolute; z-index: 3; top: 86px; right: clamp(16px, 4vw, 48px); text-align: right; color: var(--tp-cream); }
-    .tp-clock time { display: block; font-family: "Lora", Georgia, serif; font-weight: 600; font-size: clamp(3rem, 7vw, 6.4rem); line-height: 1; letter-spacing: -.02em;
-      font-variant-numeric: tabular-nums; text-shadow: 0 2px 30px rgba(0,0,0,.25); }
-    .tp-clock span { display: block; margin-top: 8px; font-size: .78rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; opacity: .85; }
+    /* Antes y después: drag the line */
+    .ba-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+    .ba-tabs button { font: inherit; font-size: .95rem; font-weight: 500; padding: 9px 16px; border-radius: 999px; border: 1.5px solid var(--line); background: transparent; color: var(--green); cursor: pointer; }
+    .ba-tabs button[aria-pressed="true"] { background: var(--green); color: var(--cream); border-color: var(--green); }
+    .ba { position: relative; border-radius: 22px; overflow: hidden; aspect-ratio: 16 / 9; background: var(--sand); touch-action: pan-y; cursor: ew-resize; user-select: none; }
+    .ba img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+    .ba .after { clip-path: inset(0 0 0 var(--x, 50%)); }
+    .ba .bar { position: absolute; top: 0; bottom: 0; left: var(--x, 50%); width: 3px; margin-left: -1.5px; background: var(--cream); }
+    .ba .knob { position: absolute; top: 50%; left: var(--x, 50%); width: 48px; height: 48px; margin: -24px 0 0 -24px; border-radius: 50%; background: var(--cream); box-shadow: 0 6px 20px rgba(0,0,0,.2); display: grid; place-items: center; color: var(--green); font-weight: 600; }
+    .ba .tag { position: absolute; top: 14px; padding: 6px 12px; border-radius: 999px; font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; background: rgba(47,74,60,.82); color: var(--cream); }
+    .ba .tag.l { left: 14px; } .ba .tag.r { right: 14px; background: var(--cream); color: var(--green); }
+    .small { font-size: .82rem; color: var(--soft); margin-top: 10px; }
 
-    /* Sun / moon arc */
-    .tp-arc { position: absolute; z-index: 3; left: 50%; bottom: 22px; width: min(420px, 70vw); height: 56px; transform: translateX(-50%); }
-    .tp-arc svg { width: 100%; height: 100%; overflow: visible; }
-    .tp-arc path { fill: none; stroke: rgba(245,240,230,.35); stroke-width: 1.5; stroke-dasharray: 3 5; }
-    .tp-arc circle { fill: var(--tp-cream); filter: drop-shadow(0 0 8px rgba(255,230,170,.9)); }
-    .tp-arc .lab { position: absolute; bottom: -4px; font-size: .68rem; font-weight: 600; letter-spacing: .14em; color: rgba(245,240,230,.7); }
-    .tp-arc .l { left: -6px; } .tp-arc .r { right: -6px; }
+    /* Lo que limpio */
+    .things { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--line); }
+    .things li { padding: 22px 18px 24px 0; border-bottom: 1px solid var(--line); }
+    .things b { display: block; font-family: "Lora", Georgia, serif; font-weight: 600; font-size: 1.2rem; color: var(--green); margin-bottom: 4px; }
+    .things span { color: var(--soft); }
 
-    /* Diary captions */
-    .tp-cap { position: absolute; z-index: 3; left: clamp(16px, 4vw, 48px); bottom: 96px; max-width: min(560px, calc(100vw - 32px)); color: var(--tp-cream);
-      opacity: 0; transform: translateY(16px); transition: opacity .55s ease, transform .55s ease; pointer-events: none; }
-    .tp-cap.on { opacity: 1; transform: none; pointer-events: auto; }
-    .tp-cap small { display: inline-flex; align-items: center; gap: 10px; font-size: .78rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--tp-sand); }
-    .tp-cap small::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--tp-sage); }
-    .tp-cap h2, .tp-cap h1 { margin: 12px 0 12px; font-family: "Lora", Georgia, serif; font-weight: 600; line-height: 1.05; letter-spacing: -.01em; font-size: clamp(2.1rem, 4.6vw, 3.9rem); text-shadow: 0 2px 24px rgba(0,0,0,.25); }
-    .tp-cap h1 { font-size: clamp(2.5rem, 6vw, 5rem); }
-    .tp-cap em { font-style: italic; font-weight: 500; }
-    .tp-cap h1 .d, .tp-cap h2 .d { color: var(--tp-sage); }
-    .tp-cap p { margin: 0; font-size: 1.08rem; line-height: 1.6; color: #EFE9DC; max-width: 46ch; }
-    .tp-cap .cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
-    .tp-cap .cta a { padding: 14px 22px; border-radius: 999px; font-weight: 600; text-decoration: none; }
-    .tp-cap .cta .a1 { background: var(--tp-cream); color: var(--tp-green); }
-    .tp-cap .cta .a2 { border: 1.5px solid rgba(245,240,230,.55); color: var(--tp-cream); }
-    .tp-hint { position: absolute; z-index: 3; left: 50%; bottom: 96px; transform: translateX(-50%); color: var(--tp-cream); font-size: .76rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; transition: opacity .4s; text-align: center; }
-    .tp-hint i { display: block; margin: 10px auto 0; width: 1px; height: 34px; background: linear-gradient(var(--tp-cream), transparent); animation: tp-h 1.8s ease-in-out infinite; transform-origin: top; }
-    @keyframes tp-h { 0% { transform: scaleY(0); } 60% { transform: scaleY(1); } 100% { transform: scaleY(1); opacity: 0; } }
-    body:not(.start) .tp-hint { opacity: 0; }
-    @media (min-width: 901px) { .tp-cap.c0 { bottom: 130px; } .tp-hint { left: auto; right: clamp(16px,4vw,48px); transform: none; } }
-
-    @media (max-width: 900px) {
-      .tp-hdr { height: 60px; }
-      .tp-hdr__logo img { height: 19px; }
-      .tp-pill { padding: 9px 14px; font-size: .84rem; }
-      .tp-ig { width: 36px; height: 36px; }
-      .tp-clock { top: 72px; left: 16px; right: auto; text-align: left; }
-      .tp-clock time { font-size: 3.1rem; }
-      .tp-cap { bottom: 92px; }
-      .tp-cap h2 { font-size: clamp(1.9rem, 8.4vw, 2.5rem); }
-      .tp-cap h1 { font-size: clamp(2.3rem, 10vw, 3rem); }
-      .tp-cap p { font-size: 1rem; line-height: 1.5; }
-      .tp-hint { bottom: 92px; display: none; }
-      .tp-arc { left: 18px; transform: none; width: calc(100vw - 110px); bottom: 26px; }
-      .tp-stage::after { background: radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(20,30,25,.4) 100%),
-        linear-gradient(0deg, rgba(20,30,25,.85) 0%, rgba(20,30,25,.35) 38%, rgba(20,30,25,0) 55%),
-        linear-gradient(180deg, rgba(20,30,25,.5) 0%, rgba(20,30,25,0) 22%), rgba(var(--tint), var(--tint-a)); }
-    }
-
-    /* ---------- Sections after the day ---------- */
-    .tp-more { position: relative; z-index: 5; background: var(--tp-cream); }
-    .tp-btn--ig { border: 1.5px solid rgba(245,240,230,.45); color: var(--tp-cream); }
-    .tp-svc-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 0; border-top: 1px solid rgba(47,74,60,.15); }
-    .tp-svc-list li { padding: 22px 18px 24px 0; border-bottom: 1px solid rgba(47,74,60,.15); }
-    .tp-svc-list b { display: block; font-family: "Lora", Georgia, serif; font-weight: 600; font-size: 1.25rem; color: var(--tp-green); margin-bottom: 6px; }
-    .tp-svc-list span { color: var(--tp-soft); line-height: 1.5; }
-    @media (max-width: 860px) { .tp-svc-list { grid-template-columns: 1fr; } }
-    .tp-foot a { color: var(--tp-cream); }
-    .tp-wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
-    .tp-section { position: relative; padding: 112px 0; }
-    .tp-eyebrow { display: flex; align-items: center; gap: 10px; color: var(--tp-green); font-weight: 600; font-size: .8rem; letter-spacing: .16em; text-transform: uppercase; margin: 0 0 14px; }
-    .tp-eyebrow::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--tp-sage); }
-    .tp-h2 { font-family: "Lora", Georgia, serif; font-weight: 600; font-size: clamp(2rem, 4.6vw, 3.2rem); line-height: 1.08; margin: 0 0 16px; color: var(--tp-green); }
-    .tp-h2 i { font-style: normal; color: var(--tp-sage); }
-    .tp-lead { font-size: 1.1rem; line-height: 1.6; max-width: 58ch; margin: 0 0 44px; color: #4A5A50; }
+    /* Vecinos + negocios */
+    .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+    .card { border-radius: 24px; padding: clamp(26px, 4vw, 40px); }
+    .card--sand { background: var(--sand); }
+    .card--green { background: var(--green); color: var(--cream); }
+    .card--green h3, .card--green .kicker { color: var(--cream); }
+    .card h3 { font-size: clamp(1.5rem, 2.6vw, 2rem); margin-bottom: 12px; }
+    .card p { margin: 0 0 20px; }
+    .card--sand p { color: var(--soft); }
+    .card--green p { color: #E2DCCF; }
+    .big { font-family: "Lora", Georgia, serif; font-size: clamp(3rem, 7vw, 4.6rem) !important; line-height: 1; color: var(--green) !important; margin: 0 0 6px !important; }
+    .card--green ul { margin: 0 0 22px; padding-left: 18px; color: #E2DCCF; }
+    .card--green .btn--line { color: var(--cream); border-color: rgba(245,240,230,.45); background: transparent; }
 
     /* Precio por foto */
-    .tp-quote-sec { background: var(--tp-green); color: var(--tp-cream); }
-    .tp-quote-sec .tp-h2 { color: var(--tp-cream); }
-    .tp-quote-sec .tp-lead { color: #DCD5C6; }
-    .tp-quote-sec .tp-eyebrow { color: var(--tp-sand); }
-    .tp-quote fieldset { border: 0; margin: 0 0 24px; padding: 0; }
-    .tp-quote legend { font-weight: 600; margin-bottom: 12px; }
-    .tp-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-    .tp-chips label { cursor: pointer; }
-    .tp-chips input { position: absolute; opacity: 0; pointer-events: none; }
-    .tp-chips span { display: inline-block; padding: 10px 16px; border-radius: 999px; border: 1.5px solid rgba(245,240,230,.5); font-weight: 500; font-size: .95rem; transition: background .2s, color .2s, border-color .2s; }
-    .tp-chips input:checked + span { background: var(--tp-cream); color: var(--tp-green); border-color: var(--tp-cream); }
-    .tp-chips input:focus-visible + span { outline: 2px solid var(--tp-sage); outline-offset: 2px; }
-    .tp-fields { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; margin-bottom: 28px; }
-    .tp-fields label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: .9rem; }
-    .tp-fields input, .tp-fields select { font: inherit; font-weight: 400; padding: 13px 14px; border-radius: 10px; border: 0; background: rgba(245,240,230,.14); color: var(--tp-cream); }
-    .tp-fields input::placeholder { color: rgba(245,240,230,.6); }
-    .tp-fields select option { color: var(--tp-ink); }
-    .tp-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
-    .tp-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 16px 26px; border-radius: 999px; font-weight: 600; text-decoration: none; font-size: 1rem; }
-    .tp-btn--wa { background: var(--tp-cream); color: var(--tp-green); }
-    .tp-btn--wa:hover { background: #fff; }
-    .tp-btn svg { width: 22px; height: 22px; fill: currentColor; }
-    .tp-hint { color: #CFC8B8; font-size: .9rem; margin: 0; }
-    .tp-facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 64px 0 0; padding-top: 32px; border-top: 1px solid rgba(245,240,230,.22); }
-    .tp-facts dt { font-family: "Lora", Georgia, serif; font-weight: 600; font-size: 1.15rem; margin-bottom: 6px; }
-    .tp-facts dd { margin: 0; color: #DCD5C6; line-height: 1.55; }
+    .ask { background: #FBF8F2; border-radius: 28px; padding: clamp(28px, 5vw, 56px); box-shadow: 0 1px 0 var(--line), 0 40px 80px -60px rgba(47,74,60,.6); }
+    .ask fieldset { border: 0; margin: 0 0 22px; padding: 0; }
+    .ask legend { font-weight: 600; color: var(--green); margin-bottom: 10px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chips label { cursor: pointer; }
+    .chips input { position: absolute; opacity: 0; pointer-events: none; }
+    .chips span { display: inline-block; padding: 9px 15px; border-radius: 999px; border: 1.5px solid var(--line); font-weight: 500; font-size: .95rem; color: var(--green); background: rgba(255,255,255,.5); transition: background .2s, color .2s; }
+    .chips input:checked + span { background: var(--green); color: var(--cream); border-color: var(--green); }
+    .chips input:focus-visible + span { outline: 2px solid var(--sage); outline-offset: 2px; }
+    .fields { display: grid; grid-template-columns: 2fr 1fr; gap: 14px; margin-bottom: 24px; }
+    .fields label { display: flex; flex-direction: column; gap: 6px; font-weight: 600; font-size: .92rem; color: var(--green); }
+    .fields input, .fields select { font: inherit; font-weight: 400; padding: 13px 14px; border-radius: 12px; border: 1.5px solid var(--line); background: #fff; color: var(--ink); }
+    .hint { color: var(--soft); font-size: .92rem; margin: 12px 0 0; }
 
-    /* Antes y después, wiping as you scroll */
-    .tp-ba-pin { position: relative; height: 330vh; }
-    .tp-ba-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
-    .tp-ba-slide { position: absolute; inset: 0; display: grid; grid-template-rows: auto 1fr auto; gap: 18px; padding: 96px 16px 28px; max-width: 1080px; margin: 0 auto; opacity: 0; transition: opacity .4s; }
-    .tp-ba-slide.on { opacity: 1; }
-    .tp-ba-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 6px 24px; }
-    .tp-ba-head h3 { margin: 0; font-family: "Lora", Georgia, serif; font-weight: 600; font-size: clamp(1.7rem, 3.6vw, 2.6rem); color: var(--tp-green); }
-    .tp-ba-head p { margin: 0; color: #4A5A50; }
-    .tp-ba-frame { position: relative; border-radius: 14px; overflow: hidden; min-height: 0; background: var(--tp-sand); }
-    .tp-ba-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    .tp-ba-frame .after { clip-path: inset(0 0 0 var(--x, 100%)); }
-    .tp-ba-frame .line { position: absolute; top: 0; bottom: 0; left: var(--x, 100%); width: 3px; margin-left: -1.5px; background: var(--tp-cream); box-shadow: 0 0 0 1px rgba(47,74,60,.25); }
-    .tp-ba-frame .tag { position: absolute; top: 14px; padding: 6px 12px; border-radius: 999px; font-size: .72rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; background: rgba(47,74,60,.82); color: var(--tp-cream); }
-    .tp-ba-frame .tag.l { left: 14px; } .tp-ba-frame .tag.r { right: 14px; background: var(--tp-cream); color: var(--tp-green); }
-    .tp-ba-note { margin: 0; font-size: .8rem; color: #6B776F; }
-    .tp-ba-dots { position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%); display: flex; gap: 8px; z-index: 2; }
-    .tp-ba-dots b { width: 28px; height: 3px; background: rgba(47,74,60,.2); border-radius: 2px; }
-    .tp-ba-dots b.on { background: var(--tp-green); }
+    /* Footer */
+    .foot { background: var(--green); color: #E2DCCF; padding: 56px 0 calc(40px + env(safe-area-inset-bottom)); }
+    .foot .cols { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 28px; }
+    .foot img { height: 26px; width: auto; margin-bottom: 14px; }
+    .foot b { display: block; color: var(--cream); font-family: "Lora", Georgia, serif; font-size: 1.1rem; margin-bottom: 6px; }
+    .foot p { margin: 0; font-size: .95rem; line-height: 1.6; }
+    .foot a { color: var(--cream); }
 
-    /* Negocios */
-    .tp-biz { background: var(--tp-sand); }
-    .tp-biz-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
-    .tp-biz-card { background: var(--tp-cream); border-radius: 14px; padding: 24px 20px; }
-    .tp-biz-card h3 { margin: 0 0 8px; font-family: "Lora", Georgia, serif; font-weight: 600; font-size: 1.2rem; color: var(--tp-green); }
-    .tp-biz-card p { margin: 0; line-height: 1.55; color: #4A5A50; }
-    .tp-biz-cta { margin-top: 28px; }
-    .tp-biz-cta .tp-btn { background: var(--tp-green); color: var(--tp-cream); }
+    /* WhatsApp always at hand */
+    .fab { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 30; width: 58px; height: 58px; border-radius: 50%; background: #25D366; display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+    .fab svg { width: 30px; height: 30px; fill: #fff; }
 
-    .tp-foot { padding: 40px 0 calc(40px + env(safe-area-inset-bottom)); background: var(--tp-green); color: #DCD5C6; font-size: .85rem; }
-    .tp-foot .tp-wrap { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; }
-    .tp-foot img { height: 24px; width: auto; }
+    /* Gentle arrival as you read */
+    .rise { opacity: 0; transform: translateY(18px); transition: opacity .9s ease, transform .9s ease; }
+    .rise.in { opacity: 1; transform: none; }
 
-    /* Floating WhatsApp */
-    .tp-fab { position: fixed; right: 16px; bottom: calc(16px + env(safe-area-inset-bottom)); z-index: 60; width: 58px; height: 58px; border-radius: 50%; background: #25D366; display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.3); opacity: 0; transform: translateY(16px) scale(.9); transition: opacity .4s, transform .4s; pointer-events: none; }
-    .tp-fab svg { width: 30px; height: 30px; fill: #fff; }
-    .tp-fab.show { opacity: 1; transform: none; pointer-events: auto; }
-
-    @media (max-width: 960px) { .tp-biz-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 900px) { .tp-fields { grid-template-columns: 1fr; } }
-    @media (max-width: 640px) { .tp-section { padding: 80px 0; } .tp-biz-grid, .tp-facts { grid-template-columns: 1fr; } .tp-btn { width: 100%; } }
-    @media (prefers-reduced-motion: reduce) { .tp-cap { transition: none; } html { scroll-behavior: auto; } }
+    @media (max-width: 860px) {
+      body { font-size: 16px; }
+      .hdr img { height: 18px; }
+      .hdr { padding: 12px 14px; }
+      .pill { padding: 9px 14px; font-size: .85rem; }
+      .window__frame { aspect-ratio: 3 / 4.4; border-radius: 22px; }
+      .window__frame::after { background: linear-gradient(0deg, rgba(34,56,45,.8) 0%, rgba(34,56,45,.35) 45%, rgba(34,56,45,0) 70%); }
+      .window__copy { left: 20px; right: 20px; bottom: 22px; }
+      .hello, .pair { grid-template-columns: 1fr; }
+      .note { transform: none; }
+      .steps, .things { grid-template-columns: 1fr; }
+      .fields { grid-template-columns: 1fr; }
+      .foot .cols { grid-template-columns: 1fr 1fr; }
+      .btn { flex: 1 1 auto; }
+    }
+    @media (prefers-reduced-motion: reduce) { .rise { opacity: 1; transform: none; transition: none; } html { scroll-behavior: auto; } }
   </style>
 </head>
-<body class="start">
-  <header class="tp-hdr">
-    <a class="tp-hdr__logo" href="#top" aria-label="Tapicerías a Punto, inicio">
-      <img class="c" src="assets/marca/logo-crema.png" alt="Tapicerías a Punto" width="1321" height="180" />
-      <img class="v" src="assets/marca/logo-verde.png" alt="" width="1321" height="180" />
-    </a>
+<body>
+  <header class="hdr">
+    <a href="#top" aria-label="Tapicerías a Punto, inicio"><img src="assets/marca/logo-verde.png" alt="Tapicerías a Punto" width="1321" height="180" /></a>
     <nav>
-      <a class="tp-ig" href="https://instagram.com/tapiceriasapunto" aria-label="Instagram de Tapicerías a Punto"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/></svg></a>
-      <a class="tp-pill" href="#precio">Precio por foto</a>
+      <a class="ig" href="https://instagram.com/tapiceriasapunto" aria-label="Instagram de Tapicerías a Punto"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".6"/></svg></a>
+      <a class="pill" href="#precio">Mándame una foto</a>
     </nav>
   </header>
-  <a class="tp-fab" id="fab" href="https://wa.me/34614180575" aria-label="Escribir por WhatsApp a Tapicerías a Punto">
+  <a class="fab" data-wa href="https://wa.me/34614180575" aria-label="Escribir por WhatsApp a Dani">
     <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.5.7 4.8 2 6.8L3.2 29l6.8-2c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.7 12.7-12.6S23 3 16 3zm0 23.2c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4 1.2 1.2-3.9-.3-.4a10.4 10.4 0 0 1-1.6-5.6c0-5.8 4.7-10.5 10.5-10.5s10.5 4.7 10.5 10.5S21.8 26.2 16 26.2zm5.8-7.8c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1-.3-.2-1.3-.5-2.5-1.6-.9-.8-1.6-1.8-1.7-2.1-.2-.3 0-.5.1-.6l.5-.6.3-.5c.1-.2 0-.4 0-.6l-1-2.4c-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.5c.2.2 2.4 3.6 5.7 5 .8.4 1.4.6 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.1-1.5.3-.7.3-1.4.2-1.5-.1-.2-.3-.2-.6-.4z"/></svg>
   </a>
   <div id="top"></div>
 
-  <main class="tp-day" id="day">
-    <div class="tp-stage" id="stage">
-      <div class="tp-door" id="door">
-        <img src="assets/casa/puerta.webp" alt="La puerta de un piso en el rellano de una finca de Alcoi." />
+  <main>
+    <div class="window">
+      <div class="window__frame">
+        <picture>
+          <source media="(max-width: 860px)" srcset="assets/casa/salon-m.webp" />
+          <img src="assets/casa/salon.webp" alt="Un salón tranquilo un domingo por la mañana: sofá beige limpio, sol entrando por la ventana y un café en la mesa." />
+        </picture>
+        <video id="salon" muted playsinline loop preload="auto" aria-hidden="true"></video>
+        <div class="window__copy">
+          <p class="hi">Hola, soy Dani.</p>
+          <h1>Tu sofá, como <em>el primer día</em><span class="dot">.</span></h1>
+          <p class="sub">Limpio sofás, colchones y tapicerías en tu casa, en Alcoi y alrededores. Sin desmontar nada y sin llevármelo.</p>
+          <div class="btns">
+            <a class="btn btn--cream" href="#precio">Mándame una foto</a>
+            <a class="btn btn--ghost" data-wa href="https://wa.me/34614180575">WhatsApp 614 18 05 75</a>
+          </div>
+        </div>
       </div>
-      <div class="tp-cam" id="cam">
-        <img class="poster" id="poster" src="assets/casa/casa-0.webp" alt="Un piso cortado como una casa de muñecas: dormitorio, salón y comedor por la mañana." />
-      </div>
-      <div class="tp-spot" id="spot" aria-hidden="true"></div>
-      <div class="tp-clock" aria-hidden="true"><time id="clock">07:59</time><span id="clock-lab">Un día cualquiera</span></div>
-      <div class="tp-arc" aria-hidden="true">
-        <svg viewBox="0 0 200 56"><path id="arc" d="M4 52 Q100 -20 196 52" /><circle id="sun" r="5" cx="4" cy="52" /></svg>
-        <span class="lab l">8:00</span><span class="lab r">21:30</span>
-      </div>
-
-      <div class="tp-cap c0">
-        <small>Tapicerías a Punto · Alcoi</small>
-        <h1>Un día cualquiera <em>en tu casa</em><span class="d">.</span></h1>
-        <p>Limpieza de sofás, colchones, sillas y tapicerías a domicilio. Baja y entra.</p>
-      </div>
-      <div class="tp-cap"><small>07:59 · Ding, dong</small><h2>Llamo a <em>tu puerta</em><span class="d">.</span></h2><p>Voy yo, con la máquina. Tú no mueves nada.</p></div>
-      <div class="tp-cap"><small>08:00 · Por la mañana</small><h2>La casa de <em>cada día</em><span class="d">.</span></h2><p>Sofá, colchón y sillas. Se usan, y se nota.</p></div>
-      <div class="tp-cap"><small>10:30 · Media mañana</small><h2>Zumo en el sofá. <em>Cereales en la sillita</em><span class="d">.</span></h2><p>Con niños en casa, pasa. Y no pasa nada.</p></div>
-      <div class="tp-cap"><small>13:00 · Mediodía</small><h2>El perro, al sofá. <em>El tomate, a la silla</em><span class="d">.</span></h2><p>Pelo, olor y manchas de comida, de regalo.</p></div>
-      <div class="tp-cap"><small>16:00 · Por la tarde</small><h2>A las cuatro, <em>empiezo por el sofá</em><span class="d">.</span></h2><p>Inyección-extracción en tu salón, sin desmontar nada. El agua sucia sale, y se ve.</p></div>
-      <div class="tp-cap"><small>18:00 · Comedor</small><h2>Después, <em>las sillas</em><span class="d">.</span></h2><p>Asientos tapizados y sillita infantil, uno a uno.</p></div>
-      <div class="tp-cap"><small>19:30 · Dormitorio</small><h2>Y el <em>colchón</em><span class="d">.</span></h2><p>Manchas, sudor y olores fuera, en tu propia habitación. Seco en 6 a 12 horas.</p></div>
-      <div class="tp-cap"><small>21:30 · Por la noche</small><h2>Toda la casa, <em>como nueva</em><span class="d">.</span></h2><p>Mándame una foto de lo que quieras limpiar y te digo el precio cerrado antes de ir.</p>
-        <div class="cta"><a class="a1" href="#precio">Mándame una foto</a><a class="a2" data-wa href="https://wa.me/34614180575">WhatsApp 614 18 05 75</a></div></div>
-
-      <div class="tp-hint">Baja y entra<i></i></div>
     </div>
+
+    <section id="hola">
+      <div class="wrap hello">
+        <div class="rise">
+          <p class="kicker">Quién soy</p>
+          <p class="first">Me llamo Dani y limpio tapicerías a domicilio en Alcoi, Cocentaina, Muro y los pueblos de alrededor.</p>
+          <p>Voy a tu casa con una máquina profesional de inyección-extracción: meto agua con producto en el tejido y la saco con toda la suciedad. No desmonto nada, no me llevo nada y te lo dejo secando.</p>
+          <p>Lo hago yo solo, de lunes a viernes. Antes de ir te digo el precio cerrado, para que no haya sorpresas.</p>
+          <p class="sign">— Dani</p>
+        </div>
+        <aside class="note rise" aria-label="Lo básico">
+          <h3>Lo básico<span class="dot">.</span></h3>
+          <ul>
+            <li><b>Dónde</b><span>Alcoi, Cocentaina y Muro sin recargo. Hasta 30 minutos de Alcoi.</span></li>
+            <li><b>Cuándo</b><span>De lunes a viernes.</span></li>
+            <li><b>Precio</b><span>Cerrado antes de ir. Me mandas una foto y te lo digo.</span></li>
+            <li><b>Secado</b><span>Entre 6 y 12 horas, con la ventana abierta.</span></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <section id="como" style="padding-top:0">
+      <div class="wrap">
+        <p class="kicker rise">Cómo lo hago</p>
+        <h2 class="rise">Tres pasos, <em>y tú sigues con tu día</em><span class="dot">.</span></h2>
+        <div class="steps">
+          <article class="step rise"><img src="assets/fotos/paso-1.webp" alt="Cojín de sofá con manchas de café, vino y rotulador." loading="lazy" width="1000" height="800" /><div><span>Primero</span><h3>Me mandas una foto</h3><p>Por WhatsApp. Te digo el precio cerrado y quedamos el día que te venga bien.</p></div></article>
+          <article class="step rise"><img src="assets/fotos/paso-2.webp" alt="Mano con guante pasando la boquilla de la máquina por el asiento del sofá, dejando una franja limpia." loading="lazy" width="1000" height="800" /><div><span>Después</span><h3>Voy a tu casa</h3><p>Con la máquina de inyección-extracción. El agua sucia sale, y se ve.</p></div></article>
+          <article class="step rise"><img src="assets/fotos/paso-3.webp" alt="Sofá recién limpio secándose con un ventilador y la ventana abierta." loading="lazy" width="1000" height="800" /><div><span>Y al final</span><h3>Se queda secando</h3><p>Dejo ventiladores. En 6 a 12 horas, tu sofá como el primer día.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="antes-despues" style="padding-top:0">
+      <div class="wrap">
+        <p class="kicker rise">Antes y después</p>
+        <h2 class="rise">Arrastra la línea<span class="dot">.</span></h2>
+        <div class="ba-tabs rise" role="group" aria-label="Elige qué ver">
+          <button type="button" aria-pressed="true" data-k="sofa">Sofá</button>
+          <button type="button" aria-pressed="false" data-k="colchon">Colchón</button>
+          <button type="button" aria-pressed="false" data-k="sillas">Sillas</button>
+        </div>
+        <div class="ba rise" id="ba" aria-label="Comparación de antes y después; arrastra para ver la diferencia">
+          <img class="before" src="assets/fotos/sofa-antes.webp" alt="Antes de la limpieza." />
+          <img class="after" src="assets/fotos/sofa-despues.webp" alt="Después de la limpieza." />
+          <span class="bar"></span><span class="knob" aria-hidden="true">⇆</span>
+          <span class="tag l">Antes</span><span class="tag r">Después</span>
+        </div>
+        <p class="small">Imágenes ilustrativas. Muy pronto, fotos de trabajos reales.</p>
+      </div>
+    </section>
+
+    <section id="que-limpio" style="padding-top:0">
+      <div class="wrap">
+        <p class="kicker rise">Lo que limpio</p>
+        <h2 class="rise">Todo lo que <em>lleva tela</em><span class="dot">.</span></h2>
+        <ul class="things rise">
+          <li><b>Sillones</b><span>Orejeros, butacas y relax.</span></li>
+          <li><b>Sofás de 2 y 3 plazas</b><span>Asientos, respaldos y brazos.</span></li>
+          <li><b>Sofás con chaise longue</b><span>Incluido el chaise, que es lo que más se usa.</span></li>
+          <li><b>Colchones</b><span>Manchas, sudor y olores, en tu habitación.</span></li>
+          <li><b>Sillas de comedor</b><span>Asientos y respaldos tapizados.</span></li>
+          <li><b>Cabeceros, alfombras y sillitas</b><span>Mándame una foto y te digo.</span></li>
+        </ul>
+        <p class="hint rise">Quito manchas de café, vino, comida o rotulador, olores de tabaco, humedad o mascota, y el pelo de perro y gato.</p>
+      </div>
+    </section>
+
+    <section id="vecinos" style="padding-top:0">
+      <div class="wrap pair">
+        <div class="card card--sand rise">
+          <p class="kicker">Vecinos de la misma finca</p>
+          <p class="big">10 %</p>
+          <h3>Si os juntáis, <em>sale mejor</em><span class="dot">.</span></h3>
+          <p>Si os juntáis 2 o más vecinos de la misma finca, 10 % de descuento a cada uno y voy el mismo día.</p>
+          <a class="btn btn--green" id="vecinos-send" href="https://wa.me/34614180575">Avisar a Dani</a>
+        </div>
+        <div class="card card--green rise" id="negocios">
+          <p class="kicker">Para negocios</p>
+          <h3>Sofás y sillas <em>de tu negocio</em><span class="dot">.</span></h3>
+          <p>Voy a tu local o a tu piso, de lunes a viernes, con precio cerrado antes de ir.</p>
+          <ul><li>Pisos turísticos y de alquiler, también en el cambio de inquilino.</li><li>Bares y restaurantes.</li><li>Clínicas y peluquerías.</li></ul>
+          <a class="btn btn--line" id="biz-send" href="https://wa.me/34614180575">Pedir precio para mi negocio</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="precio" style="padding-top:0">
+      <div class="wrap">
+        <div class="ask rise">
+          <p class="kicker">Precio por foto</p>
+          <h2>Mándame una foto <em>y te digo el precio</em><span class="dot">.</span></h2>
+          <p class="lead" style="margin-bottom:28px">Marca lo que quieres limpiar y se abre WhatsApp con el mensaje escrito. Luego me adjuntas la foto y te contesto yo.</p>
+          <form id="quote" onsubmit="return false">
+            <fieldset><legend>¿Qué quieres limpiar?</legend>
+              <div class="chips" data-name="muebles">
+                <label><input type="checkbox" value="un sillón" /><span>Sillón</span></label>
+                <label><input type="checkbox" value="un sofá de 2 plazas" /><span>Sofá 2 plazas</span></label>
+                <label><input type="checkbox" value="un sofá de 3 plazas" /><span>Sofá 3 plazas</span></label>
+                <label><input type="checkbox" value="un sofá con chaise longue" /><span>Sofá con chaise longue</span></label>
+                <label><input type="checkbox" value="un colchón" /><span>Colchón</span></label>
+                <label><input type="checkbox" value="sillas de comedor" /><span>Sillas</span></label>
+                <label><input type="checkbox" value="un cabecero" /><span>Cabecero</span></label>
+                <label><input type="checkbox" value="una alfombra" /><span>Alfombra</span></label>
+                <label><input type="checkbox" value="una sillita infantil" /><span>Sillita infantil</span></label>
+              </div>
+            </fieldset>
+            <fieldset><legend>¿Qué le pasa?</legend>
+              <div class="chips" data-name="problemas">
+                <label><input type="checkbox" value="manchas" /><span>Manchas</span></label>
+                <label><input type="checkbox" value="olores" /><span>Olores</span></label>
+                <label><input type="checkbox" value="pelo de mascota" /><span>Pelo de mascota</span></label>
+                <label><input type="checkbox" value="suciedad de uso" /><span>Suciedad de uso</span></label>
+                <label><input type="checkbox" value="cambio de inquilino" /><span>Cambio de inquilino</span></label>
+              </div>
+            </fieldset>
+            <div class="fields">
+              <label>Algo más (opcional) <input type="text" name="detalle" placeholder="Ej.: 6 sillas, mancha de vino en un cojín…" /></label>
+              <label>Pueblo
+                <select name="pueblo"><option>Alcoi</option><option>Cocentaina</option><option>Muro</option><option>Otro (hasta 30 min de Alcoi)</option></select>
+              </label>
+            </div>
+            <div class="btns">
+              <a class="btn btn--green" id="quote-send" href="https://wa.me/34614180575"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.5.7 4.8 2 6.8L3.2 29l6.8-2c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.7 12.7-12.6S23 3 16 3zm0 23.2c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4 1.2 1.2-3.9-.3-.4a10.4 10.4 0 0 1-1.6-5.6c0-5.8 4.7-10.5 10.5-10.5s10.5 4.7 10.5 10.5S21.8 26.2 16 26.2z"/></svg>Enviar por WhatsApp</a>
+            </div>
+            <p class="hint">614 18 05 75 · Te contesto yo, normalmente el mismo día.</p>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
 
-  <div class="tp-more" id="more">
-  <section class="tp-section tp-svc" id="servicios">
-    <div class="tp-wrap">
-      <p class="tp-eyebrow">Lo que limpio</p>
-      <h2 class="tp-h2">No solo el sofá<i>.</i></h2>
-      <p class="tp-lead">Todo lo que lleva tela en casa o en tu negocio, con la misma máquina de inyección-extracción y sin desmontar nada.</p>
-      <ul class="tp-svc-list">
-        <li><b>Sillones</b><span>Orejeros, butacas y relax.</span></li>
-        <li><b>Sofás de 2 y 3 plazas</b><span>Asientos, respaldos y brazos.</span></li>
-        <li><b>Sofás con chaise longue</b><span>Incluido el chaise, que es lo que más se usa.</span></li>
-        <li><b>Colchones</b><span>Manchas, sudor y olores, en tu habitación.</span></li>
-        <li><b>Sillas de comedor</b><span>Asientos y respaldos tapizados.</span></li>
-        <li><b>Cabeceros, alfombras y sillitas</b><span>Mándame una foto y te digo.</span></li>
-      </ul>
-    </div>
-  </section>
-  <section class="tp-section tp-quote-sec" id="precio">
-    <div class="tp-wrap">
-      <p class="tp-eyebrow">Precio por foto</p>
-      <h2 class="tp-h2">Mándame una foto y te digo el precio<i>.</i></h2>
-      <p class="tp-lead">Marca qué quieres limpiar y se abre WhatsApp con el mensaje escrito. Adjunta una foto del sofá o del colchón y te doy un precio cerrado antes de ir.</p>
-      <form class="tp-quote" id="quote" onsubmit="return false">
-        <fieldset><legend>¿Qué quieres limpiar?</legend>
-          <div class="tp-chips" data-name="muebles">
-            <label><input type="checkbox" value="un sillón" /><span>Sillón</span></label>
-            <label><input type="checkbox" value="un sofá de 2 plazas" /><span>Sofá 2 plazas</span></label>
-            <label><input type="checkbox" value="un sofá de 3 plazas" /><span>Sofá 3 plazas</span></label>
-            <label><input type="checkbox" value="un sofá con chaise longue" /><span>Sofá con chaise longue</span></label>
-            <label><input type="checkbox" value="un colchón" /><span>Colchón</span></label>
-            <label><input type="checkbox" value="sillas de comedor" /><span>Sillas de comedor</span></label>
-            <label><input type="checkbox" value="un cabecero" /><span>Cabecero</span></label>
-            <label><input type="checkbox" value="una alfombra" /><span>Alfombra</span></label>
-            <label><input type="checkbox" value="una sillita infantil" /><span>Sillita infantil</span></label>
-          </div>
-        </fieldset>
-        <fieldset><legend>¿Qué le pasa?</legend>
-          <div class="tp-chips" data-name="problemas">
-            <label><input type="checkbox" value="manchas" /><span>Manchas</span></label>
-            <label><input type="checkbox" value="olores" /><span>Olores</span></label>
-            <label><input type="checkbox" value="pelo de mascota" /><span>Pelo de mascota</span></label>
-            <label><input type="checkbox" value="suciedad general de uso" /><span>Suciedad de uso</span></label>
-            <label><input type="checkbox" value="cambio de inquilino" /><span>Cambio de inquilino</span></label>
-          </div>
-        </fieldset>
-        <div class="tp-fields">
-          <label>Detalles (opcional) <input type="text" name="detalle" placeholder="Ej.: 6 sillas, mancha de vino en el cojín…" /></label>
-          <label>Localidad
-            <select name="pueblo">
-              <option>Alcoi</option><option>Cocentaina</option><option>Muro</option><option>Otra (hasta 30 min de Alcoi)</option>
-            </select>
-          </label>
-        </div>
-        <div class="tp-actions">
-          <a class="tp-btn tp-btn--wa" id="quote-send" href="https://wa.me/34614180575">
-            <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9 3 3.3 8.6 3.3 15.6c0 2.5.7 4.8 2 6.8L3.2 29l6.8-2c1.9 1 4 1.6 6.1 1.6 7 0 12.7-5.7 12.7-12.6S23 3 16 3zm0 23.2c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4 1.2 1.2-3.9-.3-.4a10.4 10.4 0 0 1-1.6-5.6c0-5.8 4.7-10.5 10.5-10.5s10.5 4.7 10.5 10.5S21.8 26.2 16 26.2z"/></svg>
-            Enviar por WhatsApp
-          </a>
-          <p class="tp-hint">614 18 05 75 · Después adjunta la foto en el chat.</p>
-          <a class="tp-btn tp-btn--ig" href="https://instagram.com/tapiceriasapunto">Instagram @tapiceriasapunto</a>
-        </div>
-      </form>
-      <dl class="tp-facts">
-        <div><dt>Zona</dt><dd>Alcoi, Cocentaina y Muro sin recargo. Hasta 30 minutos de Alcoi.</dd></div>
-        <div><dt>Horario</dt><dd>De lunes a viernes.</dd></div>
-        <div><dt>Cómo trabajo</dt><dd>Voy a tu casa con la máquina de inyección-extracción. Sin desmontar nada. Lo hago yo, Dani.</dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <section class="tp-section" id="antes-despues-sec" style="padding-bottom:0">
-    <div class="tp-wrap">
-      <p class="tp-eyebrow">Antes y después</p>
-      <h2 class="tp-h2">Así cambia un tejido<i>.</i></h2>
-      <p class="tp-lead" style="margin-bottom:0">Desliza hacia abajo y mira la diferencia.</p>
-    </div>
-    <div class="tp-ba-pin" id="antes-despues">
-      <div class="tp-ba-stage">
-        <div class="tp-ba-slide" data-k="0">
-          <div class="tp-ba-head"><h3>Sofá de tela</h3><p>Suciedad de uso y marcas, fuera.</p></div>
-          <div class="tp-ba-frame"><img src="assets/fotos/sofa-antes.webp" alt="Sofá beige gris y con marcas de uso antes de la limpieza." /><img class="after" src="assets/fotos/sofa-despues.webp" alt="El mismo sofá limpio y de color claro." /><span class="line"></span><span class="tag l">Antes</span><span class="tag r">Después</span></div>
-          <p class="tp-ba-note">Imagen ilustrativa.</p>
-        </div>
-        <div class="tp-ba-slide" data-k="1">
-          <div class="tp-ba-head"><h3>Colchón</h3><p>Manchas, sudor y olores, fuera.</p></div>
-          <div class="tp-ba-frame"><img src="assets/fotos/colchon-antes.webp" alt="Colchón con manchas amarillentas antes de la limpieza." /><img class="after" src="assets/fotos/colchon-despues.webp" alt="El mismo colchón limpio." /><span class="line"></span><span class="tag l">Antes</span><span class="tag r">Después</span></div>
-          <p class="tp-ba-note">Imagen ilustrativa.</p>
-        </div>
-        <div class="tp-ba-slide" data-k="2">
-          <div class="tp-ba-head"><h3>Sillas de comedor</h3><p>Manchas de comida, fuera.</p></div>
-          <div class="tp-ba-frame"><img src="assets/fotos/sillas-antes.webp" alt="Asientos de sillas con manchas de comida antes de la limpieza." /><img class="after" src="assets/fotos/sillas-despues.webp" alt="Los mismos asientos limpios." /><span class="line"></span><span class="tag l">Antes</span><span class="tag r">Después</span></div>
-          <p class="tp-ba-note">Imagen ilustrativa.</p>
-        </div>
-        <div class="tp-ba-dots"><b></b><b></b><b></b></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="tp-section tp-biz" id="negocios">
-    <div class="tp-wrap">
-      <p class="tp-eyebrow">Para negocios</p>
-      <h2 class="tp-h2">Sofás y sillas de tu negocio, a punto<i>.</i></h2>
-      <p class="tp-lead">Voy a tu local o a tu piso con todo el equipo, de lunes a viernes. Precio cerrado antes de ir.</p>
-      <div class="tp-biz-grid">
-        <article class="tp-biz-card"><h3>Pisos turísticos y alquiler</h3><p>Sofás y colchones listos entre huéspedes o en el cambio de inquilino.</p></article>
-        <article class="tp-biz-card"><h3>Bares y restaurantes</h3><p>Sillas, bancos y sofás tapizados sin manchas de comida ni olores.</p></article>
-        <article class="tp-biz-card"><h3>Clínicas y peluquerías</h3><p>Salas de espera y sillones limpios para tus clientes.</p></article>
-        <article class="tp-biz-card"><h3>Vecinos de la misma finca</h3><p>Si os juntáis 2 o más vecinos, <strong>10 % de descuento</strong> a cada uno y voy el mismo día.</p></article>
-      </div>
-      <div class="tp-biz-cta"><a class="tp-btn" id="biz-send" href="https://wa.me/34614180575">Pedir precio para mi negocio</a></div>
-    </div>
-  </section>
-
-  <footer class="tp-foot">
-    <div class="tp-wrap">
-      <img src="assets/marca/logo-crema.png" alt="Tapicerías a Punto" width="1321" height="180" />
-      <span>Limpieza de sofás, colchones y tapicerías a domicilio · Alcoi · WhatsApp 614 18 05 75 · <a href="https://instagram.com/tapiceriasapunto">@tapiceriasapunto</a></span>
+  <footer class="foot">
+    <div class="wrap cols">
+      <div><img src="assets/marca/logo-crema.png" alt="Tapicerías a Punto" width="1321" height="180" /><p>Limpieza de sofás, colchones y tapicerías a domicilio. Lo hago yo, Dani.</p></div>
+      <div><b>Zona</b><p>Alcoi, Cocentaina, Muro y hasta 30 minutos de Alcoi.</p></div>
+      <div><b>Horario</b><p>De lunes a viernes.</p></div>
+      <div><b>Contacto</b><p><a data-wa href="https://wa.me/34614180575">WhatsApp 614 18 05 75</a><br /><a href="https://instagram.com/tapiceriasapunto">@tapiceriasapunto</a></p></div>
     </div>
   </footer>
-  </div>
 
   <script>
     const WA = 'https://wa.me/34614180575';
-    const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const wa = (t) => WA + '?text=' + encodeURIComponent(t);
+    document.querySelectorAll('[data-wa]').forEach(a => a.href = wa('Hola Dani, quiero precio para limpiar un sofá. Te mando una foto.'));
+    document.getElementById('biz-send').href = wa('Hola Dani, tengo un negocio y quiero precio para limpiar sofás / sillas. Te mando fotos.');
+    document.getElementById('vecinos-send').href = wa('Hola Dani, somos varios vecinos de la misma finca y queremos limpiar sofás / colchones. ¿Nos dices precio con el 10 %?');
 
-    // ---- The day in the dollhouse: 6 clips between 7 moments, camera travels room to room ----
-    const TIMES = [8 * 60, 10 * 60 + 30, 13 * 60, 16 * 60, 18 * 60, 19 * 60 + 30, 21 * 60 + 30];
-    const LABELS = ['Por la mañana', 'Media mañana', 'Mediodía', 'Por la tarde', 'Comedor', 'Dormitorio', 'Por la noche'];
-    const TINTS = [[200, 215, 235, .08], [255, 250, 240, 0], [255, 250, 235, 0], [255, 225, 190, .05], [255, 200, 140, .1], [255, 160, 100, .12], [20, 35, 70, .14]];
-    const NCLIP = 6, A = 16 / 9;
-    const mobile = matchMedia('(max-width: 900px), (orientation: portrait)').matches;
-    // where the camera looks at each moment: centre x/y of the frame and the share of the frame width on screen
-    const RECTS = { all: [0, .17, 1, .88], bed: [.005, .17, .272, .88], sofa: [.275, .17, .722, .88], dining: [.728, .17, .995, .88] };
-    const SHOTS = ['all', 'sofa', 'sofa', 'sofa', 'dining', 'bed', 'all'];
-    const stage = document.getElementById('stage'), day = document.getElementById('day'), cam = document.getElementById('cam');
-    const door = document.getElementById('door');
-    const caps = [...document.querySelectorAll('.tp-cap')];
-    const clock = document.getElementById('clock'), clockLab = document.getElementById('clock-lab');
-    const arc = document.getElementById('arc'), sun = document.getElementById('sun'), arcLen = arc.getTotalLength();
-    const poster = document.getElementById('poster');
-    const mk = () => { const v = document.createElement('video'); v.muted = true; v.playsInline = true; v.preload = 'auto'; v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); return v; };
-    const doorVid = mk(); door.appendChild(doorVid);
-    const vids = [];
-    for (let i = 0; i < NCLIP; i++) { const v = mk(); (i ? vids[i - 1] : poster).after(v); vids.push(v); }
-    const load = async (v, url) => {
-      try { if (location.protocol === 'file:') throw 0; const r = await fetch(url); v.src = URL.createObjectURL(await r.blob()); }
-      catch { v.src = url; }
-      v.load();
-    };
-    (async () => { await load(doorVid, 'assets/casa/puerta.mp4'); for (let i = 0; i < NCLIP; i++) await load(vids[i], `assets/casa/casa-${i}.mp4`); })();
-
-    const lerp = (a, b, t) => a + (b - a) * t, ease = (t) => t * t * (3 - 2 * t);
-    const fmt = (m) => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(Math.floor((m % 60) / 5) * 5).padStart(2, '0');
-    // seek only when the previous seek has landed, so the decoder never queues up work
-    const seek = (v, f) => {
-      if (v.readyState < 1 || !v.duration || v.seeking) return;
-      const t = Math.min(v.duration - 0.04, f * v.duration);
-      if (Math.abs(v.currentTime - t) > 1 / 30) v.currentTime = t;
-    };
-    // the whole dollhouse is always on screen at native sharpness; a soft spotlight marks the room in action
-    const spot = document.getElementById('spot');
-    let box = { x: 0, y: 0, w: 0, h: 0 };
-    function layout() {
-      const w = innerWidth, h = innerHeight;
-      if (mobile) { box.w = w; box.h = w / A; box.x = 0; box.y = 146; }
-      else { box.w = Math.max(w, h * A); box.h = box.w / A; box.x = (w - box.w) / 2; box.y = (h - box.h) / 2; }
-      Object.assign(cam.style, { width: box.w + 'px', height: box.h + 'px', transform: `translate(${box.x}px, ${box.y}px)` });
-    }
-    addEventListener('resize', layout); layout();
-    function place(P) {
-      const i = Math.min(5, Math.floor(P)), f = P - i;
-      const a = RECTS[SHOTS[i]], b = RECTS[SHOTS[i + 1]];
-      const t = ease(Math.min(1, Math.max(0, (f - 0.6) / 0.4)));
-      const r = [0, 1, 2, 3].map(j => lerp(a[j], b[j], t));
-      const on = SHOTS[i] !== 'all' || SHOTS[i + 1] !== 'all' ? 1 : 0;
-      Object.assign(spot.style, {
-        left: (box.x + r[0] * box.w) + 'px', top: (box.y + r[1] * box.h) + 'px',
-        width: ((r[2] - r[0]) * box.w) + 'px', height: ((r[3] - r[1]) * box.h) + 'px'
-      });
-      spot.style.setProperty('--dim', (on * (SHOTS[i + 1] === 'all' && SHOTS[i] !== 'all' ? 1 - t : SHOTS[i] === 'all' ? t : 1) * 0.5).toFixed(3));
+    // The window: start the slow loop once it can play; the still stays underneath until then.
+    const salon = document.getElementById('salon');
+    salon.src = matchMedia('(max-width: 860px)').matches ? 'assets/casa/salon-m.mp4' : 'assets/casa/salon.mp4';
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      salon.addEventListener('canplay', () => { salon.play().then(() => salon.classList.add('on')).catch(() => {}); }, { once: true });
     }
 
-    let shown = [], capOn = -1, smooth = 0;
-    function tick() {
-      const span = day.offsetHeight - innerHeight;
-      const raw = Math.min(1, Math.max(0, scrollY / span));
-      smooth = RM ? raw : smooth + (raw - smooth) * 0.25;
-      // 0–0.03 title on the closed door · 0.03–0.15 the door opens · 0.15–0.95 the day · then a short hold
-      const dP = Math.min(1, Math.max(0, (smooth - 0.03) / 0.12));
-      const P = Math.min(NCLIP, Math.max(0, (smooth - 0.15) / 0.8) * NCLIP);
-      const inDoor = smooth < 0.15;
-      document.body.classList.toggle('indoor', inDoor);
-      seek(doorVid, dP);
-      door.style.opacity = smooth < 0.13 ? 1 : Math.max(0, 1 - (smooth - 0.13) / 0.03);
-      doorVid.style.opacity = doorVid.readyState >= 2 ? 1 : 0;
-      const k = Math.min(NCLIP - 1, Math.floor(P)), f = P - k;
-      vids.forEach((v, i) => {
-        const on = i === k && v.readyState >= 2;
-        if (on !== !!shown[i]) { v.classList.toggle('on', on); shown[i] = on; }
-        if (i === k) seek(v, f);
-      });
-      place(P);
-      const ti = Math.min(6, Math.floor(P)), tf = P - ti;
-      const mins = ti >= 6 ? TIMES[6] : lerp(TIMES[ti], TIMES[ti + 1], tf);
-      clock.textContent = inDoor ? '07:59' : fmt(mins);
-      clockLab.textContent = inDoor ? 'Un día cualquiera' : LABELS[Math.min(6, Math.round(P))];
-      const pt = arc.getPointAtLength(arcLen * (inDoor ? 0 : (mins - TIMES[0]) / (TIMES[6] - TIMES[0])));
-      sun.setAttribute('cx', pt.x); sun.setAttribute('cy', pt.y);
-      const ta = TINTS[ti], tb = TINTS[Math.min(6, ti + 1)];
-      document.documentElement.style.setProperty('--tint', [0, 1, 2].map(j => Math.round(lerp(ta[j], tb[j], tf))).join(','));
-      document.documentElement.style.setProperty('--tint-a', inDoor ? '0' : lerp(ta[3], tb[3], tf).toFixed(3));
-      const c = smooth < 0.03 ? 0 : inDoor ? 1 : 2 + Math.min(6, Math.round(P));
-      if (c !== capOn) { caps.forEach((el, i) => el.classList.toggle('on', i === c)); capOn = c; }
-      document.body.classList.toggle('start', scrollY < 30);
-      document.body.classList.toggle('past', document.getElementById('more').getBoundingClientRect().top < 68);
-      baWipe();
-      requestAnimationFrame(tick);
-    }
+    // Gentle arrival as you read.
+    const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+    document.querySelectorAll('.rise').forEach(el => io.observe(el));
 
-    // ---- Before/after wipe ----
-    const pin = document.getElementById('antes-despues');
-    const slides = [...document.querySelectorAll('.tp-ba-slide')], dots = [...document.querySelectorAll('.tp-ba-dots b')];
-    function baWipe() {
-      const r = pin.getBoundingClientRect(), sp = pin.offsetHeight - innerHeight;
-      if (r.bottom < -50 || r.top > innerHeight + 50) return;
-      const pr = Math.min(1, Math.max(0, -r.top / sp));
-      const n = slides.length, k = Math.min(n - 1, Math.floor(pr * n)), local = pr * n - k;
-      const x = 100 - Math.min(1, Math.max(0, (local - 0.12) / 0.66)) * 100;
-      slides.forEach((s, i) => { s.classList.toggle('on', i === k); if (i === k) s.querySelector('.tp-ba-frame').style.setProperty('--x', x.toFixed(2) + '%'); });
-      dots.forEach((d, i) => d.classList.toggle('on', i === k));
-    }
-    requestAnimationFrame(tick);
-
-    // ---- WhatsApp ----
-    const waMsg = (t) => WA + '?text=' + encodeURIComponent(t);
-    const fab = document.getElementById('fab');
-    fab.href = waMsg('Hola Dani, quiero precio para limpiar un sofá. Te mando una foto.');
-    document.querySelectorAll('[data-wa]').forEach(a => a.href = fab.href);
-    document.getElementById('biz-send').href = waMsg('Hola Dani, tengo un negocio y quiero precio para limpiar sofás / sillas. Te mando fotos.');
-    addEventListener('scroll', () => fab.classList.toggle('show', scrollY > innerHeight * 0.5), { passive: true });
+    // Before / after: drag (or tap) the line.
+    const ba = document.getElementById('ba'), bef = ba.querySelector('.before'), aft = ba.querySelector('.after');
+    const setX = (clientX) => { const r = ba.getBoundingClientRect(); const x = Math.min(98, Math.max(2, (clientX - r.left) / r.width * 100)); ba.style.setProperty('--x', x + '%'); };
+    let drag = false;
+    ba.addEventListener('pointerdown', e => { drag = true; ba.setPointerCapture(e.pointerId); setX(e.clientX); });
+    ba.addEventListener('pointermove', e => { if (drag) setX(e.clientX); });
+    ba.addEventListener('pointerup', () => drag = false); ba.addEventListener('pointercancel', () => drag = false);
+    document.querySelectorAll('.ba-tabs button').forEach(b => b.addEventListener('click', () => {
+      document.querySelectorAll('.ba-tabs button').forEach(x => x.setAttribute('aria-pressed', x === b));
+      bef.src = `assets/fotos/${b.dataset.k}-antes.webp`; aft.src = `assets/fotos/${b.dataset.k}-despues.webp`; ba.style.setProperty('--x', '50%');
+    }));
 
     // Precio por foto: compose the WhatsApp message from the form.
     const qf = document.getElementById('quote'), qs = document.getElementById('quote-send');
@@ -510,9 +395,9 @@
       const det = qf.detalle.value.trim();
       let msg = 'Hola Dani, quiero precio para limpiar ' + (m.length ? list(m) : 'un sofá') + '.';
       if (p.length) msg += '\nTiene: ' + list(p) + '.';
-      if (det) msg += '\nDetalles: ' + det + '.';
-      msg += '\nZona: ' + qf.pueblo.value + '.\nTe mando una foto.';
-      qs.href = WA + '?text=' + encodeURIComponent(msg);
+      if (det) msg += '\nAlgo más: ' + det + '.';
+      msg += '\nPueblo: ' + qf.pueblo.value + '.\nTe mando una foto.';
+      qs.href = wa(msg);
     }
     qf.addEventListener('input', buildQuote); qf.addEventListener('change', buildQuote); buildQuote();
   </script>
