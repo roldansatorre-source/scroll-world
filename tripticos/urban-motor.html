@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Tríptico Urban Motor</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&display=swap" rel="stylesheet">
+<style>
+@page { size: 303mm 216mm; margin: 0; }
+:root { --black:#0B0D12; --ink:#12151C; --blue:#2F6BFF; --blue2:#1F4FD6; --grey:#C9CED8; --white:#fff; }
+* { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+html, body { margin: 0; }
+body { font-family: Inter, sans-serif; color: var(--white); font-size: 8.8pt; line-height: 1.45; }
+.sheet { position: relative; width: 303mm; height: 216mm; overflow: hidden; page-break-after: always; background: var(--black); }
+.panel { position: absolute; top: 0; bottom: 0; padding: 13mm 9mm 12mm; }
+.o1 { left: 0; width: 100mm; padding-left: 12mm; } .o2 { left: 100mm; width: 100mm; } .o3 { left: 200mm; width: 103mm; padding-right: 12mm; }
+.i1 { left: 0; width: 103mm; padding-left: 12mm; } .i2 { left: 103mm; width: 100mm; } .i3 { left: 203mm; width: 100mm; padding-right: 12mm; }
+h1, h2, h3 { font-weight: 800; margin: 0; line-height: 1.02; letter-spacing: -.02em; }
+.b { color: var(--blue); }
+.k { display: flex; align-items: center; gap: 2.5mm; margin: 0 0 3.5mm; font-size: 6.5pt; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--blue); }
+.k::before { content: ""; width: 7mm; height: .7mm; background: var(--blue); }
+h2 { font-size: 18pt; margin-bottom: 4mm; }
+p { margin: 0 0 3mm; } .g { color: var(--grey); }
+.stripe { position: absolute; left: -20mm; right: -20mm; height: 9mm; background: var(--blue); transform: rotate(-8deg); z-index: 3; }
+
+/* Cover */
+.cover { padding: 0; overflow: hidden; }
+.cover img.bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 35% 50%; }
+.cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,13,18,.85) 0%, rgba(11,13,18,.2) 32%, rgba(11,13,18,.1) 55%, rgba(11,13,18,.92) 82%); }
+.cover .top { position: absolute; z-index: 4; left: 9mm; right: 12mm; top: 13mm; display: flex; align-items: center; gap: 4mm; }
+.cover .top img { width: 26mm; }
+.cover .top span { font-weight: 800; letter-spacing: .28em; font-size: 9pt; }
+.cover .txt { position: absolute; z-index: 4; left: 9mm; right: 12mm; bottom: 14mm; }
+.cover h1 { font-size: 30pt; }
+.cover p { margin: 4mm 0 0; color: #E6E9EF; font-size: 9pt; }
+.cover .stripe { bottom: 58mm; }
+
+/* Back */
+.back { background: var(--ink); display: flex; flex-direction: column; }
+.qr { background: #fff; padding: 4mm; border-radius: 3mm; width: 46mm; height: 46mm; margin: 4mm 0; }
+.qr img { width: 100%; height: 100%; display: block; }
+.phone { font-weight: 800; font-size: 21pt; letter-spacing: -.01em; }
+.facts { list-style: none; padding: 0; margin: auto 0 0; border-top: .25mm solid rgba(255,255,255,.18); }
+.facts li { display: flex; gap: 3mm; padding: 2.2mm 0; border-bottom: .25mm solid rgba(255,255,255,.1); font-size: 8.2pt; }
+.facts b { min-width: 17mm; } .facts span { color: var(--grey); }
+
+/* Flap: rotulación */
+.biz { display: grid; gap: 3mm; margin-top: 2mm; }
+.biz figure { margin: 0; display: grid; grid-template-columns: 30mm 1fr; gap: 3.5mm; align-items: center; }
+.biz img { width: 30mm; height: 22mm; object-fit: cover; border-radius: 2mm; }
+.biz b { display: block; font-weight: 800; font-size: 9.5pt; margin-bottom: .6mm; } .biz span { color: var(--grey); font-size: 7.8pt; }
+.card { background: var(--blue2); border-radius: 3mm; padding: 5mm; margin-top: 6mm; }
+.card h3 { font-size: 12pt; margin-bottom: 2mm; } .card p { margin: 0; color: #E6ECFF; }
+
+/* Inside */
+.svc { list-style: none; padding: 0; margin: 0; border-top: .25mm solid rgba(255,255,255,.14); }
+.svc li { padding: 2.4mm 0; border-bottom: .25mm solid rgba(255,255,255,.1); }
+.svc b { display: block; font-weight: 800; font-size: 10pt; } .svc span { color: var(--grey); font-size: 8pt; }
+.photo { width: 100%; border-radius: 2.5mm; display: block; object-fit: cover; }
+.ba { position: relative; margin-bottom: 3.5mm; }
+.ba img { width: 100%; height: 30mm; object-fit: cover; border-radius: 2.5mm; display: block; }
+.ba .t { position: absolute; top: 1.6mm; padding: .6mm 1.8mm; border-radius: 2mm; font-size: 5.6pt; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.ba .l { left: 1.6mm; background: rgba(11,13,18,.8); } .ba .r { right: 1.6mm; background: var(--blue); }
+.ba figcaption { margin-top: 1.4mm; font-size: 7.6pt; color: var(--grey); } .ba figcaption b { color: #fff; }
+figure { margin: 0; }
+.real { font-size: 6.5pt; color: var(--grey); margin-top: -1mm; }
+.packs { display: grid; grid-template-columns: 1fr 1fr; gap: 2mm; margin: 2mm 0 4mm; }
+.packs div { background: var(--ink); border-radius: 2.5mm; padding: 2.6mm 3mm; border-left: 1mm solid var(--blue); }
+.packs b { display: block; font-size: 8.4pt; font-weight: 800; } .packs span { font-size: 7pt; color: var(--grey); }
+.qrbox { position: absolute; left: 9mm; right: 12mm; bottom: 12mm; display: flex; gap: 4mm; align-items: center; background: var(--blue); border-radius: 3mm; padding: 4mm; }
+.qrbox img { width: 28mm; height: 28mm; background: #fff; padding: 1.5mm; border-radius: 1.5mm; }
+.qrbox b { display: block; font-weight: 800; font-size: 14pt; } .qrbox span { font-size: 7.6pt; color: #E6ECFF; }
+</style></head><body>
+
+<!-- EXTERIOR -->
+<section class="sheet">
+  <div class="panel o1">
+    <p class="k">Rotulación y vinilos</p>
+    <h2>Tu negocio, <span class="b">a la vista.</span></h2>
+    <p class="g">Rotulación, vinilos y limpieza para comercios y empresas de Alcoi y comarca. Voy yo, con todo el material.</p>
+    <div class="biz">
+      <figure><img src="img/escaparates.webp" alt=""><div><b>Escaparates y cristales</b><span>Vinilo de corte, impreso, esmerilado o de privacidad.</span></div></figure>
+      <figure><img src="img/furgonetas.webp" alt=""><div><b>Furgonetas y flotas</b><span>Tu marca circulando por toda la comarca.</span></div></figure>
+      <figure><img src="img/flotas.webp" alt=""><div><b>Limpieza de flotas</b><span>Vehículos de empresa limpios en tus instalaciones.</span></div></figure>
+    </div>
+    <div class="card"><h3>Tarjeta regalo</h3><p>Regala una limpieza o un pulido. Te preparo la tarjeta para que la entregues tú.</p></div>
+  </div>
+  <div class="panel o2 back">
+    <p class="k">Presupuesto</p>
+    <h2>Mándame unas fotos y te digo <span class="b">el precio.</span></h2>
+    <p class="g">Escanea el código: se abre WhatsApp con el mensaje escrito. Precio cerrado antes de ir.</p>
+    <div class="qr"><img src="img/qr_um.svg" alt="QR WhatsApp"></div>
+    <div class="phone">614 18 05 75</div>
+    <p class="g" style="margin-top:1mm">WhatsApp · @urbanmotoralcoy</p>
+    <ul class="facts">
+      <li><b>Zona</b><span>Alcoi, Cocentaina y Muro sin recargo. Hasta 30 min de Alcoi.</span></li>
+      <li><b>Cuándo</b><span>De lunes a viernes.</span></li>
+      <li><b>Dónde</b><span>Garaje, plaza o puerta de casa. Tu coche no se mueve.</span></li>
+    </ul>
+  </div>
+  <div class="panel o3 cover">
+    <img class="bg" src="img/um_cover.jpg" alt="">
+    <div class="top"><img src="img/logo-um.png" alt="UM"><span>URBAN <span class="b">MOTOR</span></span></div>
+    <div class="stripe"></div>
+    <div class="txt">
+      <h1>Lo dejamos<br><span class="b">como nuevo.</span></h1>
+      <p>Limpieza, pulido y restauración de coches y motos a domicilio en Alcoi y comarca.</p>
+    </div>
+  </div>
+</section>
+
+<!-- INTERIOR -->
+<section class="sheet">
+  <div class="panel i1">
+    <p class="k">A domicilio</p>
+    <h2>Voy yo. <span class="b">Tu coche no se mueve.</span></h2>
+    <p class="g">Llego con todo el equipo a tu garaje, plaza o puerta de casa. Lo hago yo, Dani.</p>
+    <img class="photo" src="img/um_dom.jpg" alt="" style="height:44mm;margin-bottom:4mm">
+    <ul class="svc">
+      <li><b>Interior a fondo</b><span>Aspirado, cepillado, inyección-extracción y vapor. Niños y mascotas.</span></li>
+      <li><b>Lavado exterior a mano</b><span>Sin manguera y sin charcos, en cualquier sitio.</span></li>
+      <li><b>Motos y cascos</b><span>Limpieza completa y pulido de cascos.</span></li>
+    </ul>
+  </div>
+  <div class="panel i2">
+    <p class="k">Trabajos reales</p>
+    <h2>Así <span class="b">quedan.</span></h2>
+    <figure class="ba"><img src="img/foto-3.jpg" alt=""><span class="t l">Antes</span><span class="t r">Después</span><figcaption><b>Pulido de carrocería.</b> Fuera marcas y rayas finas.</figcaption></figure>
+    <figure class="ba"><img src="img/foto-5.jpg" alt=""><span class="t l">Antes</span><span class="t r">Después</span><figcaption><b>Restauración de faros.</b> De amarillo a transparente.</figcaption></figure>
+    <figure class="ba"><img src="img/foto-4.jpg" alt=""><span class="t l">Antes</span><span class="t r">Después</span><figcaption><b>Interior.</b> Inyección-extracción y vapor.</figcaption></figure>
+    <p class="real">Fotos de trabajos hechos por mí.</p>
+  </div>
+  <div class="panel i3">
+    <p class="k">Restauración</p>
+    <h2>Lo que más se desgasta, <span class="b">como nuevo.</span></h2>
+    <ul class="svc" style="margin-bottom:4mm">
+      <li><b>Cuero y volantes</b><span>Limpieza, hidratación y restauración.</span></li>
+      <li><b>Llantas</b><span>Reparación de bordillazos.</span></li>
+      <li><b>PPF de interiores y vinilos</b><span>Molduras y retrovisores en negro.</span></li>
+    </ul>
+    <p class="k">Packs</p>
+    <div class="packs">
+      <div><b>Vender mi coche</b><span>Listo para las fotos.</span></div>
+      <div><b>Familia</b><span>Niños y mascotas, sin rastro.</span></div>
+      <div><b>Brillo</b><span>Pulido + faros.</span></div>
+      <div><b>Mantenimiento</b><span>Particulares y empresas.</span></div>
+    </div>
+    <div class="qrbox"><img src="img/qr_um.svg" alt="QR WhatsApp"><div><b>614 18 05 75</b><span>Escanea y pídeme precio por WhatsApp.<br>@urbanmotoralcoy</span></div></div>
+  </div>
+</section>
+</body></html>

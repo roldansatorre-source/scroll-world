@@ -7,3 +7,5 @@ urban-motor/build/reels2/
 __pycache__/
 urban-motor/build/micro/
 tapicerias-a-punto/build/
+tripticos/*.png
+tripticos/img/*.png

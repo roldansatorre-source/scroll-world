@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><title>Tríptico Tapicerías a Punto</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+/* A4 apaisado 297x210 + 3 mm de sangrado por lado = 303x216 mm. Paneles: solapa 97 mm, centro 100 mm, portada 100 mm. */
+@page { size: 303mm 216mm; margin: 0; }
+:root { --green:#2F4A3C; --deep:#22382D; --cream:#F5F0E6; --sage:#8FA68E; --sand:#E9E2D3; --soft:#56645B; --line:rgba(47,74,60,.18); }
+* { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+html, body { margin: 0; }
+body { font-family: Inter, sans-serif; color: var(--green); font-size: 9pt; line-height: 1.45; }
+.sheet { position: relative; width: 303mm; height: 216mm; overflow: hidden; page-break-after: always; background: var(--cream); }
+.panel { position: absolute; top: 0; bottom: 0; padding: 13mm 9mm 12mm; }
+/* outside: [flap 97][back 100][cover 100] ; inside: [100][100][97] — x includes 3 mm bleed */
+.o1 { left: 0; width: 100mm; padding-left: 12mm; } .o2 { left: 100mm; width: 100mm; } .o3 { left: 200mm; width: 103mm; padding-right: 12mm; }
+.i1 { left: 0; width: 103mm; padding-left: 12mm; } .i2 { left: 103mm; width: 100mm; } .i3 { left: 203mm; width: 100mm; padding-right: 12mm; }
+h1, h2, h3 { font-family: Lora, serif; font-weight: 600; margin: 0; line-height: 1.08; }
+em { font-style: italic; font-weight: 500; }
+.dot { color: var(--sage); }
+.k { display: flex; align-items: center; gap: 2mm; margin: 0 0 3mm; font-size: 6.5pt; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--soft); }
+.k::before { content: ""; width: 1.6mm; height: 1.6mm; border-radius: 50%; background: var(--sage); }
+h2 { font-size: 17pt; margin-bottom: 4mm; }
+p { margin: 0 0 3mm; }
+.soft { color: var(--soft); }
+.linen { background-color: var(--cream); background-image: repeating-linear-gradient(0deg, rgba(120,100,70,.035) 0 .25mm, transparent .25mm 1mm), repeating-linear-gradient(90deg, rgba(120,100,70,.03) 0 .25mm, transparent .25mm 1.2mm); }
+.green { background: var(--green); color: var(--cream); }
+.green h2, .green h3 { color: var(--cream); } .green .k { color: var(--sand); } .green .soft { color: #DCD5C6; }
+
+/* Cover */
+.cover { display: flex; flex-direction: column; align-items: center; text-align: center; }
+.cover .logo { width: 62mm; margin: 0 0 7mm; }
+.arch { width: 64mm; height: 80mm; border-radius: 40mm 40mm 3mm 3mm; overflow: hidden; position: relative; box-shadow: 0 0 0 2mm #FBF8F2, 0 0 0 2.25mm var(--line); }
+.arch img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; }
+.arch::before, .arch::after { content: ""; position: absolute; background: #FBF8F2; z-index: 2; }
+.arch::before { left: 50%; top: 0; bottom: 0; width: 1.4mm; margin-left: -.7mm; } .arch::after { left: 0; right: 0; top: 46%; height: 1.4mm; }
+.sill { width: 72mm; height: 2.6mm; border-radius: 1mm; margin: 2.4mm 0 7mm; background: linear-gradient(#EFE7D8, #E2D8C4); }
+.cover h1 { font-size: 22pt; color: var(--green); }
+.cover h1 em { display: block; }
+.under { position: relative; display: inline-block; }
+.under svg { position: absolute; left: -2%; bottom: -2.2mm; width: 104%; height: 3mm; }
+.cover .sub { margin-top: 6mm; font-size: 8.5pt; color: var(--soft); }
+.towns { margin-top: auto; font-family: Lora, serif; font-style: italic; color: var(--soft); font-size: 9pt; }
+
+/* Back */
+.back { display: flex; flex-direction: column; }
+.back .hi { font-family: Lora, serif; font-style: italic; font-size: 12pt; margin-bottom: 2mm; color: var(--sand); }
+.qr { background: var(--cream); padding: 4mm; border-radius: 4mm; width: 46mm; height: 46mm; margin: 4mm 0 4mm; }
+.qr img { width: 100%; height: 100%; display: block; }
+.phone { font-family: Lora, serif; font-weight: 600; font-size: 20pt; letter-spacing: .01em; }
+.facts { list-style: none; padding: 0; margin: auto 0 0; border-top: .25mm solid rgba(245,240,230,.25); }
+.facts li { display: flex; gap: 3mm; padding: 2.2mm 0; border-bottom: .25mm solid rgba(245,240,230,.15); font-size: 8.3pt; }
+.facts b { min-width: 16mm; color: var(--cream); font-weight: 600; } .facts span { color: #DCD5C6; }
+.mono { width: 13mm; position: absolute; right: 9mm; top: 12mm; border-radius: 2mm; }
+
+/* Flap */
+.big { font-family: Lora, serif; font-size: 44pt; line-height: 1; margin: 0 0 1mm; color: var(--green); }
+.card { background: var(--sand); border-radius: 4mm; padding: 6mm 5.5mm; margin-bottom: 5mm; }
+.card.g { background: var(--green); color: var(--cream); } .card.g h3 { color: var(--cream); } .card.g .k { color: var(--sand); }
+.card h3 { font-size: 12.5pt; margin-bottom: 2.5mm; }
+.card ul { margin: 0; padding-left: 4mm; } .card li { margin: 0 0 1.2mm; }
+.card.g li, .card.g p { color: #E2DCCF; }
+.sofa { width: 100%; margin-top: 2mm; }
+
+/* Inside */
+.hello p.first { font-family: Lora, serif; font-size: 12pt; line-height: 1.4; color: var(--green); }
+.sign { font-family: Lora, serif; font-style: italic; font-size: 11pt; }
+.steps { display: grid; gap: 3mm; margin-top: 5mm; }
+.step { display: grid; grid-template-columns: 24mm 1fr; gap: 3.5mm; align-items: center; }
+.step img { width: 24mm; height: 19mm; object-fit: cover; border-radius: 2.5mm; }
+.step span { font-family: Lora, serif; font-style: italic; color: var(--sage); font-size: 8pt; }
+.step h3 { font-size: 10.5pt; margin: .5mm 0 1mm; }
+.step p { margin: 0; font-size: 8pt; color: var(--soft); }
+.things { list-style: none; padding: 0; margin: 0 0 5mm; border-top: .25mm solid var(--line); }
+.things li { padding: 2.1mm 0; border-bottom: .25mm solid var(--line); }
+.things b { display: block; font-family: Lora, serif; font-weight: 600; font-size: 10pt; }
+.things span { color: var(--soft); font-size: 8pt; }
+.ba { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5mm; border-radius: 3mm; overflow: hidden; margin-top: 2mm; }
+.ba figure { margin: 0; position: relative; } .ba img { width: 100%; height: 26mm; object-fit: cover; display: block; }
+.ba figcaption { position: absolute; top: 1.5mm; left: 1.5mm; font-size: 5.5pt; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; padding: .6mm 1.6mm; border-radius: 2mm; background: rgba(47,74,60,.85); color: var(--cream); }
+.ba figure + figure figcaption { background: var(--cream); color: var(--green); }
+.note { font-size: 6.3pt; color: var(--soft); margin-top: 1.5mm; }
+.stains { display: flex; flex-wrap: wrap; gap: 1.5mm; margin: 2mm 0 0; padding: 0; list-style: none; }
+.stains li { font-size: 7.5pt; padding: 1mm 2.6mm; border-radius: 3mm; background: var(--sand); }
+.cta { display: flex; flex-direction: column; height: 100%; }
+.cta h2 { font-size: 19pt; }
+.steps2 { counter-reset: s; list-style: none; padding: 0; margin: 2mm 0 5mm; }
+.steps2 li { counter-increment: s; display: flex; gap: 3mm; margin-bottom: 3mm; font-size: 8.5pt; }
+.steps2 li::before { content: counter(s); flex: 0 0 6mm; height: 6mm; border-radius: 50%; background: var(--green); color: var(--cream); display: grid; place-items: center; font-family: Lora, serif; font-weight: 600; font-size: 8pt; }
+.arch.small { width: 52mm; height: 52mm; margin: 3mm auto 0; }
+.qrbox { display: flex; gap: 4mm; align-items: center; background: #FBF8F2; border-radius: 4mm; padding: 4mm; margin-top: auto; box-shadow: 0 0 0 .25mm var(--line); }
+.qrbox img { width: 30mm; height: 30mm; }
+.qrbox b { display: block; font-family: Lora, serif; font-size: 13pt; } .qrbox span { font-size: 7.5pt; color: var(--soft); }
+</style></head><body>
+
+<!-- EXTERIOR -->
+<section class="sheet linen">
+  <div class="panel o1">
+    <p class="k">Vecinos de la misma finca</p>
+    <p class="big">10&nbsp;%</p>
+    <h3 style="font-size:14pt;margin-bottom:3mm">Si os juntáis, <em>sale mejor</em><span class="dot">.</span></h3>
+    <p class="soft">Si os juntáis 2 o más vecinos de la misma finca, 10&nbsp;% de descuento a cada uno y voy el mismo día.</p>
+    <img class="sofa" src="img/tp_sofa.webp" alt="">
+    <div class="card g" style="margin-top:4mm">
+      <p class="k">Para negocios</p>
+      <h3>Sofás y sillas <em>de tu negocio</em><span class="dot">.</span></h3>
+      <ul><li>Pisos turísticos y de alquiler, también en el cambio de inquilino.</li><li>Bares y restaurantes.</li><li>Clínicas y peluquerías.</li></ul>
+    </div>
+  </div>
+  <div class="panel o2 green back">
+    <p class="hi">Hola, soy Dani.</p>
+    <h2>Mándame una foto <em>y te digo el precio</em><span class="dot">.</span></h2>
+    <p class="soft">Escanea el código: se abre WhatsApp con el mensaje escrito. Adjunta una foto y te contesto yo.</p>
+    <div class="qr"><img src="img/qr_tp.svg" alt="QR WhatsApp"></div>
+    <div class="phone">614 18 05 75</div>
+    <p class="soft" style="margin-top:1mm">WhatsApp · @tapiceriasapunto</p>
+    <ul class="facts">
+      <li><b>Zona</b><span>Alcoi, Cocentaina y Muro sin recargo. Hasta 30 min de Alcoi.</span></li>
+      <li><b>Cuándo</b><span>De lunes a viernes.</span></li>
+      <li><b>Precio</b><span>Cerrado antes de ir. Sin sorpresas.</span></li>
+    </ul>
+  </div>
+  <div class="panel o3 cover">
+    <img class="logo" src="img/logo-verde.png" alt="Tapicerías a Punto">
+    <div class="arch"><img src="img/tp_salon.jpg" alt=""></div>
+    <div class="sill"></div>
+    <h1>Tu sofá, como <span class="under"><em>el primer día</em><svg viewBox="0 0 300 20" preserveAspectRatio="none"><path d="M4 14 C 60 4, 140 18, 200 9 S 280 6, 296 12" fill="none" stroke="#8FA68E" stroke-width="6" stroke-linecap="round"/></svg></span><span class="dot">.</span></h1>
+    <p class="sub">Limpieza de sofás, colchones y tapicerías<br>a domicilio, sin desmontar nada.</p>
+    <p class="towns">Alcoi · Cocentaina · Muro</p>
+  </div>
+</section>
+
+<!-- INTERIOR -->
+<section class="sheet linen">
+  <div class="panel i1 hello">
+    <p class="k">Quién soy</p>
+    <p class="first">Me llamo Dani y limpio tapicerías a domicilio en Alcoi, Cocentaina, Muro y alrededores.</p>
+    <p class="soft">Voy a tu casa con una máquina profesional de inyección-extracción: meto agua con producto en el tejido y la saco con toda la suciedad. No desmonto nada y no me llevo nada.</p>
+    <p class="sign">— Dani</p>
+    <div class="steps">
+      <div class="step"><img src="img/paso-1.webp" alt=""><div><span>Primero</span><h3>Me mandas una foto</h3><p>Te digo el precio cerrado y quedamos.</p></div></div>
+      <div class="step"><img src="img/paso-2.webp" alt=""><div><span>Después</span><h3>Voy a tu casa</h3><p>El agua sucia sale, y se ve.</p></div></div>
+      <div class="step"><img src="img/paso-3.webp" alt=""><div><span>Y al final</span><h3>Se queda secando</h3><p>De 6 a 12 horas, con la ventana abierta.</p></div></div>
+    </div>
+  </div>
+  <div class="panel i2">
+    <p class="k">Lo que limpio</p>
+    <h2>Todo lo que <em>lleva tela</em><span class="dot">.</span></h2>
+    <ul class="things">
+      <li><b>Sillones y sofás</b><span>De 2 y 3 plazas, y con chaise longue.</span></li>
+      <li><b>Colchones</b><span>Manchas, sudor y olores, en tu habitación.</span></li>
+      <li><b>Sillas de comedor</b><span>Asientos y respaldos tapizados.</span></li>
+      <li><b>Cabeceros, alfombras y sillitas</b><span>Mándame una foto y te digo.</span></li>
+    </ul>
+    <p class="k">Lo que quito</p>
+    <ul class="stains"><li>Café</li><li>Vino</li><li>Comida</li><li>Rotulador</li><li>Olor a tabaco</li><li>Humedad</li><li>Olor a mascota</li><li>Pelo de perro y gato</li></ul>
+    <div class="ba"><figure><img src="img/sofa-antes.webp" alt=""><figcaption>Antes</figcaption></figure><figure><img src="img/sofa-despues.webp" alt=""><figcaption>Después</figcaption></figure></div>
+    <p class="note">Imagen ilustrativa.</p>
+  </div>
+  <div class="panel i3 cta">
+    <p class="k">Así de fácil</p>
+    <h2>Tu sofá, <em>como nuevo</em><span class="dot">.</span></h2>
+    <ol class="steps2">
+      <li>Escanea el código o escríbeme al 614 18 05 75.</li>
+      <li>Mándame una foto de lo que quieres limpiar.</li>
+      <li>Te digo el precio cerrado y quedamos el día que te venga bien.</li>
+    </ol>
+    <p class="soft">Familias con niños, casas con perro o gato, pisos que se alquilan o se venden… Lo dejo como el primer día.</p>
+    <div class="arch small"><img src="img/tp_salon.jpg" alt=""></div>
+    <div class="qrbox"><img src="img/qr_tp.svg" alt="QR WhatsApp"><div><b>614 18 05 75</b><span>WhatsApp · Lunes a viernes<br>@tapiceriasapunto</span></div></div>
+  </div>
+</section>
+</body></html>
