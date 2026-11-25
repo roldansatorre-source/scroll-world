@@ -261,9 +261,9 @@
     .deep__under, .deep__hi { animation: wd 1s cubic-bezier(.2,.8,.2,1) .9s both; }
 
     /* ============ Cortinas que se abren con el scroll ============ */
-    .curtains { position: relative; height: 230vh; }
+    .curtains { position: relative; height: 260vh; }
     .curtains__stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: var(--deep, #1E3128); }
-    .curtains__room { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(var(--rs, 1.15)); }
+    .curtains__room { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     video.curtains__room { opacity: 0; transition: opacity 1s; } video.curtains__room.on { opacity: 1; }
     .curtains__stage::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(75% 65% at 50% 55%, rgba(30,49,40,.05), rgba(30,49,40,.55)); }
     .curtains__rod { position: absolute; top: 0; left: 0; right: 0; height: 16px; z-index: 6; background: linear-gradient(#bba98a, #8f7f63); box-shadow: 0 4px 12px rgba(0,0,0,.25); }
@@ -273,6 +273,10 @@
     .curtain::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(120,100,70,.05) 0 1px, transparent 1px 3px); }
     .curtain.l { left: 0; transform-origin: left; transform: translateX(calc(var(--o, 0) * -86%)) scaleX(calc(1 - var(--o, 0) * .66)); }
     .curtain.r { right: 0; transform-origin: right; transform: translateX(calc(var(--o, 0) * 86%)) scaleX(calc(1 - var(--o, 0) * .66)); }
+    .curtains__film { position: absolute; inset: 0; z-index: 5; transition: opacity .6s ease; }
+    .curtains__film img, .curtains__film video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .curtains__film video { opacity: 0; } .curtains__film video.on { opacity: 1; }
+    .curtains__film.gone { opacity: 0; }
     .curtains__copy { position: absolute; inset: 0; z-index: 4; display: grid; place-content: center; text-align: center; color: var(--cream); padding: 0 20px; opacity: var(--t, 0); transform: translateY(calc((1 - var(--t, 0)) * 20px)); }
     .curtains__copy p em { font-style: italic; font-weight: 500; }
     .curtains__copy p { margin: 0; font-family: "Lora", Georgia, serif; font-weight: 600; font-size: clamp(2.6rem, 7vw, 6.4rem); line-height: 1.02; text-shadow: 0 4px 40px rgba(0,0,0,.3); }
@@ -376,8 +380,10 @@
         <img class="curtains__room" src="assets/casa/salon.webp" alt="" />
         <video class="curtains__room" id="salon" muted playsinline loop preload="auto" aria-hidden="true"></video>
         <div class="motes" id="motes" aria-hidden="true"></div>
-        <div class="curtains__rod"></div>
-        <div class="curtain l" id="cl"></div><div class="curtain r" id="cr"></div>
+        <div class="curtains__film" id="cfilm">
+          <picture><source media="(max-width: 860px)" srcset="assets/casa/cortinas-m.webp" /><img src="assets/casa/cortinas.webp" alt="" /></picture>
+          <video id="curtv" muted playsinline preload="auto" aria-hidden="true"></video>
+        </div>
         <div class="curtains__copy" id="ccopy">
           <p>Pasa, estás <em>en tu casa</em><span class="dot">.</span></p>
           <span>Un domingo cualquiera, después de pasar yo.</span>
@@ -630,14 +636,23 @@
 
     // ============ Cortinas: se abren con el scroll ============
     const curt = document.getElementById('cortinas'), cstage = curt.querySelector('.curtains__stage');
+    const curtv = document.getElementById('curtv'), cfilm = document.getElementById('cfilm');
+    (async () => {
+      const url = matchMedia('(max-width: 860px)').matches ? 'assets/casa/cortinas-m.mp4' : 'assets/casa/cortinas.mp4';
+      try { if (location.protocol === 'file:') throw 0; const r = await fetch(url); curtv.src = URL.createObjectURL(await r.blob()); } catch { curtv.src = url; }
+      curtv.load(); curtv.addEventListener('loadeddata', () => curtv.classList.add('on'), { once: true });
+    })();
     function curtains() {
       const r = curt.getBoundingClientRect(), span = curt.offsetHeight - innerHeight;
       const p = Math.min(1, Math.max(0, -r.top / span));
-      const o = RM ? (p > .1 ? 1 : 0) : Math.min(1, Math.max(0, (p - .05) / .55));
-      const e = o * o * (3 - 2 * o);
-      cstage.style.setProperty('--o', e.toFixed(3));
-      cstage.style.setProperty('--rs', (1.15 - .15 * e).toFixed(3));
-      cstage.style.setProperty('--t', Math.min(1, Math.max(0, (p - .42) / .25)).toFixed(3));
+      // the real curtains open with the scroll; once open, the live room takes over
+      const o = Math.min(1, Math.max(0, (p - .04) / .6));
+      if (curtv.readyState >= 1 && curtv.duration && !curtv.seeking) {
+        const t = Math.min(curtv.duration - .05, o * curtv.duration);
+        if (Math.abs(curtv.currentTime - t) > 1 / 30) curtv.currentTime = t;
+      }
+      cfilm.classList.toggle('gone', o >= .98);
+      cstage.style.setProperty('--t', Math.min(1, Math.max(0, (p - .62) / .2)).toFixed(3));
     }
 
     // ============ Cine: la foto se acerca despacio al pasar ============
