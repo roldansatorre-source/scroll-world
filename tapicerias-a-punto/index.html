@@ -61,10 +61,14 @@
     /* Door intro + camera layer that travels around the dollhouse */
     .tp-door { position: absolute; inset: 0; z-index: 1; transition: opacity .5s; }
     .tp-door img, .tp-door video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 50%; }
-    .tp-cam { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; background: #2F4A3C; }
+    .tp-cam { position: absolute; left: 0; top: 0; background: #2F4A3C; }
     .tp-cam video, .tp-cam .poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; }
     .tp-cam video { opacity: 0; transition: opacity .3s; }
     .tp-cam video.on { opacity: 1; }
+
+    .tp-spot { position: absolute; z-index: 1; pointer-events: none; border-radius: 10px; --dim: 0;
+      box-shadow: 0 0 0 200vmax rgba(18, 28, 23, var(--dim)), inset 0 0 0 2px rgba(245, 240, 230, calc(var(--dim) * 1.2)); }
+    body.indoor .tp-spot { opacity: 0; }
 
     /* Clock */
     .tp-clock { position: absolute; z-index: 3; top: 86px; right: clamp(16px, 4vw, 48px); text-align: right; color: var(--tp-cream); }
@@ -231,6 +235,7 @@
       <div class="tp-cam" id="cam">
         <img class="poster" id="poster" src="assets/casa/casa-0.webp" alt="Un piso cortado como una casa de muñecas: dormitorio, salón y comedor por la mañana." />
       </div>
+      <div class="tp-spot" id="spot" aria-hidden="true"></div>
       <div class="tp-clock" aria-hidden="true"><time id="clock">07:59</time><span id="clock-lab">Un día cualquiera</span></div>
       <div class="tp-arc" aria-hidden="true">
         <svg viewBox="0 0 200 56"><path id="arc" d="M4 52 Q100 -20 196 52" /><circle id="sun" r="5" cx="4" cy="52" /></svg>
@@ -387,9 +392,8 @@
     const NCLIP = 6, A = 16 / 9;
     const mobile = matchMedia('(max-width: 900px), (orientation: portrait)').matches;
     // where the camera looks at each moment: centre x/y of the frame and the share of the frame width on screen
-    const ROOMS = { all: [.5, .5, 1], sofa: [.495, .55, .48], dining: [.865, .56, .3], bed: [.135, .58, .3] };
-    const SHOTS = mobile ? ['sofa', 'sofa', 'sofa', 'sofa', 'dining', 'bed', 'sofa'] : ['all', 'sofa', 'sofa', 'sofa', 'dining', 'bed', 'all'];
-    if (mobile) { ROOMS.sofa = [.39, .58, .3]; ROOMS.dining = [.87, .58, .3]; ROOMS.bed = [.13, .6, .3]; }
+    const RECTS = { all: [0, .17, 1, .88], bed: [.005, .17, .272, .88], sofa: [.275, .17, .722, .88], dining: [.728, .17, .995, .88] };
+    const SHOTS = ['all', 'sofa', 'sofa', 'sofa', 'dining', 'bed', 'all'];
     const stage = document.getElementById('stage'), day = document.getElementById('day'), cam = document.getElementById('cam');
     const door = document.getElementById('door');
     const caps = [...document.querySelectorAll('.tp-cap')];
@@ -409,22 +413,35 @@
 
     const lerp = (a, b, t) => a + (b - a) * t, ease = (t) => t * t * (3 - 2 * t);
     const fmt = (m) => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(Math.floor((m % 60) / 5) * 5).padStart(2, '0');
-    const seek = (v, f) => { if (v.readyState >= 1 && v.duration) { const t = Math.min(v.duration - 0.04, f * v.duration); if (Math.abs(v.currentTime - t) > 1 / 40) v.currentTime = t; } };
-    function place(P) {
-      // camera: ease between the shots of the two moments around P
-      const i = Math.min(5, Math.floor(P)), f = P - i;
-      const a = ROOMS[SHOTS[i]], b = ROOMS[SHOTS[i + 1]];
-      // hold on the room while the action happens, travel in the last third of each clip
-      const t = ease(Math.min(1, Math.max(0, (f - 0.62) / 0.38)));
-      const cx = lerp(a[0], b[0], t), cy = lerp(a[1], b[1], t), fw = lerp(a[2], b[2], t);
+    // seek only when the previous seek has landed, so the decoder never queues up work
+    const seek = (v, f) => {
+      if (v.readyState < 1 || !v.duration || v.seeking) return;
+      const t = Math.min(v.duration - 0.04, f * v.duration);
+      if (Math.abs(v.currentTime - t) > 1 / 30) v.currentTime = t;
+    };
+    // the whole dollhouse is always on screen at native sharpness; a soft spotlight marks the room in action
+    const spot = document.getElementById('spot');
+    let box = { x: 0, y: 0, w: 0, h: 0 };
+    function layout() {
       const w = innerWidth, h = innerHeight;
-      let Lw = w / fw, Lh = Lw / A;
-      if (Lh < h) { Lh = h; Lw = h * A; }
-      let x = w / 2 - cx * Lw, y = h / 2 - cy * Lh;
-      x = Math.min(0, Math.max(w - Lw, x)); y = Math.min(0, Math.max(h - Lh, y));
-      cam.style.width = w + 'px'; cam.style.height = (w / A) + 'px';
-      cam.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) scale(${(Lw / w).toFixed(4)})`;
+      if (mobile) { box.w = w; box.h = w / A; box.x = 0; box.y = 146; }
+      else { box.w = Math.max(w, h * A); box.h = box.w / A; box.x = (w - box.w) / 2; box.y = (h - box.h) / 2; }
+      Object.assign(cam.style, { width: box.w + 'px', height: box.h + 'px', transform: `translate(${box.x}px, ${box.y}px)` });
     }
+    addEventListener('resize', layout); layout();
+    function place(P) {
+      const i = Math.min(5, Math.floor(P)), f = P - i;
+      const a = RECTS[SHOTS[i]], b = RECTS[SHOTS[i + 1]];
+      const t = ease(Math.min(1, Math.max(0, (f - 0.6) / 0.4)));
+      const r = [0, 1, 2, 3].map(j => lerp(a[j], b[j], t));
+      const on = SHOTS[i] !== 'all' || SHOTS[i + 1] !== 'all' ? 1 : 0;
+      Object.assign(spot.style, {
+        left: (box.x + r[0] * box.w) + 'px', top: (box.y + r[1] * box.h) + 'px',
+        width: ((r[2] - r[0]) * box.w) + 'px', height: ((r[3] - r[1]) * box.h) + 'px'
+      });
+      spot.style.setProperty('--dim', (on * (SHOTS[i + 1] === 'all' && SHOTS[i] !== 'all' ? 1 - t : SHOTS[i] === 'all' ? t : 1) * 0.5).toFixed(3));
+    }
+
     let shown = [], capOn = -1, smooth = 0;
     function tick() {
       const span = day.offsetHeight - innerHeight;
@@ -434,6 +451,7 @@
       const dP = Math.min(1, Math.max(0, (smooth - 0.03) / 0.12));
       const P = Math.min(NCLIP, Math.max(0, (smooth - 0.15) / 0.8) * NCLIP);
       const inDoor = smooth < 0.15;
+      document.body.classList.toggle('indoor', inDoor);
       seek(doorVid, dP);
       door.style.opacity = smooth < 0.13 ? 1 : Math.max(0, 1 - (smooth - 0.13) / 0.03);
       doorVid.style.opacity = doorVid.readyState >= 2 ? 1 : 0;
