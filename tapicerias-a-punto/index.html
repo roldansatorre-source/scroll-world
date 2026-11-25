@@ -48,17 +48,23 @@
     body.past .tp-pill { background: var(--tp-green); color: var(--tp-cream); }
 
     /* ---------- The day: a fixed camera on one living room, time passes as you scroll ---------- */
-    .tp-day { position: relative; height: 760vh; }
-    .tp-stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: #1c2a23; }
-    .tp-stage video, .tp-stage .poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-    .tp-stage video { opacity: 0; transition: opacity .3s; }
-    .tp-stage video.on { opacity: 1; }
-    /* time-of-day light over the room + soft vignette so the UI reads */
+    .tp-day { position: relative; height: 960vh; }
+    .tp-stage { position: sticky; background: var(--tp-green); top: 0; height: 100vh; height: 100svh; overflow: hidden; background: #1c2a23; }
+            /* time-of-day light over the room + soft vignette so the UI reads */
     .tp-stage::after { content: ""; position: absolute; inset: 0; pointer-events: none;
       background: radial-gradient(120% 90% at 50% 40%, transparent 55%, rgba(20,30,25,.45) 100%),
                   linear-gradient(0deg, rgba(20,30,25,.72) 0%, rgba(20,30,25,0) 42%),
                   linear-gradient(200deg, rgba(20,30,25,.62) 0%, rgba(20,30,25,0) 34%),
                   rgba(var(--tint), var(--tint-a)); }
+
+
+    /* Door intro + camera layer that travels around the dollhouse */
+    .tp-door { position: absolute; inset: 0; z-index: 1; transition: opacity .5s; }
+    .tp-door img, .tp-door video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 72% 50%; }
+    .tp-cam { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; background: #2F4A3C; }
+    .tp-cam video, .tp-cam .poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: fill; }
+    .tp-cam video { opacity: 0; transition: opacity .3s; }
+    .tp-cam video.on { opacity: 1; }
 
     /* Clock */
     .tp-clock { position: absolute; z-index: 3; top: 86px; right: clamp(16px, 4vw, 48px); text-align: right; color: var(--tp-cream); }
@@ -219,8 +225,13 @@
 
   <main class="tp-day" id="day">
     <div class="tp-stage" id="stage">
-      <img class="poster" id="poster" src="assets/dia/dia-0.webp" alt="Un salón de un piso de Alcoi por la mañana, con un sofá beige usado." />
-      <div class="tp-clock" aria-hidden="true"><time id="clock">08:00</time><span id="clock-lab">Un día cualquiera</span></div>
+      <div class="tp-door" id="door">
+        <img src="assets/casa/puerta.webp" alt="La puerta de un piso en el rellano de una finca de Alcoi." />
+      </div>
+      <div class="tp-cam" id="cam">
+        <img class="poster" id="poster" src="assets/casa/casa-0.webp" alt="Un piso cortado como una casa de muñecas: dormitorio, salón y comedor por la mañana." />
+      </div>
+      <div class="tp-clock" aria-hidden="true"><time id="clock">07:59</time><span id="clock-lab">Un día cualquiera</span></div>
       <div class="tp-arc" aria-hidden="true">
         <svg viewBox="0 0 200 56"><path id="arc" d="M4 52 Q100 -20 196 52" /><circle id="sun" r="5" cx="4" cy="52" /></svg>
         <span class="lab l">8:00</span><span class="lab r">21:30</span>
@@ -228,18 +239,20 @@
 
       <div class="tp-cap c0">
         <small>Tapicerías a Punto · Alcoi</small>
-        <h1>Un día cualquiera <em>en tu salón</em><span class="d">.</span></h1>
-        <p>Limpieza de sofás, colchones y tapicerías a domicilio. Baja y pasa el día.</p>
+        <h1>Un día cualquiera <em>en tu casa</em><span class="d">.</span></h1>
+        <p>Limpieza de sofás, colchones, sillas y tapicerías a domicilio. Baja y entra.</p>
       </div>
-      <div class="tp-cap"><small>08:00 · Por la mañana</small><h2>El sofá de <em>cada día</em><span class="d">.</span></h2><p>Desayunos, siestas, visitas. Se usa, y se nota.</p></div>
-      <div class="tp-cap"><small>10:30 · Media mañana</small><h2>Un zumo, del vaso <em>al sofá</em><span class="d">.</span></h2><p>Con niños en casa, pasa. Y no pasa nada.</p></div>
-      <div class="tp-cap"><small>13:00 · Mediodía</small><h2>El perro, a su <em>sitio favorito</em><span class="d">.</span></h2><p>Pelo y olor de mascota, de regalo.</p></div>
-      <div class="tp-cap"><small>16:00 · Por la tarde</small><h2>A las cuatro, <em>llego yo</em><span class="d">.</span></h2><p>Inyección-extracción en tu propio salón, sin desmontar nada. El agua sucia sale, y se ve.</p></div>
-      <div class="tp-cap"><small>18:00 · Secando</small><h2>Ventilador y <em>ventana abierta</em><span class="d">.</span></h2><p>Seco en 6 a 12 horas. Tú sigues con tu tarde.</p></div>
-      <div class="tp-cap"><small>21:30 · Por la noche</small><h2>Y por la noche, <em>como nuevo</em><span class="d">.</span></h2><p>Mándame una foto de tu sofá y te digo el precio cerrado antes de ir.</p>
+      <div class="tp-cap"><small>07:59 · Ding, dong</small><h2>Llamo a <em>tu puerta</em><span class="d">.</span></h2><p>Voy yo, con la máquina. Tú no mueves nada.</p></div>
+      <div class="tp-cap"><small>08:00 · Por la mañana</small><h2>La casa de <em>cada día</em><span class="d">.</span></h2><p>Sofá, colchón y sillas. Se usan, y se nota.</p></div>
+      <div class="tp-cap"><small>10:30 · Media mañana</small><h2>Zumo en el sofá. <em>Cereales en la sillita</em><span class="d">.</span></h2><p>Con niños en casa, pasa. Y no pasa nada.</p></div>
+      <div class="tp-cap"><small>13:00 · Mediodía</small><h2>El perro, al sofá. <em>El tomate, a la silla</em><span class="d">.</span></h2><p>Pelo, olor y manchas de comida, de regalo.</p></div>
+      <div class="tp-cap"><small>16:00 · Por la tarde</small><h2>A las cuatro, <em>empiezo por el sofá</em><span class="d">.</span></h2><p>Inyección-extracción en tu salón, sin desmontar nada. El agua sucia sale, y se ve.</p></div>
+      <div class="tp-cap"><small>18:00 · Comedor</small><h2>Después, <em>las sillas</em><span class="d">.</span></h2><p>Asientos tapizados y sillita infantil, uno a uno.</p></div>
+      <div class="tp-cap"><small>19:30 · Dormitorio</small><h2>Y el <em>colchón</em><span class="d">.</span></h2><p>Manchas, sudor y olores fuera, en tu propia habitación. Seco en 6 a 12 horas.</p></div>
+      <div class="tp-cap"><small>21:30 · Por la noche</small><h2>Toda la casa, <em>como nueva</em><span class="d">.</span></h2><p>Mándame una foto de lo que quieras limpiar y te digo el precio cerrado antes de ir.</p>
         <div class="cta"><a class="a1" href="#precio">Mándame una foto</a><a class="a2" data-wa href="https://wa.me/34614180575">WhatsApp 614 18 05 75</a></div></div>
 
-      <div class="tp-hint">Baja y pasa el día<i></i></div>
+      <div class="tp-hint">Baja y entra<i></i></div>
     </div>
   </main>
 
@@ -367,63 +380,80 @@
     const WA = 'https://wa.me/34614180575';
     const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // ---- The day: 5 clips between 6 moments, scrubbed by scroll ----
-    const TIMES = [8 * 60, 10 * 60 + 30, 13 * 60, 16 * 60, 18 * 60, 21 * 60 + 30];
-    const LABELS = ['Por la mañana', 'Media mañana', 'Mediodía', 'Por la tarde', 'Secando', 'Por la noche'];
-    // light over the room: cool morning → neutral → warm afternoon → golden → night blue
-    const TINTS = [[200, 215, 235, .10], [255, 250, 240, 0], [255, 250, 235, 0], [255, 225, 190, .06], [255, 190, 120, .12], [20, 35, 70, .18]];
-    const NCLIP = 5, mobile = matchMedia('(max-width: 900px), (orientation: portrait)').matches;
-    const stage = document.getElementById('stage'), day = document.getElementById('day');
+    // ---- The day in the dollhouse: 6 clips between 7 moments, camera travels room to room ----
+    const TIMES = [8 * 60, 10 * 60 + 30, 13 * 60, 16 * 60, 18 * 60, 19 * 60 + 30, 21 * 60 + 30];
+    const LABELS = ['Por la mañana', 'Media mañana', 'Mediodía', 'Por la tarde', 'Comedor', 'Dormitorio', 'Por la noche'];
+    const TINTS = [[200, 215, 235, .08], [255, 250, 240, 0], [255, 250, 235, 0], [255, 225, 190, .05], [255, 200, 140, .1], [255, 160, 100, .12], [20, 35, 70, .14]];
+    const NCLIP = 6, A = 16 / 9;
+    const mobile = matchMedia('(max-width: 900px), (orientation: portrait)').matches;
+    // where the camera looks at each moment: centre x/y of the frame and the share of the frame width on screen
+    const ROOMS = { all: [.5, .5, 1], sofa: [.495, .55, .48], dining: [.865, .56, .3], bed: [.135, .58, .3] };
+    const SHOTS = mobile ? ['sofa', 'sofa', 'sofa', 'sofa', 'dining', 'bed', 'sofa'] : ['all', 'sofa', 'sofa', 'sofa', 'dining', 'bed', 'all'];
+    if (mobile) { ROOMS.sofa = [.39, .58, .3]; ROOMS.dining = [.87, .58, .3]; ROOMS.bed = [.13, .6, .3]; }
+    const stage = document.getElementById('stage'), day = document.getElementById('day'), cam = document.getElementById('cam');
+    const door = document.getElementById('door');
     const caps = [...document.querySelectorAll('.tp-cap')];
     const clock = document.getElementById('clock'), clockLab = document.getElementById('clock-lab');
     const arc = document.getElementById('arc'), sun = document.getElementById('sun'), arcLen = arc.getTotalLength();
     const poster = document.getElementById('poster');
-    if (mobile) poster.src = 'assets/dia/dia-0-m.webp';
+    const mk = () => { const v = document.createElement('video'); v.muted = true; v.playsInline = true; v.preload = 'auto'; v.setAttribute('muted', ''); v.setAttribute('playsinline', ''); return v; };
+    const doorVid = mk(); door.appendChild(doorVid);
     const vids = [];
-    for (let i = 0; i < NCLIP; i++) {
-      const v = document.createElement('video');
-      v.muted = true; v.playsInline = true; v.preload = 'auto'; v.setAttribute('muted', ''); v.setAttribute('playsinline', '');
-      (i ? vids[i - 1] : poster).after(v); vids.push(v);
-    }
-    (async () => {
-      for (let i = 0; i < NCLIP; i++) {
-        const url = `assets/dia/dia-${i}${mobile ? '-m' : ''}.mp4`;
-        try { if (location.protocol === 'file:') throw 0; const r = await fetch(url); vids[i].src = URL.createObjectURL(await r.blob()); }
-        catch { vids[i].src = url; }
-        vids[i].load();
-      }
-    })();
+    for (let i = 0; i < NCLIP; i++) { const v = mk(); (i ? vids[i - 1] : poster).after(v); vids.push(v); }
+    const load = async (v, url) => {
+      try { if (location.protocol === 'file:') throw 0; const r = await fetch(url); v.src = URL.createObjectURL(await r.blob()); }
+      catch { v.src = url; }
+      v.load();
+    };
+    (async () => { await load(doorVid, 'assets/casa/puerta.mp4'); for (let i = 0; i < NCLIP; i++) await load(vids[i], `assets/casa/casa-${i}.mp4`); })();
 
-    const lerp = (a, b, t) => a + (b - a) * t;
+    const lerp = (a, b, t) => a + (b - a) * t, ease = (t) => t * t * (3 - 2 * t);
     const fmt = (m) => String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(Math.floor((m % 60) / 5) * 5).padStart(2, '0');
-    let shown = [], capOn = -1, smoothP = 0;
+    const seek = (v, f) => { if (v.readyState >= 1 && v.duration) { const t = Math.min(v.duration - 0.04, f * v.duration); if (Math.abs(v.currentTime - t) > 1 / 40) v.currentTime = t; } };
+    function place(P) {
+      // camera: ease between the shots of the two moments around P
+      const i = Math.min(5, Math.floor(P)), f = P - i;
+      const a = ROOMS[SHOTS[i]], b = ROOMS[SHOTS[i + 1]];
+      // hold on the room while the action happens, travel in the last third of each clip
+      const t = ease(Math.min(1, Math.max(0, (f - 0.62) / 0.38)));
+      const cx = lerp(a[0], b[0], t), cy = lerp(a[1], b[1], t), fw = lerp(a[2], b[2], t);
+      const w = innerWidth, h = innerHeight;
+      let Lw = w / fw, Lh = Lw / A;
+      if (Lh < h) { Lh = h; Lw = h * A; }
+      let x = w / 2 - cx * Lw, y = h / 2 - cy * Lh;
+      x = Math.min(0, Math.max(w - Lw, x)); y = Math.min(0, Math.max(h - Lh, y));
+      cam.style.width = w + 'px'; cam.style.height = (w / A) + 'px';
+      cam.style.transform = `translate(${x.toFixed(1)}px, ${y.toFixed(1)}px) scale(${(Lw / w).toFixed(4)})`;
+    }
+    let shown = [], capOn = -1, smooth = 0;
     function tick() {
       const span = day.offsetHeight - innerHeight;
       const raw = Math.min(1, Math.max(0, scrollY / span));
-      // first 6% of the scroll is the title; the day runs over the rest, ending with a short hold
-      const P = Math.min(NCLIP, Math.max(0, (raw - 0.06) / 0.86) * NCLIP);
-      smoothP = RM ? P : smoothP + (P - smoothP) * 0.25;
-      const k = Math.min(NCLIP - 1, Math.floor(smoothP)), f = smoothP - k;
+      smooth = RM ? raw : smooth + (raw - smooth) * 0.25;
+      // 0–0.03 title on the closed door · 0.03–0.15 the door opens · 0.15–0.95 the day · then a short hold
+      const dP = Math.min(1, Math.max(0, (smooth - 0.03) / 0.12));
+      const P = Math.min(NCLIP, Math.max(0, (smooth - 0.15) / 0.8) * NCLIP);
+      const inDoor = smooth < 0.15;
+      seek(doorVid, dP);
+      door.style.opacity = smooth < 0.13 ? 1 : Math.max(0, 1 - (smooth - 0.13) / 0.03);
+      doorVid.style.opacity = doorVid.readyState >= 2 ? 1 : 0;
+      const k = Math.min(NCLIP - 1, Math.floor(P)), f = P - k;
       vids.forEach((v, i) => {
         const on = i === k && v.readyState >= 2;
         if (on !== !!shown[i]) { v.classList.toggle('on', on); shown[i] = on; }
-        if (i === k && v.readyState >= 1 && v.duration) {
-          const t = Math.min(v.duration - 0.04, f * v.duration);
-          if (Math.abs(v.currentTime - t) > 1 / 40) v.currentTime = t;
-        }
+        if (i === k) seek(v, f);
       });
-      // clock, sun and light
-      const ti = Math.min(5, Math.floor(smoothP)), tf = smoothP - ti;
-      const mins = ti >= 5 ? TIMES[5] : lerp(TIMES[ti], TIMES[ti + 1], tf);
-      clock.textContent = fmt(mins);
-      clockLab.textContent = raw < 0.05 ? 'Un día cualquiera' : LABELS[Math.min(5, Math.round(smoothP))];
-      const pt = arc.getPointAtLength(arcLen * (mins - TIMES[0]) / (TIMES[5] - TIMES[0]));
+      place(P);
+      const ti = Math.min(6, Math.floor(P)), tf = P - ti;
+      const mins = ti >= 6 ? TIMES[6] : lerp(TIMES[ti], TIMES[ti + 1], tf);
+      clock.textContent = inDoor ? '07:59' : fmt(mins);
+      clockLab.textContent = inDoor ? 'Un día cualquiera' : LABELS[Math.min(6, Math.round(P))];
+      const pt = arc.getPointAtLength(arcLen * (inDoor ? 0 : (mins - TIMES[0]) / (TIMES[6] - TIMES[0])));
       sun.setAttribute('cx', pt.x); sun.setAttribute('cy', pt.y);
-      const a = TINTS[ti], b = TINTS[Math.min(5, ti + 1)];
-      document.documentElement.style.setProperty('--tint', [0, 1, 2].map(j => Math.round(lerp(a[j], b[j], tf))).join(','));
-      document.documentElement.style.setProperty('--tint-a', lerp(a[3], b[3], tf).toFixed(3));
-      // captions: title first, then the moment nearest to the current time
-      const c = raw < 0.05 ? 0 : 1 + Math.min(5, Math.round(smoothP));
+      const ta = TINTS[ti], tb = TINTS[Math.min(6, ti + 1)];
+      document.documentElement.style.setProperty('--tint', [0, 1, 2].map(j => Math.round(lerp(ta[j], tb[j], tf))).join(','));
+      document.documentElement.style.setProperty('--tint-a', inDoor ? '0' : lerp(ta[3], tb[3], tf).toFixed(3));
+      const c = smooth < 0.03 ? 0 : inDoor ? 1 : 2 + Math.min(6, Math.round(P));
       if (c !== capOn) { caps.forEach((el, i) => el.classList.toggle('on', i === c)); capOn = c; }
       document.body.classList.toggle('start', scrollY < 30);
       document.body.classList.toggle('past', document.getElementById('more').getBoundingClientRect().top < 68);
