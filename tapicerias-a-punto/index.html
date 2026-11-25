@@ -239,6 +239,86 @@
       .step img { transform: scale(1.12); }
     }
 
+
+    /* ============ Portada: profundidad ============ */
+    .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+    .deep { position: relative; height: calc(100vh - 68px); height: calc(100svh - 68px); min-height: 560px; overflow: hidden;
+      background: radial-gradient(90% 70% at 50% 35%, #FBF7EF 0%, #F1EADC 55%, #E6DDCB 100%); }
+    .deep__hi { position: absolute; left: 0; right: 0; top: 4vh; margin: 0; text-align: center; font-family: "Lora", Georgia, serif; font-style: italic; font-size: 1.25rem; color: var(--soft); z-index: 4; }
+    .deep__big { position: absolute; left: 0; right: 0; top: 9vh; z-index: 1; text-align: center; font-family: "Lora", Georgia, serif; font-weight: 600; color: var(--green);
+      font-size: min(23vw, 31vh); line-height: .9; letter-spacing: -.03em; white-space: nowrap; transform: translate(var(--mx, 0px), var(--my, 0px)); }
+    .deep__sofa { position: absolute; left: 50%; bottom: 23vh; z-index: 3; width: min(84vw, 108vh); transform: translate(calc(-50% + var(--sx, 0px)), var(--sy, 0px)); }
+    .deep__sofa img { width: 100%; height: auto; filter: drop-shadow(0 40px 40px rgba(47, 74, 60, .28)); }
+    .deep__under { position: absolute; left: 0; right: 0; bottom: 4vh; z-index: 4; text-align: center; padding: 0 20px; }
+    .deep__under h1 { font-size: clamp(1.7rem, 3.4vw, 2.7rem); font-weight: 500; }
+    .deep__under p { margin: 8px 0 18px; color: var(--soft); }
+    .deep__under .btns { justify-content: center; }
+    .deep .scribble svg { bottom: -.12em; }
+    .deep__big { animation: big 1.4s cubic-bezier(.2,.8,.2,1) both; }
+    @keyframes big { from { opacity: 0; letter-spacing: .1em; } to { opacity: 1; letter-spacing: -.03em; } }
+    .deep__sofa { animation: sofain 1.4s cubic-bezier(.2,.8,.2,1) .35s both; }
+    @keyframes sofain { from { opacity: 0; margin-bottom: -70px; } to { opacity: 1; margin-bottom: 0; } }
+    .deep__under, .deep__hi { animation: wd 1s cubic-bezier(.2,.8,.2,1) .9s both; }
+
+    /* ============ Cortinas que se abren con el scroll ============ */
+    .curtains { position: relative; height: 230vh; }
+    .curtains__stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: var(--deep, #1E3128); }
+    .curtains__room { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(var(--rs, 1.15)); }
+    video.curtains__room { opacity: 0; transition: opacity 1s; } video.curtains__room.on { opacity: 1; }
+    .curtains__stage::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(75% 65% at 50% 55%, rgba(30,49,40,.05), rgba(30,49,40,.55)); }
+    .curtains__rod { position: absolute; top: 0; left: 0; right: 0; height: 16px; z-index: 6; background: linear-gradient(#bba98a, #8f7f63); box-shadow: 0 4px 12px rgba(0,0,0,.25); }
+    .curtain { position: absolute; top: 0; bottom: 0; width: 51%; z-index: 5;
+      background: repeating-linear-gradient(90deg, #efe6d4 0 18px, #e1d4ba 30px, #f4ecdd 44px, #e6d9c2 60px, #efe6d4 72px);
+      box-shadow: inset -40px 0 70px rgba(0,0,0,.16); }
+    .curtain::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(120,100,70,.05) 0 1px, transparent 1px 3px); }
+    .curtain.l { left: 0; transform-origin: left; transform: translateX(calc(var(--o, 0) * -86%)) scaleX(calc(1 - var(--o, 0) * .66)); }
+    .curtain.r { right: 0; transform-origin: right; transform: translateX(calc(var(--o, 0) * 86%)) scaleX(calc(1 - var(--o, 0) * .66)); }
+    .curtains__copy { position: absolute; inset: 0; z-index: 4; display: grid; place-content: center; text-align: center; color: var(--cream); padding: 0 20px; opacity: var(--t, 0); transform: translateY(calc((1 - var(--t, 0)) * 20px)); }
+    .curtains__copy p em { font-style: italic; font-weight: 500; }
+    .curtains__copy p { margin: 0; font-family: "Lora", Georgia, serif; font-weight: 600; font-size: clamp(2.6rem, 7vw, 6.4rem); line-height: 1.02; text-shadow: 0 4px 40px rgba(0,0,0,.3); }
+    .curtains__copy span { margin-top: 16px; font-family: "Lora", Georgia, serif; font-style: italic; font-size: 1.15rem; opacity: .9; }
+    .curtains .motes { z-index: 2; }
+
+    /* ============ Limpia tú ============ */
+    .play { position: relative; margin: 0 auto; width: min(1240px, calc(100% - 24px)); height: min(76vh, 720px); border-radius: 28px; overflow: hidden; cursor: none; touch-action: pan-y; background: var(--sand);
+      box-shadow: 0 40px 80px -50px rgba(47,74,60,.55); }
+    .play img, .play canvas { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .play__nozzle { position: absolute; z-index: 3; width: 130px; height: 62px; margin: -31px 0 0 -65px; left: 50%; top: 50%; pointer-events: none; border-radius: 12px;
+      border: 2px solid rgba(255,255,255,.8); background: rgba(255,255,255,.14); box-shadow: 0 8px 24px rgba(0,0,0,.22); transform: rotate(-8deg); transition: opacity .3s; }
+    .play.idle .play__nozzle { animation: hint 2.6s ease-in-out infinite; }
+    @keyframes hint { 0%, 100% { left: 38%; top: 58%; } 50% { left: 62%; top: 52%; } }
+    .play__bar { position: absolute; z-index: 3; left: 24px; top: 24px; width: 180px; height: 5px; border-radius: 3px; background: rgba(255,255,255,.45); overflow: hidden; }
+    .play__bar i { display: block; height: 100%; width: 0; background: var(--green); transition: width .2s; }
+    .play__done { position: absolute; z-index: 4; left: 0; right: 0; bottom: 0; padding: 60px 24px 26px; text-align: center; background: linear-gradient(transparent, rgba(30,49,40,.75));
+      opacity: 0; transform: translateY(16px); transition: all .8s ease; pointer-events: none; }
+    .play__done.on { opacity: 1; transform: none; pointer-events: auto; }
+    .play__done span { display: block; margin-bottom: 14px; color: var(--cream); font-family: "Lora", Georgia, serif; font-style: italic; font-size: 1.35rem; }
+
+    /* ============ Cine ============ */
+    .cine { position: relative; min-height: 92vh; min-height: 92svh; overflow: hidden; display: flex; align-items: flex-end; padding: 0; color: var(--cream); }
+    .cine img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(var(--cz, 1.12)); }
+    .cine::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(30,49,40,.45), rgba(30,49,40,.1) 35%, rgba(30,49,40,.3) 60%, rgba(30,49,40,.94)), rgba(47,74,60,.22); }
+    .cine__copy { position: relative; z-index: 2; width: 100%; display: flex; justify-content: space-between; align-items: flex-end; gap: 28px; flex-wrap: wrap; padding: 0 clamp(20px, 5vw, 72px) clamp(32px, 7vh, 80px); }
+    .cine h2 { flex: 1 1 100%; color: var(--cream); font-size: clamp(3rem, 8.4vw, 8.4rem); line-height: .98; margin: 0; letter-spacing: -.02em; }
+    .cine__copy > div { max-width: 360px; padding-bottom: 10px; }
+    .cine__copy p { margin: 0 0 20px; color: #E7E1D4; }
+    .cine__side { position: absolute; z-index: 2; right: clamp(16px, 3vw, 40px); top: 50%; transform: translateY(-50%); writing-mode: vertical-rl; letter-spacing: .3em; text-transform: uppercase; font-size: .75rem; color: rgba(245,240,230,.7); }
+
+    @media (max-width: 860px) {
+      .deep { height: auto; min-height: 0; padding: 26px 0 30px; }
+      .deep__hi, .deep__big, .deep__sofa, .deep__under { position: relative; inset: auto; left: auto; right: auto; top: auto; bottom: auto; }
+      .deep__big { font-size: 20.5vw; margin-top: 4px; }
+      .deep__sofa { left: auto; width: 100%; margin: -5vw 0 0; transform: translate(var(--sx, 0px), var(--sy, 0px)); }
+      .deep__under { margin-top: 10px; }
+      .curtains { height: 200vh; }
+      .play { height: 62vh; border-radius: 22px; }
+      .cine__side { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .deep__big, .deep__sofa, .deep__under, .deep__hi { animation: none; }
+      .play.idle .play__nozzle { animation: none; }
+    }
+
     @media (max-width: 860px) {
       body { font-size: 16px; }
       .hdr img { height: 18px; }
@@ -275,37 +355,35 @@
   <div id="top"></div>
 
   <main>
-    <div class="hero">
-      <div class="hero__text">
-        <p class="hi wd0">Hola, soy Dani<span class="dot">.</span></p>
-        <h1 id="hero-h"><span class="wd" style="--i:0">Tu</span> <span class="wd" style="--i:1">sofá,</span> <span class="wd" style="--i:2">como</span> <em class="scribble"><span class="wd" style="--i:3">el</span> <span class="wd" style="--i:4">primer</span> <span class="wd" style="--i:5">día</span><svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C 60 4, 140 18, 200 9 S 280 6, 296 12" /></svg></em><span class="dot wd" style="--i:6">.</span></h1>
-        <p class="sub wd0">Limpio sofás, colchones y tapicerías en tu casa. Sin desmontar nada, sin llevármelo y con el precio cerrado antes de ir.</p>
-        <div class="btns wd0">
+    <div class="deep" id="deep">
+      <p class="deep__hi">Hola, soy Dani<span class="dot">.</span></p>
+      <div class="deep__big" id="big" aria-hidden="true">TU SOFÁ</div>
+      <div class="deep__sofa" id="sofa"><img src="assets/casa/sofa.webp" alt="Sofá beige limpio con cojines verde salvia y una manta de punto" width="1800" height="677" /></div>
+      <div class="deep__under">
+        <h1><span class="sr">Tu sofá, </span><em class="scribble">como el primer día<svg viewBox="0 0 300 20" preserveAspectRatio="none" aria-hidden="true"><path d="M4 14 C 60 4, 140 18, 200 9 S 280 6, 296 12" /></svg></em><span class="dot">.</span></h1>
+        <p>Limpio sofás, colchones y tapicerías en tu casa, en Alcoi y alrededores.</p>
+        <div class="btns">
           <a class="btn btn--green" href="#precio">Mándame una foto</a>
-          <a class="btn btn--line" data-wa href="https://wa.me/34614180575">WhatsApp 614 18 05 75</a>
+          <a class="btn btn--line" data-wa href="https://wa.me/34614180575">WhatsApp</a>
         </div>
-        <ul class="facts wd0">
-          <li>Alcoi, Cocentaina y Muro</li>
-          <li>De lunes a viernes</li>
-          <li>Lo hago yo, Dani</li>
-        </ul>
-      </div>
-      <div class="hero__win wd0">
-        <div class="arch">
-          <picture>
-            <source media="(max-width: 860px)" srcset="assets/casa/salon-m.webp" />
-            <img src="assets/casa/salon-m.webp" alt="Un salón tranquilo un domingo por la mañana: sofá beige limpio, sol entrando por la ventana y un café en la mesa." />
-          </picture>
-          <video id="salon" muted playsinline loop preload="auto" aria-hidden="true"></video>
-          <div class="motes" id="motes" aria-hidden="true"></div>
-          <span class="mullion" aria-hidden="true"></span>
-        </div>
-        <span class="sill" aria-hidden="true"></span>
-        <p class="caption">Un domingo cualquiera, después de pasar yo<span class="dot">.</span></p>
       </div>
     </div>
 
     <div class="ribbon" aria-hidden="true"><div class="ribbon__track"><span>Alcoi <b>·</b></span><span>Cocentaina <b>·</b></span><span>Muro <b>·</b></span><span>Alcoi <b>·</b></span><span>Cocentaina <b>·</b></span><span>Muro <b>·</b></span><span>y alrededores <b>·</b></span><span>Alcoi <b>·</b></span><span>Cocentaina <b>·</b></span><span>Muro <b>·</b></span><span>Alcoi <b>·</b></span><span>Cocentaina <b>·</b></span><span>Muro <b>·</b></span><span>y alrededores <b>·</b></span></div></div>
+
+    <section class="curtains" id="cortinas" aria-label="Pasa, estás en tu casa">
+      <div class="curtains__stage">
+        <img class="curtains__room" src="assets/casa/salon.webp" alt="" />
+        <video class="curtains__room" id="salon" muted playsinline loop preload="auto" aria-hidden="true"></video>
+        <div class="motes" id="motes" aria-hidden="true"></div>
+        <div class="curtains__rod"></div>
+        <div class="curtain l" id="cl"></div><div class="curtain r" id="cr"></div>
+        <div class="curtains__copy" id="ccopy">
+          <p>Pasa, estás <em>en tu casa</em><span class="dot">.</span></p>
+          <span>Un domingo cualquiera, después de pasar yo.</span>
+        </div>
+      </div>
+    </section>
 
     <section id="hola">
       <div class="wrap hello">
@@ -325,6 +403,21 @@
             <li><b>Secado</b><span>Entre 6 y 12 horas, con la ventana abierta.</span></li>
           </ul>
         </aside>
+      </div>
+    </section>
+
+    <section id="pruebalo" style="padding-top:0">
+      <div class="wrap">
+        <p class="kicker rise">Pruébalo</p>
+        <h2 class="rise split">Pásale el dedo <em>a la mancha</em><span class="dot">.</span></h2>
+        <p class="lead rise" style="margin-bottom:24px">Mueve el ratón o desliza el dedo de lado a lado sobre el cojín. Así es como trabajo en tu sofá.</p>
+      </div>
+      <div class="play rise" id="play">
+        <img src="assets/casa/limpio.webp" alt="Cojín de sofá limpio" />
+        <canvas id="cv" aria-label="Cojín con una mancha de café que se limpia al pasar el dedo"></canvas>
+        <div class="play__nozzle" id="noz" aria-hidden="true"></div>
+        <div class="play__bar"><i id="pbar"></i></div>
+        <div class="play__done" id="pdone"><span>Así de fácil. Y en tu casa.</span><a class="btn btn--cream" href="#precio">Mándame una foto de tu sofá</a></div>
       </div>
     </section>
 
@@ -394,7 +487,16 @@
       </div>
     </section>
 
-    <section id="precio" style="padding-top:0">
+    <section class="cine" aria-label="Tu sofá, como nuevo">
+      <img src="assets/casa/salon.webp" alt="" />
+      <div class="cine__copy">
+        <h2 class="split rise">Tu sofá, <em style="white-space:nowrap">como nuevo<span class="dot">.</span></em></h2>
+        <div><p>Me mandas una foto, te digo el precio cerrado y voy a tu casa. Así de sencillo.</p><a class="btn btn--cream" href="#precio">Mándame una foto</a></div>
+      </div>
+      <div class="cine__side">Alcoi · Cocentaina · Muro</div>
+    </section>
+
+    <section id="precio">
       <div class="wrap">
         <div class="ask rise">
           <p class="kicker">Precio por foto</p>
@@ -458,7 +560,7 @@
 
     // The window: start the slow loop once it can play; the still stays underneath until then.
     const salon = document.getElementById('salon');
-    salon.src = 'assets/casa/salon-m.mp4';
+    salon.src = matchMedia('(max-width: 860px)').matches ? 'assets/casa/salon-m.mp4' : 'assets/casa/salon.mp4';
     if (!RMq) {
       salon.addEventListener('canplay', () => { salon.play().then(() => salon.classList.add('on')).catch(() => {}); }, { once: true });
     }
@@ -512,10 +614,65 @@
     let ticking = false;
     function onScroll() {
       document.body.classList.toggle('scrolled', scrollY > 30);
+      if (window.__ready) { curtains(); cineZoom(); }
       if (!RM) stepImgs.forEach(im => { const r = im.parentNode.getBoundingClientRect(); if (r.bottom > 0 && r.top < innerHeight) im.style.setProperty('--py', ((r.top + r.height / 2 - innerHeight / 2) * -0.06).toFixed(1) + 'px'); });
       ticking = false;
     }
     addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true }); onScroll();
+    // ============ Portada: el texto y el sofá se separan al mover el ratón ============
+    const bigEl = document.getElementById('big'), sofaEl = document.getElementById('sofa');
+    if (!RM) addEventListener('pointermove', e => {
+      if (e.pointerType !== 'mouse') return;
+      const x = e.clientX / innerWidth - .5, y = e.clientY / innerHeight - .5;
+      bigEl.style.setProperty('--mx', (-x * 34).toFixed(1) + 'px'); bigEl.style.setProperty('--my', (-y * 14).toFixed(1) + 'px');
+      sofaEl.style.setProperty('--sx', (x * 26).toFixed(1) + 'px'); sofaEl.style.setProperty('--sy', (y * 10).toFixed(1) + 'px');
+    });
+
+    // ============ Cortinas: se abren con el scroll ============
+    const curt = document.getElementById('cortinas'), cstage = curt.querySelector('.curtains__stage');
+    function curtains() {
+      const r = curt.getBoundingClientRect(), span = curt.offsetHeight - innerHeight;
+      const p = Math.min(1, Math.max(0, -r.top / span));
+      const o = RM ? (p > .1 ? 1 : 0) : Math.min(1, Math.max(0, (p - .05) / .55));
+      const e = o * o * (3 - 2 * o);
+      cstage.style.setProperty('--o', e.toFixed(3));
+      cstage.style.setProperty('--rs', (1.15 - .15 * e).toFixed(3));
+      cstage.style.setProperty('--t', Math.min(1, Math.max(0, (p - .42) / .25)).toFixed(3));
+    }
+
+    // ============ Cine: la foto se acerca despacio al pasar ============
+    const cine = document.querySelector('.cine'), cineImg = cine.querySelector('img');
+    function cineZoom() { const r = cine.getBoundingClientRect(); if (r.bottom < 0 || r.top > innerHeight) return;
+      const p = 1 - Math.min(1, Math.max(0, (r.top + r.height) / (innerHeight + r.height))); cineImg.style.setProperty('--cz', (1.14 - p * .12).toFixed(3)); }
+
+    // ============ Limpia tú ============
+    const play = document.getElementById('play'), cv = document.getElementById('cv'), ctx = cv.getContext('2d'), noz = document.getElementById('noz');
+    const dirty = new Image(); dirty.src = 'assets/casa/mancha.webp';
+    let cleaned = 0, dpr = Math.min(2, devicePixelRatio || 1);
+    function paint() {
+      const r = play.getBoundingClientRect(); cv.width = r.width * dpr; cv.height = r.height * dpr;
+      if (!dirty.complete) return;
+      const sc = Math.max(cv.width / dirty.width, cv.height / dirty.height);
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.drawImage(dirty, (cv.width - dirty.width * sc) / 2, (cv.height - dirty.height * sc) / 2, dirty.width * sc, dirty.height * sc);
+      cleaned = 0; document.getElementById('pbar').style.width = '0%'; document.getElementById('pdone').classList.remove('on');
+    }
+    dirty.onload = paint; addEventListener('resize', paint);
+    play.classList.add('idle');
+    function wipe(x, y) {
+      x *= dpr; y *= dpr; ctx.globalCompositeOperation = 'destination-out';
+      const g = ctx.createRadialGradient(x, y, 0, x, y, 95 * dpr); g.addColorStop(0, 'rgba(0,0,0,.6)'); g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g; ctx.beginPath(); ctx.ellipse(x, y, 115 * dpr, 62 * dpr, -.14, 0, 7); ctx.fill();
+      cleaned = Math.min(1, cleaned + .007); document.getElementById('pbar').style.width = (cleaned * 100) + '%';
+      if (cleaned > .55) document.getElementById('pdone').classList.add('on');
+    }
+    play.addEventListener('pointermove', e => {
+      const r = play.getBoundingClientRect(), x = e.clientX - r.left, y = e.clientY - r.top;
+      play.classList.remove('idle'); noz.style.left = x + 'px'; noz.style.top = y + 'px'; wipe(x, y);
+    });
+    play.addEventListener('pointerleave', () => play.classList.add('idle'));
+    window.__ready = true; onScroll();
+
     // the 10 % counts up, and the before/after shows itself once
     const once = (el, fn) => { const o = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { fn(); o.disconnect(); } }), { threshold: .5 }); o.observe(el); };
     const pct = document.getElementById('pct');
