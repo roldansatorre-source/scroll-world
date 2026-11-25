@@ -1,0 +1,38 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Limpia tú</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lora:ital,wght@0,600;1,500&display=swap" rel="stylesheet"><link rel="stylesheet" href="_base.css">
+<style>
+.stage{position:fixed;inset:0;cursor:none;touch-action:none}
+.stage img,.stage canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.stage::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(30,49,40,.55),rgba(30,49,40,0) 55%)}
+.copy{position:fixed;left:clamp(20px,6vw,90px);top:50%;transform:translateY(-50%);z-index:5;color:var(--cream);max-width:520px;pointer-events:none}
+.copy p.k{margin:0 0 12px;font-family:Lora,serif;font-style:italic;font-size:1.3rem}
+.copy h1{color:var(--cream);font-size:clamp(2.8rem,6vw,5.4rem);text-shadow:0 4px 30px rgba(0,0,0,.25)}
+.copy .s{margin:18px 0 0;font-size:1.1rem;line-height:1.6;color:#efe9dc;transition:opacity .6s}
+.done{position:fixed;left:clamp(20px,6vw,90px);bottom:12vh;z-index:6;opacity:0;transform:translateY(14px);transition:all .8s ease;pointer-events:none}
+.done.on{opacity:1;transform:none;pointer-events:auto}
+.done a{display:inline-block;background:var(--cream);color:var(--green);padding:16px 28px;border-radius:999px;font-weight:600;text-decoration:none}
+.done span{display:block;color:var(--cream);font-family:Lora,serif;font-style:italic;font-size:1.3rem;margin-bottom:14px}
+.cursor{position:fixed;z-index:7;width:120px;height:60px;margin:-30px 0 0 -60px;pointer-events:none;border-radius:10px;border:2px solid rgba(255,255,255,.75);background:rgba(255,255,255,.12);backdrop-filter:blur(1px);box-shadow:0 6px 20px rgba(0,0,0,.2);transform:rotate(-8deg)}
+.bar{position:fixed;left:clamp(20px,6vw,90px);top:calc(50% + 160px);z-index:5;width:220px;height:4px;border-radius:2px;background:rgba(245,240,230,.3);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--cream);transition:width .2s}
+</style></head><body>
+<div class="stage" id="st"><img src="limpio.webp" alt="Cojín limpio"><canvas id="cv"></canvas></div>
+<nav class="nav"><img src="../assets/marca/logo-crema.png" alt="Tapicerías a Punto"><a class="p" href="#">Mándame una foto</a></nav>
+<div class="copy"><p class="k">Hola, soy Dani.</p><h1>Pásale <em>el dedo</em><span class="d">.</span></h1><p class="s" id="s">Mueve el ratón (o el dedo) sobre la mancha. Así es como trabajo en tu sofá.</p></div>
+<div class="bar"><i id="bar"></i></div>
+<div class="done" id="done"><span>Así de fácil. Y en tu casa.</span><a href="#">Mándame una foto de tu sofá</a></div>
+<div class="cursor" id="cur"></div>
+<script>
+const cv=document.getElementById('cv'),ctx=cv.getContext('2d'),img=new Image();img.src='mancha.webp';
+let W,H,sc,ox,oy;
+function size(){W=cv.width=innerWidth*devicePixelRatio;H=cv.height=innerHeight*devicePixelRatio;draw()}
+function draw(){if(!img.complete)return;sc=Math.max(W/img.width,H/img.height);ox=(W-img.width*sc)/2;oy=(H-img.height*sc)/2;ctx.globalCompositeOperation='source-over';ctx.drawImage(img,ox,oy,img.width*sc,img.height*sc)}
+img.onload=size;addEventListener('resize',size);
+let cleaned=0;const cur=document.getElementById('cur');
+function wipe(x,y){x*=devicePixelRatio;y*=devicePixelRatio;ctx.globalCompositeOperation='destination-out';
+ const g=ctx.createRadialGradient(x,y,0,x,y,90*devicePixelRatio);g.addColorStop(0,'rgba(0,0,0,.55)');g.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=g;ctx.beginPath();ctx.ellipse(x,y,110*devicePixelRatio,60*devicePixelRatio,-.14,0,7);ctx.fill();
+ cleaned=Math.min(1,cleaned+.006);document.getElementById('bar').style.width=(cleaned*100)+'%';if(cleaned>.55)document.getElementById('done').classList.add('on')}
+addEventListener('pointermove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px';wipe(e.clientX,e.clientY)});
+// demo pass for screenshots: window.demo()
+window.demo=()=>{for(let i=0;i<120;i++){const t=i/120;wipe(innerWidth*(.35+.4*t),innerHeight*(.62+.06*Math.sin(t*12)))}};
+</script></body></html>

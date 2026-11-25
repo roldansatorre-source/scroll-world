@@ -1,0 +1,24 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cortinas</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lora:ital,wght@0,600;1,500&display=swap" rel="stylesheet"><link rel="stylesheet" href="_base.css">
+<style>
+.room{position:fixed;inset:0}.room video,.room img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:in 3.2s cubic-bezier(.2,.8,.2,1) both}
+@keyframes in{from{transform:scale(1.18)}to{transform:scale(1)}}
+.room::after{content:"";position:absolute;inset:0;background:radial-gradient(70% 60% at 50% 55%,rgba(30,49,40,.15),rgba(30,49,40,.6))}
+.cur{position:fixed;top:-2%;bottom:-2%;width:52%;z-index:10;
+ background:repeating-linear-gradient(90deg,#efe6d4 0 18px,#e3d7bf 30px,#f3ebdc 44px,#e8dcc6 60px,#efe6d4 72px);
+ box-shadow:inset -30px 0 60px rgba(0,0,0,.18);animation:open 2.6s cubic-bezier(.7,0,.2,1) .5s forwards}
+.cur::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(120,100,70,.05) 0 1px,transparent 1px 3px)}
+.cur.l{left:0;transform-origin:left;border-right:6px solid #d8ccb4}.cur.r{right:0;transform-origin:right;--dir:1;border-left:6px solid #d8ccb4;animation-name:openr}
+@keyframes open{to{transform:translateX(-88%) scaleX(.35)}}@keyframes openr{to{transform:translateX(88%) scaleX(.35)}}
+.rod{position:fixed;top:0;left:0;right:0;height:14px;z-index:11;background:linear-gradient(#b9a88a,#8f7f63);box-shadow:0 4px 10px rgba(0,0,0,.2)}
+.copy{position:fixed;inset:0;z-index:5;display:grid;place-items:center;text-align:center;color:var(--cream);padding:0 20px}
+.copy p{margin:0 0 14px;font-family:Lora,serif;font-style:italic;font-size:1.3rem;opacity:0;animation:f 1s ease 2.4s forwards}
+.copy h1{color:var(--cream);font-size:clamp(3rem,8vw,7.5rem);opacity:0;animation:f 1.2s ease 2.6s forwards;text-shadow:0 4px 40px rgba(0,0,0,.25)}
+.copy a{display:inline-block;margin-top:30px;background:var(--cream);color:var(--green);padding:16px 28px;border-radius:999px;font-weight:600;text-decoration:none;opacity:0;animation:f 1s ease 3.1s forwards}
+@keyframes f{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+</style></head><body>
+<div class="room"><img src="../assets/casa/salon.webp" alt=""><video src="../assets/casa/salon.mp4" muted autoplay loop playsinline></video></div>
+<div class="rod"></div><div class="cur l"></div><div class="cur r"></div>
+<nav class="nav"><img src="../assets/marca/logo-crema.png" alt="Tapicerías a Punto"><a class="p" href="#">Mándame una foto</a></nav>
+<div class="copy"><div><p>Pasa, estás en tu casa.</p><h1>Tu sofá, como<br><em>el primer día</em><span class="d">.</span></h1><a href="#">Mándame una foto</a></div></div>
+</body></html>

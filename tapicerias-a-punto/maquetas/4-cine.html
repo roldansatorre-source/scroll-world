@@ -1,0 +1,21 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cine</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Lora:ital,wght@0,600;1,500&display=swap" rel="stylesheet"><link rel="stylesheet" href="_base.css">
+<style>
+body{background:var(--deep)}
+.v{position:fixed;inset:0}.v video,.v img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:k 24s ease-in-out infinite alternate}
+@keyframes k{from{transform:scale(1.02)}to{transform:scale(1.1) translate(-1%,-1%)}}
+.v::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(30,49,40,.55),rgba(30,49,40,.15) 35%,rgba(30,49,40,.25) 60%,rgba(30,49,40,.92)),rgba(47,74,60,.25);mix-blend-mode:normal}
+.copy{position:fixed;left:clamp(18px,5vw,72px);right:clamp(18px,5vw,72px);bottom:clamp(28px,7vh,80px);z-index:5;color:var(--cream);display:flex;justify-content:space-between;align-items:end;gap:30px;flex-wrap:wrap}
+.copy h1{color:var(--cream);font-size:clamp(3.4rem,10vw,10rem);letter-spacing:-.02em}
+.copy .r{max-width:360px;padding-bottom:12px}.copy .r p{margin:0 0 20px;line-height:1.6;color:#e7e1d4}
+.copy a{display:inline-block;background:var(--cream);color:var(--green);padding:15px 26px;border-radius:999px;font-weight:600;text-decoration:none}
+.tag{position:fixed;top:50%;right:clamp(18px,4vw,48px);z-index:5;writing-mode:vertical-rl;color:rgba(245,240,230,.7);font-size:.75rem;letter-spacing:.3em;text-transform:uppercase}
+.w{display:inline-block;opacity:0;transform:translateY(40%);animation:u 1.1s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes u{to{opacity:1;transform:none}}
+</style></head><body>
+<div class="v"><img src="../assets/casa/salon.webp" alt=""><video src="../assets/casa/salon.mp4" muted autoplay loop playsinline></video></div>
+<nav class="nav"><img src="../assets/marca/logo-crema.png" alt="Tapicerías a Punto"><a class="p" href="#">Mándame una foto</a></nav>
+<div class="tag">Alcoi · Cocentaina · Muro</div>
+<div class="copy"><h1><span class="w" style="animation-delay:.2s">Tu sofá,</span><br><em class="w" style="animation-delay:.45s">como nuevo</em><span class="d w" style="animation-delay:.6s">.</span></h1>
+<div class="r w" style="animation-delay:.9s"><p>Hola, soy Dani. Limpio sofás, colchones y tapicerías en tu casa, sin desmontar nada. Precio cerrado antes de ir.</p><a href="#">Mándame una foto</a></div></div>
+</body></html>
