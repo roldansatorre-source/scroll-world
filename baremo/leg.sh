@@ -17,3 +17,15 @@ sheet=Image.new('RGB',(len(ims)*(tw+8),th),'white')
 for i,im in enumerate(ims): sheet.paste(im.resize((tw,th)),(i*(tw+8),0))
 sheet.save(f'frames/{n}_sheet.jpg',quality=82); print('sheet ok')
 PY
+python3 - "$n" <<'PY'
+import sys, subprocess, glob, numpy as np
+from PIL import Image
+n=sys.argv[1]; d=f'/tmp/claude-0/cut_{n}'
+subprocess.run(f'rm -rf {d}; mkdir -p {d}; ffmpeg -loglevel error -i src/leg_{n}.mp4 -vf scale=160:-2 {d}/f%03d.png',shell=True)
+fs=sorted(glob.glob(d+'/*.png')); prev=None; mx=(0,0)
+for i,f in enumerate(fs):
+    a=np.asarray(Image.open(f).convert('L'),float)
+    if prev is not None: mx=max(mx,(abs(a-prev).mean(),i/24))
+    prev=a
+print('max frame diff %.1f at %.2fs %s'%(mx[0],mx[1],'<-- CUT' if mx[0]>30 else 'ok'))
+PY
