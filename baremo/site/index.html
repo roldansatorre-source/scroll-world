@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Baremo — subvenciones para la cartera de tu gestoría</title>
+  <meta name="description" content="Baremo busca subvenciones para cada empresa de tu cartera. Para gestorías y consultoras." />
+  <style>
+    :root, .sw-root {
+      --sw-bg: #ECEDEC;          /* fondo de las escenas renderizadas */
+      --sw-ink: #2F3B4A;         /* azul pizarra */
+      --sw-ink-soft: #5D6875;
+      --sw-accent: #6F8F7E;      /* verde salvia */
+      --sw-font-display: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      --sw-font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    }
+    html, body { margin: 0; background: var(--sw-bg); color: var(--sw-ink); }
+  </style>
+</head>
+<body>
+  <div id="top"></div>
+  <div id="world"></div>
+
+  <script src="scrub-engine.js"></script>
+  <script>
+    const S = '#6F8F7E', O = '#B08A45', P = '#2F3B4A';
+    mountScrollWorld(document.getElementById('world'), {
+      brand: { name: 'Baremo', href: '#top' },
+      cta: { label: 'Sube tu cartera', href: '#auditoria' },
+      hint: 'desliza',
+      atmosphere: false,
+      diveScroll: 1.4,
+      crossfade: 0.08,
+      sections: [
+        { id: 'cartera', label: 'Tu cartera',
+          still: 'assets/s1.webp', stillMobile: 'assets/s1-m.webp',
+          stillStatic: 'assets/s1.webp',
+          clip: 'assets/vid/s1.mp4', clipMobile: 'assets/vid/s1-m.mp4',
+          accent: P, scroll: 1.6, linger: 0.35,
+          eyebrow: 'Para gestorías y consultoras',
+          title: 'Tus clientes tienen ayudas que nadie está mirando',
+          body: 'Baremo busca subvenciones para cada empresa de tu cartera.',
+          tags: [] },
+        { id: 'paso1', label: 'Paso 1',
+          still: 'assets/s2-p.webp', stillMobile: 'assets/s2-pm.webp',
+          stillStatic: 'assets/s2.webp',
+          clip: 'assets/vid/s2.mp4', clipMobile: 'assets/vid/s2-m.mp4',
+          accent: S,
+          eyebrow: 'Paso 1',
+          title: 'Sube los CIF de tu cartera',
+          body: 'Un CSV y listo. Leemos sector, municipio y tipo de empresa.',
+          tags: ['CSV', 'Sin tarjeta'] },
+        { id: 'paso2', label: 'Paso 2',
+          still: 'assets/s3-p.webp', stillMobile: 'assets/s3-pm.webp',
+          stillStatic: 'assets/s3.webp',
+          clip: 'assets/vid/s3.mp4', clipMobile: 'assets/vid/s3-m.mp4',
+          accent: S,
+          eyebrow: 'Paso 2',
+          title: '8.100 convocatorias filtradas',
+          body: 'Cruzamos la BDNS por territorio, objeto y beneficiario.',
+          tags: ['Territorio', 'Objeto', 'Beneficiario'] },
+        { id: 'paso3', label: 'Paso 3',
+          still: 'assets/s4-p.webp', stillMobile: 'assets/s4-pm.webp',
+          stillStatic: 'assets/s4.webp',
+          clip: 'assets/vid/s4.mp4', clipMobile: 'assets/vid/s4-m.mp4',
+          accent: O,
+          eyebrow: 'Paso 3',
+          title: 'Solo lo que encaja, con el porqué',
+          body: 'Cada ayuda lleva su puntuación explicada. Menos ruido que con otras herramientas.',
+          tags: [] },
+        { id: 'paso4', label: 'Paso 4',
+          still: 'assets/s5-p.webp', stillMobile: 'assets/s5-pm.webp',
+          stillStatic: 'assets/s5.webp',
+          clip: 'assets/vid/s5.mp4', clipMobile: 'assets/vid/s5-m.mp4',
+          accent: O,
+          eyebrow: 'Paso 4',
+          title: 'Ningún plazo se te pasa',
+          body: 'Avisos de plazos y de justificación a 30, 15 y 5 días.',
+          tags: [] },
+        { id: 'auditoria', label: 'Auditoría',
+          still: 'assets/s6-p.webp', stillMobile: 'assets/s6-pm.webp',
+          stillStatic: 'assets/s6.webp',
+          clip: 'assets/vid/s6.mp4', clipMobile: 'assets/vid/s6-m.mp4',
+          accent: P, scroll: 1.6, linger: 0.4,
+          eyebrow: 'Auditoría gratis',
+          title: 'Te decimos qué encaja hoy con tu cartera',
+          body: 'Revisada a mano y entregada en 48 h.',
+          tags: [],
+          cta: { primary: { label: 'Sube tu cartera', href: '#' },
+                 secondary: { label: 'Ver precios', href: '#' } } },
+      ],
+      connectors: [],
+      connectorsMobile: [],
+    });
+  </script>
+</body>
+</html>
